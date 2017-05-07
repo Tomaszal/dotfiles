@@ -1,0 +1,135 @@
+!################################
+!
+! Define colors from a Base16 set
+!
+!################################
+
+#define base00 #1d1f21
+#define base01 #282a2e
+#define base02 #373b41
+#define base03 #969896
+#define base04 #b4b7b4
+#define base05 #c5c8c6
+#define base06 #e0e0e0
+#define base07 #ffffff
+#define base08 #CC342B
+#define base09 #F96A38
+#define base0A #FBA922
+#define base0B #198844
+#define base0C #3971ED
+#define base0D #3971ED
+#define base0E #A36AC7
+#define base0F #3971ED
+
+!################################
+!
+! Assign i3 colors
+!
+!################################
+
+i3.color00:	base00
+i3.color01:	base01
+i3.color02:	base02
+i3.color03:	base03
+i3.color04:	base04
+i3.color05:	base05
+i3.color06:	base06
+i3.color07:	base07
+i3.color08:	base08
+i3.color09:	base09
+i3.color0A:	base0A
+i3.color0B:	base0B
+i3.color0C:	base0C
+i3.color0D:	base0D
+i3.color0E:	base0E
+i3.color0F:	base0F
+
+!################################
+!
+! Assign terminal colors
+!
+!################################
+
+! Background, foreground and cursor colors.
+*background:	base00
+*foreground:	base07
+*cursorColor:	base07
+
+! 0-7 corresponds to low-intensity (normal) colors and 8-15 corresponds to high-intensity (bold = bright foreground, blink = bright background) colors.
+! The canonical names are as follows: 0=black, 1=red, 2=green, 3=yellow, 4=blue, 5=magenta, 6=cyan, 7=white.
+!black
+*color0:	base00
+*color8:	base03
+!red
+*color1:	base08
+*color9:	base09
+!green
+*color2:	base0B
+*color10:	base0B
+!yellow
+*color3:	base02
+*color11:	base02
+!blue
+*color4:	base0D
+*color12:	base0D
+!purple
+*color5:	base0E
+*color13:	base0E
+!cyan
+*color6:	base0C
+*color14:	base0C
+!white
+*color7:	base04
+*color15:	base07
+
+!################################
+!
+! Xft settings
+!
+!################################
+
+! Font rasterization converts vector font data to bitmap data so that it can be displayed. The result can appear jagged due to aliasing. The technique known as anti-aliasing can be used to increase the apparent resolution of font edges.
+Xft.antialias:			1
+! Using BCI hinting, instructions in TrueType fonts are rendered according to FreeTypes interpreter. BCI hinting works well with fonts with good hinting instructions.
+Xft.hinting:			1
+! The autohinter attempts to do automatic hinting and disregards any existing hinting information. Generally common fonts are of the later kind so autohinter will not be useful.
+Xft.autohint:			0
+! Hintstyle is the amount of font reshaping done to line up to the grid. Hinting values are: hintnone, hintslight, hintmedium, and hintfull. hintslight will make the font more fuzzy to line up to the grid but will be better in retaining font shape, while hintfull will be a crisp font that aligns well to the pixel grid but will lose a greater amount of font shape.
+Xft.hintstyle:			hintslight
+! If the DPI is detected incorrectly (usually due to an incorrect monitor EDID) fontconfig will default to the Xft.dpi variable if it is set.
+Xft.dpi:			96
+! Fontconfig will need to know your monitor type to be able to display your fonts correctly. Monitors are either: RGB (most common), BGR, V-RGB (vertical), or V-BGR.
+! A monitor test can be found here: http://www.lagom.nl/lcd-test/subpixel.php
+Xft.rgba:			rgb
+! When using subpixel rendering, you should enable the LCD filter, which is designed to reduce colour fringing.
+! The lcddefault filter will work for most users. Other filters are available that can be used in special situations: lcdlight; a lighter filter ideal for fonts that look too bold or fuzzy, lcdlegacy, the original Cairo filter; and lcdnone to disable it entirely.
+Xft.lcdfilter:			lcddefault
+
+!################################
+!
+! URxvt settings
+!
+!################################
+
+URxvt.intensityStyles:		false
+URxvt.font:			xft:Monospace:Regular:pixelsize=13
+URxvt.boldFont:			xft:Monospace:Bold:pixelsize=13
+URxvt.italicFont:		xft:Monospace:Italic:pixelsize=13
+URxvt.boldItalicFont:		xft:Monospace:Bold Italic:pixelsize=13
+URxvt.depth:			32
+URxvt.background:		[80]#000000
+URxvt.scrollBar:		false
+URxvt.mouseWheelScrollPage:	false
+URxvt.cursorBlink:		true
+URxvt.saveLines:		4096
+
+!################################
+!
+! Rofi settings
+!
+!################################
+
+rofi*font:			Roboto 15
+rofi*lines:			10
+rofi*bw:			0
+rofi*hide-scrollbar:		true
