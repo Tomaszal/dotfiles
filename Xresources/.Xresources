@@ -21,6 +21,11 @@
 #define base0E #A36AC7
 #define base0F #3971ED
 
+! Define transparent colors (argb)
+
+#define tblank	#00000000
+#define tbase01 #DD282a2e
+
 !################################
 !
 ! Assign i3 colors
@@ -129,7 +134,34 @@ URxvt.saveLines:		4096
 !
 !################################
 
-rofi*font:			Roboto 15
-rofi*lines:			10
-rofi*bw:			0
-rofi*hide-scrollbar:		true
+rofi.cycle:			true
+rofi.show:			run
+rofi.scroll-method:		1
+rofi.bw:			0
+rofi.font:			Monospace 13
+rofi.eh:			1
+rofi.line-margin:		15
+rofi.hide-scrollbar:		true
+rofi.lines:			12
+rofi.columns:			1
+rofi.width:			55
+rofi.location:			0
+rofi.padding:			20
+rofi.sidebar-mode:		true
+rofi.modi:			window,run,drun
+rofi.window-format:		[{w:5}] {t:80} ({c:10})
+rofi.click-to-exit:		true
+
+! Enable the extended coloring options
+rofi.color-enabled:		true
+
+! Property Name			BG	Border	Separator
+rofi.color-window:		tbase01,tbase01,base00
+
+! Property Name			BG	FG	BG-alt	Head-BG	Head-FG
+rofi.color-normal:		tblank,	base05,	tblank,	base00,	base07
+rofi.color-active:		tblank,	base0D,	tblank,	base00,	base0D
+rofi.color-urgent:		tblank,	base08,	tblank,	base00,	base08
+
+! Set the desired separator style (none, dash, solid)
+rofi.separator-style:		solid
