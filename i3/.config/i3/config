@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+shift+x exec i3lock
 
-bindsym $mod+F1 exec --no-startup-id "~/.config/wallpaper.sh"
+bindsym $mod+F1 exec --no-startup-id "~/.config/wallpaper/wallpaper.sh"
 
 # Pulse Audio volume controls
 bindsym XF86AudioRaiseVolume	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ +5%"
@@ -240,7 +240,7 @@ exec --no-startup-id		"setxkbmap -model pc105 -layout us,ru -variant altgr-intl,
 exec --no-startup-id		"compton"
 exec --no-startup-id		"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
-exec --no-startup-id		"~/.wallpaper.sh"
+exec --no-startup-id		"~/.config/wallpaper/wallpaper.sh -i 0"
 exec --no-startup-id		"redshift-gtk"
 #exec --no-startup-id		"blockify -q"
 exec --no-startup-id		"/opt/Enpass/bin/runenpass.sh startWithTray"
