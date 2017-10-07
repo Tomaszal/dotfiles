@@ -148,10 +148,11 @@ bindsym $mod+Shift+0 move container to workspace $w10
 
 # Assign workspaces
 assign		[class="Chromium"]				$w1
-assign		[class="skypeforlinux"]				$w2
+#assign		[class="skypeforlinux"]				$w2
 #for_window	[class="Spotify"] move to workspace $w2
 assign		[class="URxvt"]					$w3
 for_window	[instance="open.spotify.com"] move to workspace	$w2
+for_window	[instance="web.skype.com"] move to workspace	$w2
 
 # Application binds
 bindsym $mod+Return exec i3-sensible-terminal; workspace $w3
@@ -194,14 +195,18 @@ bindsym $mod+shift+x exec i3lock
 bindsym $mod+F1 exec --no-startup-id "~/.config/wallpaper/wallpaper.sh"
 
 # Pulse Audio volume controls
-bindsym XF86AudioRaiseVolume	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ +5%"
-bindsym XF86AudioLowerVolume	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ -5%"
-bindsym XF86AudioMute		exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+#bindsym XF86AudioRaiseVolume	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ +5%"
+#bindsym XF86AudioLowerVolume	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false; pactl set-sink-volume @DEFAULT_SINK@ -5%"
+#bindsym XF86AudioMute		exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+#bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master 2%+ && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1)"
+#bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master 2%- && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1)"
+#bindsym XF86AudioMute exec --no-startup-id "amixer set Master toggle && if amixer get Master | grep -Fq '[off]'; then volnoti-show -m; else volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1); fi"
 
 # Media player controls
-bindsym XF86AudioPlay		exec --no-startup-id "playerctl play-pause"
-bindsym XF86AudioNext		exec --no-startup-id "playerctl next"
-bindsym XF86AudioPrev		exec --no-startup-id "playerctl previous"
+#bindsym XF86AudioPlay		exec --no-startup-id "playerctl play-pause"
+#bindsym XF86AudioNext		exec --no-startup-id "playerctl next"
+#bindsym XF86AudioPrev		exec --no-startup-id "playerctl previous"
 
 # Default orientation & workspace layout
 default_orientation		horizontal
@@ -242,10 +247,12 @@ exec --no-startup-id		"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec --no-startup-id		"~/.config/wallpaper/wallpaper.sh -i 0"
 exec --no-startup-id		"redshift-gtk"
-#exec --no-startup-id		"blockify -q"
-exec --no-startup-id		"/opt/Enpass/bin/runenpass.sh startWithTray"
+exec --no-startup-id		"volumeicon"
+exec --no-startup-id		"pamac-tray"
+
+exec --no-startup-id		i3-msg 'exec /opt/Enpass/bin/runenpass.sh'; sleep 1s; i3-msg '[class="Enpass"] kill'
 
 exec --no-startup-id		"chromium"
-exec --no-startup-id		"chromium --app='http://open.spotify.com/'"
-exec --no-startup-id		"skypeforlinux"
+exec --no-startup-id		"chromium --app='https://open.spotify.com/'"
+exec --no-startup-id		"chromium --app='https://web.skype.com/'"
 #exec --no-startup-id		"spotify"
