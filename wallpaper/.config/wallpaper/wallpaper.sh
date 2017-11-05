@@ -1,65 +1,93 @@
 #!/bin/bash
 
-# Subreddits string (enter wanted subreddits separated by '+')
+#*
+# This script downloads an image from the given link and generates fade & blur
+# transitions for it.
+#
+# Dependencies: feh, imagemagick, wget
+#
+# Default URL downloads a random image from Unsplash's curated collections
+# Unsplash Source API: https://source.unsplash.com/
+#*
 
-subreddits='earthporn+spaceporn+skyporn+itookapicture+photocritique'
+# Variables
 
-# Important variables
+STEPS=10
+TIME=0.01
+INTENSITY=4.8
 
-index_file="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/index"
+VERBOSE=true
 
-# Check for internet connection
+DIR=/home/$USER/.wallpaper
 
-if ! ping -q -c 1 -W 120 google.com > /dev/null; then
-  echo "The network is down."
-  exit 1
+URL="https://source.unsplash.com/featured/1920x1080"
+
+mkdir -p $DIR
+
+function verbose_echo {
+	if [ "$VERBOSE" = true ]; then echo -e $1; fi
+}
+
+# Download a new wallpaper
+
+verbose_echo "Downloading new wallpaper...\n"
+
+if [ "$VERBOSE" = true ]; then wget -O $DIR/wallpaper_new.jpg $URL
+else wget -q -O $DIR/wallpaper_new.jpg $URL; fi
+
+verbose_echo "Download finished!\n"
+
+# Generate a transition for the new wallpaper
+
+mkdir -p $DIR/transition_new
+
+for (( i = 0; i <= $STEPS; i++ )); do
+	T=$( echo "scale = 0; $i * (100 / $STEPS)" | bc -l )
+
+	verbose_echo "Generating transition: $T%"
+
+	A=$( echo "scale = 2; ($T * 0.1 + 1) * $INTENSITY" | bc -l )
+	B=$( echo "scale = 2; $A * 0.5" | bc -l )
+
+	convert $DIR/wallpaper_new.jpg \
+		-fill black -colorize $T% -blur $A,$B \
+		$DIR/transition_new/$i.jpg
+done
+
+verbose_echo ""
+
+# Run the old transition if it exists
+
+if [ -d $DIR/transition ]; then
+	for (( i = 0; i <= $STEPS; i++ )); do
+		verbose_echo "Transition (out): $i/$STEPS"
+
+		feh --bg-fill $DIR/transition/$i.jpg
+		sleep $TIME
+	done
+
+	# Remove the old wallpaper and its transition
+
+	verbose_echo "\nRemoving old files...\n"
+
+	rm $DIR/wallpaper.jpg
+	rm -r $DIR/transition
 fi
 
-# Fetch images and permalinks from the chosen subreddits
+# Rename new wallpaper and its transition
 
-data=$(curl -s -A agent https://www.reddit.com/r/$subreddits/.json | \
-	sed 's/"permalink"/\n "permalink"/g; s/"kind"/\n/g' | grep '"permalink"' | \
-	grep -v 'imgur.com\/gallery' | grep -v 'imgur.com\/a\/' | \
-	grep -e '.jpg' -e '.jpeg' -e '.png' | \
-	tr ',' '\n' | \
-	grep -e ' "permalink": ' -e ' "url": ' | \
-	sed 's/ "permalink": //; s/ "url": //; s/"//g')
+verbose_echo "Renaming new files...\n"
 
-IFS=$'\n'
-data=($data)
+mv $DIR/wallpaper_new.jpg $DIR/wallpaper.jpg
+mv $DIR/transition_new $DIR/transition
 
-# Get index from the file and override it if specified with "-i" argument or if it exceeds the limits
+# Run the new transition
 
-index=$(<$index_file)
+for (( i = $STEPS; i >= 0; i-- )); do
+	verbose_echo "Transition (in): $(($STEPS - $i))/$STEPS"
 
-getopts :i: opt
+	feh --bg-fill $DIR/transition/$i.jpg
+	sleep $TIME
+done
 
-if [[ $OPTARG =~ ^-?[0-9]+$ ]]; then
-	index=$OPTARG
-fi
-
-if [ $index -ge $((${#data[@]} / 2)) ]; then
-	index=0
-fi
-
-# Choose the image with the given index (and permalink to post)
-
-echo $index
-echo ${data[$((index * 2))]}
-echo ${data[$((index * 2 + 1))]}
-
-image=${data[$((index * 2 + 1))]}
-
-# Fix Imgur links
-
-[[ $image =~ \/imgur.com\/ ]] && image=$(echo $image | sed 's/imgur.com/i.imgur.com/').jpg
-
-# Set the background and output chosend subreddit and image link
-
-feh --bg-fill $image
-
-# Write next index to the file
-
-echo $((index + 1)) > "$index_file"
-
-exit 0
+feh --bg-fill $DIR/wallpaper.jpg
