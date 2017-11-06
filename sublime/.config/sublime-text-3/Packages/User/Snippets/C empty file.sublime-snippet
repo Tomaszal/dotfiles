@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+#include <stdio.h>
+
+int main()
+{
+	
+
+	return 0;
+}
+]]></content>
+</snippet>

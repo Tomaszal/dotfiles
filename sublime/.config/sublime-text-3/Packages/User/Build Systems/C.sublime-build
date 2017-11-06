@@ -1,0 +1,43 @@
+{
+	"selector": "source.c",
+	"file_patterns": ["*.c"],
+	"working_dir": "$file_path",
+	"shell": true,
+
+	"linux":
+	{
+		"shell_cmd": "gcc $file_name -o ${file_base_name}.bin && echo | ./${file_base_name}.bin && echo \n"
+	},
+
+	"windows":
+	{
+		"shell_cmd": "gcc $file_name -o ${file_base_name}.exe && echo | ${file_base_name}.exe && echo.",
+
+		"env": 
+		{
+			"PATH": "C:/MinGW/bin"
+		}
+	},
+
+	"variants":
+	[
+		{
+			"name": "Capture standard streams (stdin & stdout)",
+
+			"linux":
+			{
+				"shell_cmd": "gcc $file_name -o ${file_base_name}.bin && cat in | ./${file_base_name}.bin > out && cat out && echo \n"
+			},
+
+			"windows":
+			{
+				"shell_cmd": "gcc $file_name -o ${file_base_name}.exe && type in | ${file_base_name}.exe > out && type out && echo.",
+
+				"env": 
+				{
+					"PATH": "C:/MinGW/bin"
+				}
+			}
+		}
+	]
+}
