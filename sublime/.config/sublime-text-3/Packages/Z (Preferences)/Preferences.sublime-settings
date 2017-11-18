@@ -76,7 +76,7 @@
 	//
 
 	// Accent color
-	"material_theme_accent_red": true,
+	"material_theme_accent_cyan": true,
 
 	// Panels
 	"material_theme_bright_scrollbars": true,
