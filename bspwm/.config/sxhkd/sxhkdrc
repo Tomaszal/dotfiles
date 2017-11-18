@@ -8,7 +8,7 @@ super + Return
 
 # Open program launcher
 super + F1
-	~/.config/wallpaper/wallpaper.sh
+	~/.config/wallpaper.sh
 
 # Open program launcher
 super + @space

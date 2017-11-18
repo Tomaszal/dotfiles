@@ -18,7 +18,7 @@ INTENSITY=4.8
 
 VERBOSE=true
 
-DIR=/home/$USER/.wallpaper
+DIR=/home/$USER/.local/share/wallpaper
 
 URL="https://source.unsplash.com/featured/1920x1080"
 

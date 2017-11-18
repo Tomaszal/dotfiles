@@ -26,7 +26,7 @@ bspc rule -a "Enpass-Desktop" -o focus="off" follow="off" &&
 
 # Open Chromium & web apps on desired desktops
 bspc rule -a "Chromium":"chromium" \
-	-o desktop="^1" follow="on" &&
+	-o desktop="^1" focus="on" &&
 	chromium &
 
 bspc rule -a "Chromium":"web.skype.com" \
