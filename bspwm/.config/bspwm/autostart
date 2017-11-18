@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Setup layout (US & RU), Alt+Shift to toggle between them
+setxkbmap -model pc105 -layout us,ru -variant altgr-intl, -option grp:alt_shift_toggle &
+
+# Start screen compositor
+compton -b &
+
+# Start authentication agent
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Fetch a wallpaper
+~/.fehbg &
+
+# Start background apps
+redshift-gtk &
+volumeicon &
+pamac-tray &
+
+# Open and close Enpass to hide it in tray
+bspc rule -a "Enpass-Desktop" -o focus="off" follow="off" &&
+	bspc rule -a "Enpass-Desktop" -o focus="off" follow="off" hidden="on" &&
+		enpass &
+
+(sleep 2s && bspc node $(bspc query -N -n .hidden) -c) &
+
+# Open Chromium & web apps on desired desktops
+bspc rule -a "Chromium":"chromium" \
+	-o desktop="^1" follow="on" &&
+	chromium &
+
+bspc rule -a "Chromium":"web.skype.com" \
+	-o desktop="^2" split_dir="east" follow="off" &&
+	chromium --app="https://web.skype.com/" &
+
+bspc rule -a "Chromium":"open.spotify.com" \
+	-o desktop="^2" split_dir="west" follow="off" &&
+	chromium --app="https://open.spotify.com/" &
