@@ -1,23 +1,30 @@
 #!/bin/sh
 
+# Set the wallpaper
+~/.fehbg &
+
+# Start authentication agent
+/usr/bin/lxpolkit &
+
+# Start clipboard manager
+lxclipboard &
+
+# Start Pamac deamon
+pamac-user-daemon &
+
+# Start Polybar
+polybar bottom &
+
 # Setup layout (US & RU), Alt+Shift to toggle between them
-setxkbmap -model pc105 -layout us,ru -variant altgr-intl, -option grp:alt_shift_toggle &
+setxkbmap -layout us,ru -option grp:alt_shift_toggle &
+
+# Start Redshift
+redshift &
 
 # Start screen compositor
 compton -b &
 
-# Start authentication agent
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Fetch a wallpaper
-~/.fehbg &
-
-# Start background apps
-redshift-gtk &
-volumeicon &
-pamac-tray &
-
-# Open and close Enpass to hide it in tray
+# Open and close Enpass to start the "deamon"
 bspc rule -a "Enpass-Desktop" -o focus="off" follow="off" &&
 	bspc rule -a "Enpass-Desktop" -o focus="off" follow="off" hidden="on" &&
 		enpass &

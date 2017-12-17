@@ -1,0 +1,304 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+
+background = #BB212121
+background-alt = #424242
+
+foreground = #FAFAFA
+foreground-alt = #616161
+
+red = #D50000
+green = #00C853
+blue = #2962FF
+
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[margin]
+
+half = 1
+full = 2
+
+[bar/bottom]
+
+width = 100%
+height = 40
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+font-0 = RobotoMono Nerd Font:size=9
+
+modules-left = powermenu bspwm
+modules-center = xwindow
+modules-right = music pavolume xkeyboard-layout xkeyboard-indicator date
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[module/bspwm]
+
+type = internal/bspwm
+
+enable-scroll = false
+
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-default = 
+
+label-focused = %icon%
+label-focused-padding = ${margin.full}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.foreground}
+
+label-occupied = %icon%
+label-occupied-padding = ${margin.full}
+
+label-urgent = %icon%
+label-urgent-padding = ${margin.full}
+label-urgent-foreground = ${colors.red}
+
+label-empty = %icon%
+label-empty-padding = ${margin.full}
+label-empty-foreground = ${colors.foreground-alt}
+
+[module/xwindow]
+
+type = internal/xwindow
+
+label = %title:0:50:...%
+label-underline = ${colors.foreground}
+label-padding = ${margin.full}
+
+[module/powermenu]
+
+type = custom/menu
+
+label-open = 
+label-open-padding = ${margin.full}
+label-open-underline = ${colors.red}
+
+label-close = 
+label-close-padding = ${margin.full}
+label-close-background = ${colors.background-alt}
+label-close-underline = ${colors.foreground}
+
+menu-0-0 = 
+menu-0-0-padding = ${margin.full}
+menu-0-0-background = ${colors.background-alt}
+menu-0-0-underline = ${colors.red}
+menu-0-0-exec = systemctl poweroff
+
+menu-0-1 = 
+menu-0-1-padding = ${margin.full}
+menu-0-1-background = ${colors.background-alt}
+menu-0-1-underline = ${colors.green}
+menu-0-1-exec = systemctl reboot
+
+menu-0-2 = 
+menu-0-2-padding = ${margin.full}
+menu-0-2-background = ${colors.background-alt}
+menu-0-2-underline = ${colors.blue}
+menu-0-2-exec = systemctl suspend
+
+format = <menu><label-toggle>
+
+[module/eth]
+
+type = internal/network
+
+interface = enp2s0
+
+label-connected = U: %upspeed% D: %downspeed%
+
+format-connected =   <label-connected>
+format-connected-padding = ${margin.full}
+format-connected-underline = ${colors.green}
+
+[module/date]
+
+type = internal/date
+
+date = %F
+time = %R
+
+label = %date% %time%
+
+format =   <label>
+format-padding = ${margin.full}
+; format-background = ${colors.background-alt}
+
+[module/xkeyboard-layout]
+
+type = internal/xkeyboard
+
+label-layout = %name%
+
+format =   <label-layout>
+format-padding = ${margin.full}
+
+[module/xkeyboard-indicator]
+
+type = internal/xkeyboard
+
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+format = <label-indicator>
+format-padding = ${margin.full}
+format-background = ${colors.background-alt}
+format-underline = ${colors.red}
+
+[module/pavolume]
+type = custom/script
+tail = true
+label = %output%
+label-padding = ${margin.full}
+exec = ~/.config/scripts/volume.sh --output listen bar
+; click-right = exec pavucontrol
+click-left = ~/.config/scripts/volume.sh --mute toggle
+scroll-up = ~/.config/scripts/volume.sh --volume +5
+scroll-down = ~/.config/scripts/volume.sh --volume -5
+
+[module/music]
+type = custom/script
+interval = 1
+label = %output%
+format =   <label>
+format-padding = ${margin.full}
+exec = xdotool search --classname "open.spotify.com" getwindowname
+click-left = xdotool search --classname "open.spotify.com" key "alt+k"
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #f90000
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #4bffdc
+label = %percentage_used%%
+
+; [module/eth]
+; type = internal/network
+; interface = enp2s0
+; interval = 3.0
+
+; format-connected-underline = #55aa55
+; label-connected = %local_ip%
+
+; format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu1]
+type = custom/menu
+
+label-open = 
+;label-open-background = #dd0000
+;label-open-foreground = #fff
+label-close = cancel
+;label-close-background = #dd0000
+;label-close-foreground = #fff
+label-open-padding = 2
+label-close-padding = 2
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-0-padding = 2
+
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-1-padding = 2
+
+menu-1-0 = reboot?
+menu-1-0-exec = systemctl reboot
+menu-1-0-padding = 2
+
+menu-2-0 = power off?
+menu-2-0-exec = systemctl poweroff
+menu-2-0-padding = 2
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+; [global/wm]
+; margin-top = 5
+; margin-bottom = 5
+
+; vim:ft=dosini

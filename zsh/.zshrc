@@ -65,6 +65,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Environment variables
+
+export GOPATH=${HOME}/go
+
 # Aliases
 
 alias cp="cp -i"

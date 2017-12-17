@@ -8,7 +8,7 @@ super + Return
 
 # Open program launcher
 super + F1
-	~/.config/wallpaper.sh
+	~/.config/scripts/wallpaper.sh
 
 # Open program launcher
 super + @space
@@ -123,3 +123,11 @@ super + alt + shift + {j,k,i,l}
 # move a floating window
 super + {j,k,i,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# sound
+#
+
+# volume up / down / mute
+alt + {u,m,j}
+	~/.config/scripts/volume.sh {--volume +5,--volume -5,--mute toggle}

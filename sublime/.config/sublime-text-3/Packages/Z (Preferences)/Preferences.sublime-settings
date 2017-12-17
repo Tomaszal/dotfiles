@@ -40,7 +40,8 @@
 	"bold_folder_labels": true,
 
 	// Font
-	"font_face": "Roboto Mono",
+	"font_face": "RobotoMono Nerd Font",
+	// "font_face": "Roboto Mono",
 	"font_size": 10,
 
 	// Gutter
