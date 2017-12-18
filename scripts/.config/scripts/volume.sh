@@ -2,7 +2,7 @@
 
 # Variables
 
-MAX_VOLUME='100'
+MAX_VOLUME='150'
 
 SOUND_ICON_0='  '
 SOUND_ICON_1='  '
