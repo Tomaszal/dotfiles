@@ -8,9 +8,10 @@ SOUND_ICON_0='  '
 SOUND_ICON_1='  '
 
 BAR_WIDTH='10'
-BAR_INDICATOR="%{F#FF0000}|%{F-}"
-BAR_FILL='-'
-BAR_EMPTY='-'
+# BAR_INDICATOR="%{F#FF0000}%{F-}"
+BAR_INDICATOR='' #  
+BAR_FILL=''
+BAR_EMPTY=''
 
 # Method to update status variables
 

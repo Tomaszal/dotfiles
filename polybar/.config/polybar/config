@@ -1,3 +1,7 @@
+[vars]
+
+margin = 2
+
 [colors]
 
 background = #BB212121
@@ -14,11 +18,6 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[margin]
-
-half = 1
-full = 2
-
 [bar/bottom]
 
 width = 100%
@@ -34,7 +33,7 @@ font-0 = RobotoMono Nerd Font:size=9
 
 modules-left = powermenu bspwm
 modules-center = xwindow
-modules-right = music pavolume xkeyboard-layout xkeyboard-indicator date
+modules-right = music volume xkeyboard-layout xkeyboard-indicator date
 
 wm-restack = bspwm
 
@@ -53,19 +52,19 @@ ws-icon-2 = III;
 ws-icon-default = 
 
 label-focused = %icon%
-label-focused-padding = ${margin.full}
+label-focused-padding = ${vars.margin}
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.foreground}
 
 label-occupied = %icon%
-label-occupied-padding = ${margin.full}
+label-occupied-padding = ${vars.margin}
 
 label-urgent = %icon%
-label-urgent-padding = ${margin.full}
+label-urgent-padding = ${vars.margin}
 label-urgent-foreground = ${colors.red}
 
 label-empty = %icon%
-label-empty-padding = ${margin.full}
+label-empty-padding = ${vars.margin}
 label-empty-foreground = ${colors.foreground-alt}
 
 [module/xwindow]
@@ -74,35 +73,35 @@ type = internal/xwindow
 
 label = %title:0:50:...%
 label-underline = ${colors.foreground}
-label-padding = ${margin.full}
+label-padding = ${vars.margin}
 
 [module/powermenu]
 
 type = custom/menu
 
 label-open = 
-label-open-padding = ${margin.full}
+label-open-padding = ${vars.margin}
 label-open-underline = ${colors.red}
 
 label-close = 
-label-close-padding = ${margin.full}
+label-close-padding = ${vars.margin}
 label-close-background = ${colors.background-alt}
 label-close-underline = ${colors.foreground}
 
 menu-0-0 = 
-menu-0-0-padding = ${margin.full}
+menu-0-0-padding = ${vars.margin}
 menu-0-0-background = ${colors.background-alt}
 menu-0-0-underline = ${colors.red}
 menu-0-0-exec = systemctl poweroff
 
 menu-0-1 = 
-menu-0-1-padding = ${margin.full}
+menu-0-1-padding = ${vars.margin}
 menu-0-1-background = ${colors.background-alt}
 menu-0-1-underline = ${colors.green}
 menu-0-1-exec = systemctl reboot
 
 menu-0-2 = 
-menu-0-2-padding = ${margin.full}
+menu-0-2-padding = ${vars.margin}
 menu-0-2-background = ${colors.background-alt}
 menu-0-2-underline = ${colors.blue}
 menu-0-2-exec = systemctl suspend
@@ -119,7 +118,7 @@ time = %R
 label = %date% %time%
 
 format =   <label>
-format-padding = ${margin.full}
+format-padding = ${vars.margin}
 
 [module/xkeyboard-layout]
 
@@ -128,7 +127,7 @@ type = internal/xkeyboard
 label-layout = %name%
 
 format =   <label-layout>
-format-padding = ${margin.full}
+format-padding = ${vars.margin}
 
 [module/xkeyboard-indicator]
 
@@ -138,29 +137,43 @@ blacklist-0 = num lock
 blacklist-1 = scroll lock
 
 format = <label-indicator>
-format-padding = ${margin.full}
+format-padding = ${vars.margin}
 format-background = ${colors.background-alt}
 format-underline = ${colors.red}
 
-[module/pavolume]
+[module/volume]
+
 type = custom/script
+
 tail = true
+
 label = %output%
-label-padding = ${margin.full}
+
+format = <label>
+format-padding = ${vars.margin}
+
 exec = ~/.config/scripts/volume.sh --output listen bar
-; click-right = exec pavucontrol
+
 click-left = ~/.config/scripts/volume.sh --mute toggle
+
 scroll-up = ~/.config/scripts/volume.sh --volume +5
 scroll-down = ~/.config/scripts/volume.sh --volume -5
 
 [module/music]
+
 type = custom/script
+
 interval = 1
+
 label = %output%
+
 format =   <label>
-format-padding = ${margin.full}
+format-padding = ${vars.margin}
+
 exec = xdotool search --classname "open.spotify.com" getwindowname
+
 click-left = xdotool search --classname "open.spotify.com" key "alt+k"
 
 [settings]
+
 screenchange-reload = true
