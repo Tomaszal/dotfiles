@@ -4,11 +4,11 @@ margin = 2
 
 [colors]
 
-background = #BB212121
-background-alt = #424242
+background = #DD263238
+background-alt = #546E7A
 
-foreground = #FAFAFA
-foreground-alt = #616161
+foreground = #FFFFFF
+foreground-alt = #70B2CCD6
 
 red = #D50000
 green = #00C853

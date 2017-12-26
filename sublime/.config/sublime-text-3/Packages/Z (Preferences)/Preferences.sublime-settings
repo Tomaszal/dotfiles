@@ -35,8 +35,8 @@
 	//
 
 	// Theme
-	"theme": "Material-Theme-Darker.sublime-theme",
-	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
+	"theme": "Material-Theme.sublime-theme",
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
 	"bold_folder_labels": true,
 
 	// Font
@@ -59,6 +59,10 @@
 	// Word wrap
 	"word_wrap": true,
 	"wrap_width": 0,
+
+	// Padding
+	"line_padding_bottom": 2,
+	"line_padding_top": 2,
 
 	// Indentation guides
 	"draw_indent_guides": true,
