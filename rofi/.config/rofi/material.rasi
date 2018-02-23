@@ -33,56 +33,56 @@
 	font: "RobotoMono Nerd Font 13";
 }
 
-#window {
+window {
 	transparency: "real";
 	fullscreen: true;
 	background-color: #263238CC; /*base00 + CC (80% opacity)*/
 }
 
-#mainbox {
+mainbox {
 	children: [inputbar, message, sidebar, listview];
 	spacing: 30px;
 	margin: 20%;
 }
 
-#inputbar {
+inputbar {
 	padding: 0 30px;
 }
 
-#prompt {
+prompt {
 	text-color: @base0D;
 }
 
-#entry {
+entry {
 	text-color: @base07;
 	padding: 0 1ch;
 }
 
-#case-indicator {
+case-indicator {
 	text-color: @base0F;
 }
 
-#sidebar, message {
+sidebar, message {
 	border: 1px 0;
 	border-color: @base0D;
 }
 
-#button, textbox {
+button, textbox {
 	background-color: @base03;
 	text-color: @base07;
 	padding: 5px;
 }
 
-#button.selected {
+button selected {
 	background-color: @base0D;
 }
 
-#listview {
+listview {
 	scrollbar: true;
 	margin: 0 10px 0 30px;
 }
 
-#scrollbar {
+scrollbar {
 	background-color: @base03;
 	handle-color: @base0D;
 	handle-width: 10px;
@@ -91,31 +91,31 @@
 	margin: 0 0 0 20px;
 }
 
-#element {
+element {
 	padding: 5px;
 	highlight: bold underline;
 }
 
-#element.normal {
+element normal {
 	background-color: transparent;
 }
 
-#element.selected {
+element selected {
 	background-color: @base0D;
 }
 
-#element.alternate {
+element alternate {
 	/*background-color: @base03;*/
 }
 
-#element.normal.normal, element.selected.normal, element.alternate.normal {
+element normal normal, element selected normal, element alternate normal {
 	text-color: @base07;
 }
 
-#element.normal.urgent, element.selected.urgent, element.alternate.urgent {
+element normal urgent, element selected urgent, element alternate urgent {
 	text-color: @base0F;
 }
 
-#element.normal.active, element.selected.active, element.alternate.active {
+element normal active, element selected active, element alternate active {
 	text-color: @base0B;
 }
