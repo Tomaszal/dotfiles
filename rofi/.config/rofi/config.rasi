@@ -152,7 +152,7 @@ configuration {
 	kb-custom-18: ""; /* Alt+asterisk */
 	kb-custom-19: ""; /* Alt+parenleft */
 
-	kb-screenshot: ""; /* Alt+Shift */
+	kb-screenshot: "";
 
 	/*ml-row-left: "Mouse6";*/
 	/*ml-row-right: "Mouse7";*/
