@@ -47,15 +47,22 @@ mainbox {
 
 inputbar {
 	padding: 0 30px;
+	children: [prompt, textbox-prompt-colon, entry, case-indicator];
 }
 
 prompt {
 	text-color: @base0D;
 }
 
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
 entry {
 	text-color: @base07;
-	padding: 0 1ch;
 }
 
 case-indicator {
