@@ -1,3 +1,12 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Base16 Material Theme (https://github.com/ntpeters/base16-materialtheme-scheme)
+ *
+ * User: Tomaszal
+ * Copyright: Tomas Zaluckij
+ */
+
 * {
 	base00: #263238;
 	base01: #2E3C43;
@@ -16,6 +25,8 @@
 	base0E: #C792EA;
 	base0F: #FF5370;
 
+	/*base0D: #00BCD4;*/
+
 	spacing: 0px;
 	background-color: transparent;
 
@@ -23,9 +34,9 @@
 }
 
 #window {
-	transparency: "real"; /*real, background, screenshot*/
+	transparency: "real";
 	fullscreen: true;
-	background-color: rgba(38, 50, 56, 80%);
+	background-color: #263238CC; /*base00 + CC (80% opacity)*/
 }
 
 #mainbox {
@@ -82,6 +93,7 @@
 
 #element {
 	padding: 5px;
+	highlight: bold underline;
 }
 
 #element.normal {
