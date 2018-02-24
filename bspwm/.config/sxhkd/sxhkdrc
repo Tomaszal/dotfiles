@@ -12,7 +12,7 @@ super + F1
 
 # Open program launcher
 super + @space
-	rofi -show run
+	rofi -show drun
 
 # Reload sxhkd configuration files
 super + shift + r
