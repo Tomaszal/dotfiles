@@ -21,7 +21,7 @@ configuration {
 	m: "-1";
 	dpi: -1;
 
-	theme: "material";
+	theme: "materia";
 	sidebar-mode: true;
 
 	auto-select: false;
