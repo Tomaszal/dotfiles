@@ -19,7 +19,7 @@ BLUR_INTENSITY=2.4
 VERBOSE=false
 
 NOTIFICATIONS=true
-NOTIFICATION_WIDTH=31
+NOTIFICATION_WIDTH=34
 
 DIR=/home/$USER/.local/share/wallpaper
 
@@ -34,7 +34,7 @@ function verbose_echo {
 }
 
 function dunst {
-	dunstify -r 432 -a 'Wallpaper script' -t 10 -i computer "$1" "$2"
+	dunstify -r 432 -a 'Wallpaper script' -t 5000 -i computer "$1" "$2"
 }
 
 function send_notification {
