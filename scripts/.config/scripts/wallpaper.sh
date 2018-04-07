@@ -23,7 +23,7 @@ NOTIFICATION_WIDTH=32
 
 DIR=/home/$USER/.local/share/wallpaper
 
-URL='https://source.unsplash.com/featured/1920x1080'
+URL='https://source.unsplash.com/random/1920x1080/?black-background,city,space'
 
 mkdir -p $DIR
 
