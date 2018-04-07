@@ -52,9 +52,9 @@ send_notification 'Downloading wallpaper...'
 verbose_echo 'Downloading new wallpaper...'
 
 if [ "$VERBOSE" = true ]; then
-	curl -o $DIR/wallpaper_new.jpg $URL
+	curl -L -o $DIR/wallpaper_new.jpg $URL
 else
-	curl -s -o $DIR/wallpaper_new.jpg $URL
+	curl -s -L -o $DIR/wallpaper_new.jpg $URL
 fi
 
 verbose_echo 'Download finished!'
