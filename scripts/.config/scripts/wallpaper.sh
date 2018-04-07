@@ -4,7 +4,7 @@
 # This script downloads an image from the given link and generates fade & blur
 # transitions for it.
 #
-# Dependencies: feh, imagemagick, wget, bc, dunstify (optional)
+# Dependencies: feh, imagemagick, curl, bc, dunstify (optional)
 #
 # Default URL downloads a random image from Unsplash's curated collections
 # Unsplash Source API: https://source.unsplash.com/
@@ -52,9 +52,9 @@ send_notification 'Downloading wallpaper...'
 verbose_echo 'Downloading new wallpaper...'
 
 if [ "$VERBOSE" = true ]; then
-	wget -O $DIR/wallpaper_new.jpg $URL
+	curl -o $DIR/wallpaper_new.jpg $URL
 else
-	wget -q -O $DIR/wallpaper_new.jpg $URL
+	curl -s -o $DIR/wallpaper_new.jpg $URL
 fi
 
 verbose_echo 'Download finished!'
