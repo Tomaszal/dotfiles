@@ -91,7 +91,8 @@ listview {
 scrollbar {
 	background-color: @base02;
 	handle-color: @base0D;
-	handle-width: 8px;
+	handle-width: 4px;
+	padding: 2px;
 	border: 0 0 0 2px;
 }
 
