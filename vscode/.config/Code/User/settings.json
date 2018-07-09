@@ -1,0 +1,27 @@
+{
+	"editor.fontFamily": "Fira Code",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 13,
+
+	"editor.renderWhitespace": "boundary",
+	"editor.renderLineHighlight": "all",
+
+	"editor.cursorBlinking": "phase",
+	"editor.cursorStyle": "line",
+	
+	"editor.smoothScrolling": true,
+	"editor.mouseWheelZoom": true,
+
+	"editor.multiCursorModifier": "ctrlCmd",
+
+	"window.menuBarVisibility": "default",
+
+	"telemetry.enableCrashReporter": false,
+	"telemetry.enableTelemetry": false,
+	"editor.wordWrap": "on",
+	"git.enableSmartCommit": true,
+	"window.zoomLevel": 0,
+	"git.autofetch": true,
+	"workbench.colorTheme": "Visual Studio Dark",
+	"workbench.statusBar.feedback.visible": false,
+}
