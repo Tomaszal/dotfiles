@@ -1,0 +1,305 @@
+# ----------------------------------------
+# > Dircolors
+# | Author: @Tomaszal
+# | Adapted for terminals with a base16 color scheme
+# ----------------------------------------
+
+COLOR tty
+
+# Color codes:
+# Foreground: 38;5;XXX (XXX - 256 color code)
+# Background: 48;5;XXX (XXX - 256 color code)
+
+# Attribute codes:
+# 0 - none
+# 1 - bold
+# 4 - underline
+# 5 - blink
+# 7 - reverse
+# 8 - concealed
+
+# Comment contractions:
+# [] - base16 color
+# () - human readable color name
+# {} - additional attributes
+
+# ----------------------------------------
+# > General file types
+# ----------------------------------------
+
+# Nothing
+NORMAL  0   # Normal text
+RESET   0   # Reset to NORMAL
+
+# [base04] (dark silver)
+FILE    38;5;20     # Regular file
+
+# [base0D] (blue) {bold}
+DIR     38;5;04;1   # Directory
+
+# [base0D] (blue) {reversed} {bold / underline}
+BLK     38;5;04;7;1 # Block device special file
+CHR     38;5;04;7;4 # Character device special file
+
+# [base0C] (teal) {bold / underline}
+MULTIHARDLINK   38;5;06;1   # Hard link
+LINK            38;5;06;4   # Soft link (symlink)
+
+# [base0E] (purple) {reversed} {bold / both / underline}
+FIFO    38;5;05;7;1     # FIFO (named pipe)
+SOCK    38;5;05;7;1;4   # Socket
+DOOR    38;5;05;7;4     # Door
+
+# [base08] (red) {bold / underline}
+ORPHAN  38;5;01;1   # Symlink which points to a missing file
+MISSING 38;5;01;4   # Missing file with a symlink pointing to it
+
+# [base08] (red) {reversed} {bold}
+SETUID  38;5;01;1;7 # File with the set-user-ID attribute set (u+s)
+
+# [base0A] (yellow) {reversed} {bold}
+SETGID  38;5;03;1;7 # File with the set-group-ID attribute set (g+s)
+
+# [base0B] (green) {bold / underline}
+EXEC        38;5;02;1   # File with the executable attribute set (+x)
+CAPABILITY  38;5;02;4   # File with capability
+
+# [base0B] (green) {reversed} {bold / both / underline}
+OTHER_WRITABLE        38;5;02;7;1   # Other-writable directory (o+w)
+STICKY_OTHER_WRITABLE 38;5;02;7;1;4 # Sticky other-writable directory (o+w, +t)
+STICKY                38;5;02;7;4   # Sticky directory (+t)
+
+# ----------------------------------------
+# > File extensions
+# ----------------------------------------
+
+# Archives
+# [base0E] (purple)
+.7z     38;5;05
+.ace    38;5;05
+.alz    38;5;05
+.apk    38;5;05
+.arc    38;5;05
+.arj    38;5;05
+.bz     38;5;05
+.bz2    38;5;05
+.cab    38;5;05
+.cpio   38;5;05
+.deb    38;5;05
+.dz     38;5;05
+.ear    38;5;05
+.gem    38;5;05
+.gz     38;5;05
+.jar    38;5;05
+.lha    38;5;05
+.lrz    38;5;05
+.lz     38;5;05
+.lz4    38;5;05
+.lzh    38;5;05
+.lzma   38;5;05
+.lzo    38;5;05
+.rar    38;5;05
+.rpm    38;5;05
+.rz     38;5;05
+.sar    38;5;05
+.t7z    38;5;05
+.tar    38;5;05
+.taz    38;5;05
+.tbz    38;5;05
+.tbz2   38;5;05
+.tgz    38;5;05
+.tlz    38;5;05
+.txz    38;5;05
+.tz     38;5;05
+.tzo    38;5;05
+.tzst   38;5;05
+.war    38;5;05
+.xz     38;5;05
+.Z      38;5;05
+.z      38;5;05
+.zip    38;5;05
+.zoo    38;5;05
+.zst    38;5;05
+
+# Images
+# [base0A] (yellow) {bold}
+.bmp    38;5;03;1
+.cgm    38;5;03;1
+.CR2    38;5;03;1
+.dl     38;5;03;1
+.dvi    38;5;03;1
+.emf    38;5;03;1
+.eps    38;5;03;1
+.gif    38;5;03;1
+.ico    38;5;03;1
+.jpeg   38;5;03;1
+.JPG    38;5;03;1
+.jpg    38;5;03;1
+.mng    38;5;03;1
+.pbm    38;5;03;1
+.pcx    38;5;03;1
+.pgm    38;5;03;1
+.PNG    38;5;03;1
+.png    38;5;03;1
+.ppm    38;5;03;1
+.pps    38;5;03;1
+.ppsx   38;5;03;1
+.ps     38;5;03;1
+.svg    38;5;03;1
+.svgz   38;5;03;1
+.tga    38;5;03;1
+.tif    38;5;03;1
+.tiff   38;5;03;1
+.xbm    38;5;03;1
+.xcf    38;5;03;1
+.xpm    38;5;03;1
+.xwd    38;5;03;1
+.yuv    38;5;03;1
+
+# Video
+# [base0A] (yellow) {bold} {underline}
+.anx    38;5;03;1;4
+.asf    38;5;03;1;4
+.avi    38;5;03;1;4
+.axv    38;5;03;1;4
+.divx   38;5;03;1;4
+.flc    38;5;03;1;4
+.fli    38;5;03;1;4
+.flv    38;5;03;1;4
+.gl     38;5;03;1;4
+.m2ts   38;5;03;1;4
+.m2v    38;5;03;1;4
+.m4v    38;5;03;1;4
+.mkv    38;5;03;1;4
+.MOV    38;5;03;1;4
+.mov    38;5;03;1;4
+.mp4    38;5;03;1;4
+.mp4v   38;5;03;1;4
+.mpeg   38;5;03;1;4
+.mpg    38;5;03;1;4
+.nuv    38;5;03;1;4
+.ogm    38;5;03;1;4
+.ogv    38;5;03;1;4
+.ogx    38;5;03;1;4
+.qt     38;5;03;1;4
+.rm     38;5;03;1;4
+.rmvb   38;5;03;1;4
+.swf    38;5;03;1;4
+.vob    38;5;03;1;4
+.webm   38;5;03;1;4
+.wmv    38;5;03;1;4
+
+# Audio
+# [base0A] (yellow) {underline}
+.aac    38;5;03;4
+.au     38;5;03;4
+.axa    38;5;03;4
+.flac   38;5;03;4
+.m4a    38;5;03;4
+.mid    38;5;03;4
+.midi   38;5;03;4
+.mka    38;5;03;4
+.mp3    38;5;03;4
+.mpa    38;5;03;4
+.mpc    38;5;03;4
+.mpeg   38;5;03;4
+.mpg    38;5;03;4
+.oga    38;5;03;4
+.ogg    38;5;03;4
+.opus   38;5;03;4
+.ra     38;5;03;4
+.spx    38;5;03;4
+.wav    38;5;03;4
+.xspf   38;5;03;4
+
+# Important files
+# [base07] (white)
+.3des               38;5;15
+.aes                38;5;15
+.app                38;5;15
+.bat                38;5;15
+.btm                38;5;15
+.c                  38;5;15
+.cc                 38;5;15
+.cfg                38;5;15
+.cmd                38;5;15
+.com                38;5;15
+.conf               38;5;15
+.cpp                38;5;15
+.csv                38;5;15
+.cxx                38;5;15
+.doc                38;5;15
+.docx               38;5;15
+.dot                38;5;15
+.exe                38;5;15
+.go                 38;5;15
+.gpg                38;5;15
+.h                  38;5;15
+.hpp                38;5;15
+.ini                38;5;15
+.md                 38;5;15
+.n3                 38;5;15
+.nfo                38;5;15
+.nt                 38;5;15
+.objc               38;5;15
+.odg                38;5;15
+.odp                38;5;15
+.ods                38;5;15
+.odt                38;5;15
+.otg                38;5;15
+.otp                38;5;15
+.ots                38;5;15
+.ott                38;5;15
+.owl                38;5;15
+.pdf                38;5;15
+.pgp                38;5;15
+.ppt                38;5;15
+.pptx               38;5;15
+.rdf                38;5;15
+.reg                38;5;15
+.sql                38;5;15
+.sqlite             38;5;15
+.tex                38;5;15
+.torrent            38;5;15
+.ttl                38;5;15
+.xls                38;5;15
+.xlsx               38;5;15
+.xml                38;5;15
+.yml                38;5;15
+*1                  38;5;15
+*build.xml          38;5;15
+*Dockerfile         38;5;15
+*Makefile           38;5;15
+*Rakefile           38;5;15
+*rc                 38;5;15
+*README             38;5;15
+*README.markdown    38;5;15
+*README.txt         38;5;15
+*readme.txt         38;5;15
+
+# Unimportant files
+# [base03] (light gray)
+.aux        38;5;08
+.bak        38;5;08
+.bbl        38;5;08
+.blg        38;5;08
+.cache      38;5;08
+.class      38;5;08
+.incomplete 38;5;08
+.lof        38;5;08
+.log        38;5;08
+.lol        38;5;08
+.lot        38;5;08
+.o          38;5;08
+.old        38;5;08
+.orig       38;5;08
+.out        38;5;08
+.part       38;5;08
+.pyc        38;5;08
+.swo        38;5;08
+.swp        38;5;08
+.temp       38;5;08
+.tmp        38;5;08
+.toc        38;5;08
+*#          38;5;08
+*~          38;5;08

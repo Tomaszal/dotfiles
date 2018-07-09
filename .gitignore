@@ -1,0 +1,5 @@
+# GTK bookmarks
+gtk/.config/gtk-3.0/bookmarks
+
+# Zsh cache
+zsh/.config/zsh/cache
