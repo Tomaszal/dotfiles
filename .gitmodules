@@ -1,9 +1,0 @@
-[submodule "sublime/.config/sublime-text-3/Packages/Material Theme"]
-	path = sublime/.config/sublime-text-3/Packages/Material Theme
-	url = https://github.com/equinusocio/material-theme
-[submodule "sublime/.config/sublime-text-3/Packages/INI"]
-	path = sublime/.config/sublime-text-3/Packages/INI
-	url = https://github.com/clintberry/sublime-text-2-ini
-[submodule "sublime/.config/sublime-text-3/Packages/GoSublime"]
-	path = sublime/.config/sublime-text-3/Packages/GoSublime
-	url = https://github.com/DisposaBoy/GoSublime
