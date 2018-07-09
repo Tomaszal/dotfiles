@@ -1,9 +1,6 @@
 [submodule "sublime/.config/sublime-text-3/Packages/Material Theme"]
 	path = sublime/.config/sublime-text-3/Packages/Material Theme
 	url = https://github.com/equinusocio/material-theme
-[submodule "zsh/.config/oh-my-zsh/themes/powerlevel9k"]
-	path = zsh/.config/oh-my-zsh/themes/powerlevel9k
-	url = https://github.com/bhilburn/powerlevel9k
 [submodule "sublime/.config/sublime-text-3/Packages/INI"]
 	path = sublime/.config/sublime-text-3/Packages/INI
 	url = https://github.com/clintberry/sublime-text-2-ini
