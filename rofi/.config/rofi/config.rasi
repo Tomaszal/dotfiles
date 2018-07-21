@@ -1,4 +1,5 @@
 configuration {
+
 	/* General */
 
 	threads: 0;
@@ -21,7 +22,7 @@ configuration {
 	m: "-1";
 	dpi: -1;
 
-	theme: "materia";
+	theme: "base16";
 	sidebar-mode: true;
 
 	auto-select: false;
@@ -84,8 +85,8 @@ configuration {
 
 	kb-clear-line: "Control+K";
 
-	kb-move-front: "Home,KP_Home";
-	kb-move-end: "End,KP_End";
+	kb-move-front: "Home";
+	kb-move-end: "End";
 	kb-move-word-back: "Control+Left";
 	kb-move-word-forward: "Control+Right";
 	kb-move-char-back: "Left";
@@ -98,7 +99,7 @@ configuration {
 	kb-remove-to-eol: "";
 	kb-remove-to-sol: "";
 
-	kb-accept-entry: "Return,KP_Enter";
+	kb-accept-entry: "Return,Control+Alt+Tab";
 	kb-accept-custom: "Control+Return";
 	kb-accept-alt: "Shift+Return";
 	kb-cancel: "Escape";
@@ -114,8 +115,8 @@ configuration {
 	kb-row-tab: "Tab";
 	kb-page-prev: "Page_Up";
 	kb-page-next: "Page_Down";
-	kb-row-first: "Control+Home,Control+KP_Home";
-	kb-row-last: "Control+End,Control+KP_End";
+	kb-row-first: "Control+Home";
+	kb-row-last: "Control+End";
 	kb-row-select: "Control+space";
 
 	kb-toggle-case-sensitivity: "Alt+grave";
@@ -153,12 +154,4 @@ configuration {
 	kb-custom-19: ""; /* Alt+parenleft */
 
 	kb-screenshot: "";
-
-	/*ml-row-left: "Mouse6";*/
-	/*ml-row-right: "Mouse7";*/
-	/*ml-row-up: "Mouse4";*/
-	/*ml-row-down: "Mouse5";*/
-	/*me-select-entry: "Mouse1";*/
-	/*me-accept-entry: "MouseD1";*/
-	/*me-accept-custom: "Control+MouseD1";*/
 }
