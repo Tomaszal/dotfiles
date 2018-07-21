@@ -1,3 +1,9 @@
+# ----------------------------------------
+# > Termite configuration
+# | Author: @Tomaszal
+# | Adapted for base16 color schemes
+# ----------------------------------------
+
 [options]
 
 scroll_on_output = false
@@ -8,56 +14,122 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = RobotoMono Nerd Font 10
+font = Fira Mono 10
 scrollback_lines = 10000
 search_wrap = true
 cursor_blink = on
 cursor_shape = block
+size_hints = false
 
 [colors]
 
-foreground          = #EEFFFF
-foreground_bold     = #EEFFFF
-cursor              = #EEFFFF
-cursor_foreground   = #263238
-background          = rgba(38, 50, 56, 0.8)
+# ----------------------------------------
+# > Color scheme
+# | Base16 Oxide
+# | Author: Diki Ananta
+# | https://github.com/dikiaap/dotfiles/blob/master/.Xresources
+# ----------------------------------------
 
-# 16 color space
+# base00 #212121
+# base01 #343D46
+# base02 #4F5B66
+# base03 #65737E
+# base04 #A7ADBA
+# base05 #C0C5CE
+# base06 #CDD3DE
+# base07 #F3F4F5
+# base08 #E57373
+# base09 #F99157
+# base0A #FAC863
+# base0B #A6BC69
+# base0C #5FB3B3
+# base0D #6699CC
+# base0E #C594C5
+# base0F #AB7967
 
-# Black, Gray, Silver, White
-color0  = #263238
-color8  = #546E7A
-color7  = #EEFFFF
-color15 = #FFFFFF
+# Comment contractions:
+# [] - base16 color
+# () - human readable color name
+# {} - additional attributes
 
-# Red
-color1  = #F07178
-color9  = #F07178
+# ----------------------------------------
+# > Main colors
+# ----------------------------------------
 
-# Green
-color2  = #C3E88D
-color10 = #C3E88D
+# [base05] (silver)
+foreground          = #C0C5CE
 
-# Yellow
-color3  = #FFCB6B
-color11 = #FFCB6B
+# [base06] (light silver)
+foreground_bold     = #CDD3DE
 
-# Blue
-color4  = #82AAFF
-color12 = #82AAFF
+# [base06] (light silver)
+cursor              = #CDD3DE
 
-# Purple
-color5  = #C792EA
-color13 = #C792EA
+# [base00] (black)
+cursor_foreground   = #212121
 
-# Teal
-color6  = #89DDFF
-color14 = #89DDFF
+# [base00] (black) {80% opaque}
+background          = rgba(33, 33, 33, 0.8)
+# background          = #212121
+
+# ----------------------------------------
+# > Color space
+# ----------------------------------------
+
+# 16 colors
+
+# [base00] (black)
+color0  = #212121
+
+# [base03] (light gray)
+color8  = #65737E
+
+# [base05] (silver)
+color7  = #C0C5CE
+
+# [base07] (white)
+color15 = #F3F4F5
+
+# [base08] (red)
+color1  = #E57373
+color9  = #E57373
+
+# [base0B] (green)
+color2  = #A6BC69
+color10 = #A6BC69
+
+# [base0A] (yellow)
+color3  = #FAC863
+color11 = #FAC863
+
+# [base0D] (blue)
+color4  = #6699CC
+color12 = #6699CC
+
+# [base0E] (purple)
+color5  = #C594C5
+color13 = #C594C5
+
+# [base0C] (teal)
+color6  = #5FB3B3
+color14 = #5FB3B3
 
 # Extra colors
-color16 = #F78C6C
-color17 = #FF5370
-color18 = #2E3C43
-color19 = #314549
-color20 = #B2CCD6
-color21 = #EEFFFF
+
+# [base09] (orange)
+color16 = #F99157
+
+# [base0F] (brown)
+color17 = #AB7967
+
+# [base01] (dark gray)
+color18 = #343D46
+
+# [base02] (gray)
+color19 = #4F5B66
+
+# [base04] (dark silver)
+color20 = #A7ADBA
+
+# [base06] (light silver)
+color21 = #CDD3DE
