@@ -4,19 +4,15 @@ margin = 2
 
 [colors]
 
-background = #CC263238
-background-alt = #546E7A
+background = #CC212121
+background-alt = #4F5B66
 
-foreground = #FFFFFF
-foreground-alt = #70B2CCD6
+foreground = #F3F4F5
+foreground-alt = #70F3F4F5
 
-red = #D50000
-green = #00C853
-blue = #2962FF
-
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+red = #E57373
+green = #A6BC69
+blue = #6699CC
 
 [bar/bottom]
 
@@ -29,11 +25,12 @@ foreground = ${colors.foreground}
 
 line-size = 3
 
-font-0 = RobotoMono Nerd Font:size=9
+font-0 = Fira Mono:size=9
+font-1 = Font Awesome:size=9
 
 modules-left = powermenu bspwm
 modules-center = xwindow
-modules-right = music volume xkeyboard-layout xkeyboard-indicator date
+modules-right = battery backlight music volume xkeyboard-layout xkeyboard-indicator date
 
 wm-restack = bspwm
 
@@ -46,9 +43,9 @@ type = internal/bspwm
 
 enable-scroll = false
 
-ws-icon-0 = I;
-ws-icon-1 = II;
-ws-icon-2 = III;
+ws-icon-0 = 1;
+# ws-icon-1 = 2;
+ws-icon-1 = 2;
 ws-icon-default = 
 
 label-focused = %icon%
@@ -107,6 +104,47 @@ menu-0-2-underline = ${colors.blue}
 menu-0-2-exec = systemctl suspend
 
 format = <menu><label-toggle>
+
+[module/backlight]
+
+type = internal/xbacklight
+
+output = eDP1
+
+enable-scroll = false
+
+bar-width = 10
+bar-indicator = 
+bar-fill = 
+bar-empty = 
+
+format =   <bar>
+format-padding = ${vars.margin}
+
+[module/battery]
+
+type = internal/battery
+
+battery = BAT1
+adapter = ACAD
+
+poll-interval = 5
+full-at = 99
+
+time-format = %H:%M
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+label-charging = %percentage%% (%time%)
+label-discharging = %percentage%% (%time%)
+
+format-charging =    <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-padding = ${vars.margin}
 
 [module/date]
 
