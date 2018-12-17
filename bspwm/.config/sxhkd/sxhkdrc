@@ -11,7 +11,7 @@ super + F1
 	~/.config/scripts/wallpaper.sh
 
 # Open program launcher
-super + @space
+{super + @space, ctrl + alt + Tab}
 	rofi -show drun
 
 # Reload sxhkd configuration files
@@ -131,3 +131,13 @@ super + {j,k,i,l}
 # volume up / down / mute
 alt + {u,m,j}
 	~/.config/scripts/volume.sh {--volume +5,--volume -5,--mute toggle}
+
+#
+# other
+#
+
+# application switcher
+alt + Tab
+	rofi -show window \
+	-kb-accept-entry "!Alt+Tab" \
+	-kb-row-tab "Alt+Tab"
