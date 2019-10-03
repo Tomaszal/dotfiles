@@ -10,9 +10,12 @@ declare -U PATH
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
 # Default editor (VSCode)
-export EDITOR=code
+export EDITOR="code --wait"
 
 # Default pager and options (less)
 export PAGER=less
 export LESS="-i -R"
 export LESSHISTFILE="/dev/null"
+
+# Ruby path
+export PATH=${PATH}:${HOME}/.gem/ruby/2.6.0/bin
