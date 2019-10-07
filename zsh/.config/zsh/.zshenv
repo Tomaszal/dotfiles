@@ -19,3 +19,7 @@ export LESSHISTFILE="/dev/null"
 
 # Ruby path
 export PATH=${PATH}:${HOME}/.gem/ruby/2.6.0/bin
+
+# Android SDK
+export ANDROID_HOME="~/.android/sdk"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
