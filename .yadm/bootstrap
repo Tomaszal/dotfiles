@@ -1,5 +1,7 @@
 #!/bin/sh
 
+REPO_URL="https://github.com/Tomaszal/dotfiles.git"
+
 # Available script functions and names
 # Do not change the order or it will break the bootstrap history file
 script_names[1]="Arch"
@@ -55,6 +57,24 @@ function bootstrap_arch() {
 
 }
 
+function bootstrap_common() {
+
+    if [ -d "$HOME/.yadm/repo.git" ]; then
+        echo
+        echo "--> YADM repository already already exists, pulling latest changes..."
+        echo
+
+        sudo -u "$OG_USER" yadm pull
+    else
+        echo
+        echo "--> Cloning YADM repository..."
+        echo
+
+        sudo -u "$OG_USER" yadm clone "$REPO_URL"
+    fi
+
+}
+
 function bootstrap_select() {
 
     [ -z ${script_names[$1]} ] && return 100
@@ -73,6 +93,14 @@ function bootstrap_select() {
 
     ${script_funcs[1]}
 
+    echo
+    echo "Executing common bootstrap..."
+
+    bootstrap_common
+
+    echo
+    echo "Bootstrap complete!"
+
 }
 
 function init() {
@@ -82,7 +110,7 @@ function init() {
 
     # When running as root a user must be provided as an argument
     if [ -z $1 ]; then
-        echo >&2 "Error: no \$HOME provided."
+        echo >&2 "Error: no user provided."
         exit 1
     else
         OG_USER="$1"
