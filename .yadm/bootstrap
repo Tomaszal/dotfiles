@@ -28,7 +28,7 @@ function bootstrap_arch() {
         echo "--> Installing official packages..."
         echo
 
-        pacman --noconfirm -S "${packages[@]}"
+        pacman --noconfirm --needed -S "${packages[@]}"
     fi
 
     if ! [ -x "$(command -v pamac)" ]; then
