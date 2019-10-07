@@ -3,7 +3,7 @@
 	"editor.fontLigatures": true,
 	"editor.fontSize": 13,
 
-	"editor.renderWhitespace": "boundary",
+	"editor.renderWhitespace": "selection",
 	"editor.renderLineHighlight": "all",
 
 	"editor.cursorBlinking": "phase",
