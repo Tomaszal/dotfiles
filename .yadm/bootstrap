@@ -1,0 +1,96 @@
+#!/bin/sh
+
+# Available script functions and names
+# Do not change the order or it will break the bootstrap history file
+script_names[1]="Arch"
+script_funcs[1]="bootstrap_arch"
+
+function bootstrap_arch() {
+
+    # Update the system
+    pacman --noconfirm -Syyu
+
+    # Install the desired packages
+    # pacman -S
+
+}
+
+function bootstrap_select() {
+
+    [ -z ${script_names[$1]} ] && return 1
+
+    # All scripts must have a function associated with them
+    if [ -z ${script_funcs[$1]} ]; then
+        ech >&2 "Error: malformed bootstrap script, '${script_names[$1]}' has no associated function."
+    fi
+
+    # Save the chosen script index for subsequent bootstrap runs
+    mkdir -p ~/.yadm
+    echo $1 >~/.yadm/bootstrap_history
+
+    echo
+    echo "Executing ${script_names[1]} bootstrap..."
+
+    ${script_funcs[1]}
+
+}
+
+function init() {
+
+    # Check if run as root, if not request sudo access
+    [ $(id -u) = 0 ] || exec sudo "$0" "$(
+        cd $HOME
+        pwd
+    )"
+
+    # When running as root user home directory must be provided as an argument
+    if [ -z $1 ]; then
+        echo >&2 "Error: no \$HOME provided."
+        exit 1
+    else
+        HOME=$1
+    fi
+
+}
+
+function main() {
+
+    init "$@"
+
+    echo
+    echo "Welcome to dotfile bootstrap!"
+
+    # Try getting and running the bootstrap history
+    if [ -f ~/.yadm/bootstrap_history ]; then
+        script="$(cat ~/.yadm/bootstrap_history)"
+        bootstrap_select "$script"
+        [ $? = 1 ] || return 0
+    fi
+
+    while true; do
+        echo
+        echo "Available bootstrap scripts:"
+        echo
+
+        # Show indexed script names
+        for i in "${!script_names[@]}"; do
+            echo "  $i. ${script_names[$i]}"
+        done
+
+        echo "  0. Exit"
+        echo
+
+        read -r -p "Which script do you want to run? [0-${#script_names[@]}] (0): " script </dev/tty
+
+        # Exit the script if necessary
+        [ -z $script ] || [ $script = 0 ] && return 0
+
+        bootstrap_select $script
+
+        # Continue the loop only if there was an error
+        [ $? = 1 ] || break
+    done
+
+}
+
+main "$@"
