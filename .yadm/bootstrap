@@ -7,17 +7,57 @@ script_funcs[1]="bootstrap_arch"
 
 function bootstrap_arch() {
 
-    # Update the system
+    packages=(
+        "chromium"
+    )
+
+    aur_packages=(
+        "yadm-git"
+    )
+
+    echo
+    echo "--> Updating the system..."
+    echo
+
     pacman --noconfirm -Syyu
 
-    # Install the desired packages
-    # pacman -S
+    if ! [ ${#packages[@]} = 0 ]; then
+        echo
+        echo "--> Installing official packages..."
+        echo
+
+        pacman --noconfirm -S "${packages[@]}"
+    fi
+
+    if ! [ -x "$(command -v pamac)" ]; then
+        echo
+        echo "--> Installing Pamac..."
+        echo
+
+        pamac_folder="$HOME/.pamac-aur"
+        sudo -u "$OG_USER" git clone "https://aur.archlinux.org/pamac-aur.git" "$pamac_folder"
+        cd "$pamac_folder"
+        sudo -u "$OG_USER" makepkg --noconfirm -si
+        rm -rf "$pamac_folder"
+        cd "$HOME"
+    else
+        echo
+        echo "--> Pamac is already installed, skipping..."
+    fi
+
+    if ! [ ${#aur_packages[@]} = 0 ]; then
+        echo
+        echo "--> Installing AUR packages..."
+        echo
+
+        sudo -u "$OG_USER" pamac build --no-confirm "${aur_packages[@]}"
+    fi
 
 }
 
 function bootstrap_select() {
 
-    [ -z ${script_names[$1]} ] && return 1
+    [ -z ${script_names[$1]} ] && return 100
 
     # All scripts must have a function associated with them
     if [ -z ${script_funcs[$1]} ]; then
@@ -38,17 +78,15 @@ function bootstrap_select() {
 function init() {
 
     # Check if run as root, if not request sudo access
-    [ $(id -u) = 0 ] || exec sudo "$0" "$(
-        cd $HOME
-        pwd
-    )"
+    [ $(id -u) = 0 ] || exec sudo "$0" "$USER"
 
-    # When running as root user home directory must be provided as an argument
+    # When running as root a user must be provided as an argument
     if [ -z $1 ]; then
         echo >&2 "Error: no \$HOME provided."
         exit 1
     else
-        HOME=$1
+        OG_USER="$1"
+        HOME=$(eval echo "~$OG_USER")
     fi
 
 }
@@ -64,7 +102,11 @@ function main() {
     if [ -f ~/.yadm/bootstrap_history ]; then
         script="$(cat ~/.yadm/bootstrap_history)"
         bootstrap_select "$script"
-        [ $? = 1 ] || return 0
+
+        if [ ! $? = 100 ]; then
+            [ $? = 0 ] || return $?
+            return 0
+        fi
     fi
 
     while true; do
@@ -87,8 +129,10 @@ function main() {
 
         bootstrap_select $script
 
-        # Continue the loop only if there was an error
-        [ $? = 1 ] || break
+        if [ ! $? = 100 ]; then
+            [ $? = 0 ] || return $?
+            return 0
+        fi
     done
 
 }
