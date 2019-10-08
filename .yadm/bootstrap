@@ -21,14 +21,14 @@ function bootstrap_arch() {
     echo "--> Updating the system..."
     echo
 
-    pacman --noconfirm -Syyu
+    sudo pacman --noconfirm -Syyu
 
     if ! [ ${#packages[@]} = 0 ]; then
         echo
         echo "--> Installing official packages..."
         echo
 
-        pacman --noconfirm --needed -S "${packages[@]}"
+        sudo pacman --noconfirm --needed -S "${packages[@]}"
     fi
 
     if ! [ -x "$(command -v pamac)" ]; then
@@ -36,12 +36,12 @@ function bootstrap_arch() {
         echo "--> Installing Pamac..."
         echo
 
-        pamac_folder="$HOME/.pamac-aur"
-        sudo -u "$OG_USER" git clone "https://aur.archlinux.org/pamac-aur.git" "$pamac_folder"
+        pamac_folder="~/.pamac-aur"
+        git clone "https://aur.archlinux.org/pamac-aur.git" "$pamac_folder"
         cd "$pamac_folder"
-        sudo -u "$OG_USER" makepkg --noconfirm -si
+        makepkg --noconfirm -si
         rm -rf "$pamac_folder"
-        cd "$HOME"
+        cd "~"
     else
         echo
         echo "--> Pamac is already installed, skipping..."
@@ -52,25 +52,25 @@ function bootstrap_arch() {
         echo "--> Installing AUR packages..."
         echo
 
-        sudo -u "$OG_USER" pamac build --no-confirm "${aur_packages[@]}"
+        pamac build --no-confirm "${aur_packages[@]}"
     fi
 
 }
 
 function bootstrap_common() {
 
-    if [ -d "$HOME/.yadm/repo.git" ]; then
+    if [ -d "~/.yadm/repo.git" ]; then
         echo
         echo "--> YADM repository already already exists, pulling latest changes..."
         echo
 
-        sudo -u "$OG_USER" yadm pull
+        yadm pull
     else
         echo
         echo "--> Cloning YADM repository..."
         echo
 
-        sudo -u "$OG_USER" yadm clone "$REPO_URL"
+        yadm clone "$REPO_URL"
     fi
 
 }
@@ -103,25 +103,7 @@ function bootstrap_select() {
 
 }
 
-function init() {
-
-    # Check if run as root, if not request sudo access
-    [ $(id -u) = 0 ] || exec sudo "$0" "$USER"
-
-    # When running as root a user must be provided as an argument
-    if [ -z $1 ]; then
-        echo >&2 "Error: no user provided."
-        exit 1
-    else
-        OG_USER="$1"
-        HOME=$(eval echo "~$OG_USER")
-    fi
-
-}
-
 function main() {
-
-    init "$@"
 
     echo
     echo "Welcome to dotfile bootstrap!"
