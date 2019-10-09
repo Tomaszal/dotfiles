@@ -4,17 +4,28 @@ REPO_URL="https://github.com/Tomaszal/dotfiles.git"
 
 # Available script functions and names
 # Do not change the order or it will break the bootstrap history file
-script_names[1]="Arch"
+script_names[1]="Arch + KDE config"
 script_funcs[1]="bootstrap_arch"
 
 function bootstrap_arch() {
 
     packages=(
+        # Applications
         "chromium"
+        "code"
+        "spotify"
+
+        # DE additions
+        "redshift"
+        "plasma5-applets-redshift-control"
+        "papirus-icon-theme"
+        "ttf-fira-sans"
+        "ttf-fira-code"
     )
 
     aur_packages=(
         "yadm-git"
+        "spotify"
     )
 
     echo
@@ -70,7 +81,7 @@ function bootstrap_common() {
         echo "--> Cloning YADM repository..."
         echo
 
-        yadm clone "$REPO_URL"
+        yadm --no-bootstrap clone "$REPO_URL"
     fi
 
 }
