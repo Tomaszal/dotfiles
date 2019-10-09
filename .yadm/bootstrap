@@ -42,17 +42,22 @@ function bootstrap_arch() {
         sudo pacman --noconfirm --needed -S "${packages[@]}"
     fi
 
+    echo
+    read -r -p "Do you want to install AUR packages now? [y/N]: " aur </dev/tty
+    aur=$(echo ${aur::1} | tr "[:upper:]" "[:lower:]")
+    [ -z "$aur" ] || [ ! "$aur" = "y" ] && return 0
+
     if ! [ -x "$(command -v pamac)" ]; then
         echo
         echo "--> Installing Pamac..."
         echo
 
-        pamac_folder="~/.pamac-aur"
+        pamac_folder="$HOME/.pamac-aur"
         git clone "https://aur.archlinux.org/pamac-aur.git" "$pamac_folder"
         cd "$pamac_folder"
         makepkg --noconfirm -si
         rm -rf "$pamac_folder"
-        cd "~"
+        cd "$HOME"
     else
         echo
         echo "--> Pamac is already installed, skipping..."
@@ -70,7 +75,7 @@ function bootstrap_arch() {
 
 function bootstrap_common() {
 
-    if [ -d "~/.yadm/repo.git" ]; then
+    if [ -d "$HOME/.yadm/repo.git" ]; then
         echo
         echo "--> YADM repository already already exists, pulling latest changes..."
         echo
@@ -81,23 +86,23 @@ function bootstrap_common() {
         echo "--> Cloning YADM repository..."
         echo
 
-        yadm --no-bootstrap clone "$REPO_URL"
+        yadm clone --no-bootstrap "$REPO_URL"
     fi
 
 }
 
 function bootstrap_select() {
 
-    [ -z ${script_names[$1]} ] && return 100
+    [ -z "${script_names[$1]}" ] && return 100
 
     # All scripts must have a function associated with them
-    if [ -z ${script_funcs[$1]} ]; then
+    if [ -z "${script_funcs[$1]}" ]; then
         ech >&2 "Error: malformed bootstrap script, '${script_names[$1]}' has no associated function."
     fi
 
     # Save the chosen script index for subsequent bootstrap runs
-    mkdir -p ~/.yadm
-    echo $1 >~/.yadm/bootstrap_history
+    mkdir -p "$HOME/.yadm"
+    echo "$1" >"$HOME/.yadm/bootstrap_history"
 
     echo
     echo "Executing ${script_names[1]} bootstrap..."
@@ -111,6 +116,7 @@ function bootstrap_select() {
 
     echo
     echo "Bootstrap complete!"
+    echo
 
 }
 
@@ -120,12 +126,12 @@ function main() {
     echo "Welcome to dotfile bootstrap!"
 
     # Try getting and running the bootstrap history
-    if [ -f ~/.yadm/bootstrap_history ]; then
-        script="$(cat ~/.yadm/bootstrap_history)"
+    if [ -f "$HOME/.yadm/bootstrap_history" ]; then
+        script="$(cat $HOME/.yadm/bootstrap_history)"
         bootstrap_select "$script"
 
-        if [ ! $? = 100 ]; then
-            [ $? = 0 ] || return $?
+        if [ ! "$?" = 100 ]; then
+            [ "$?" = 0 ] || return "$?"
             return 0
         fi
     fi
@@ -146,12 +152,12 @@ function main() {
         read -r -p "Which script do you want to run? [0-${#script_names[@]}] (0): " script </dev/tty
 
         # Exit the script if necessary
-        [ -z $script ] || [ $script = 0 ] && return 0
+        [ -z "$script" ] || [ "$script" = 0 ] && return 0
 
-        bootstrap_select $script
+        bootstrap_select "$script"
 
-        if [ ! $? = 100 ]; then
-            [ $? = 0 ] || return $?
+        if [ ! "$?" = 100 ]; then
+            [ "$?" = 0 ] || return "$?"
             return 0
         fi
     done
