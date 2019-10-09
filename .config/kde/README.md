@@ -14,6 +14,12 @@ Global Shortcuts -> File -> Import Scheme -> Path -> '~/.config/kde/keyboard-glo
 
 ## Desktop Behavior
 
+### Workspace
+
+```
+Click behavior -> Double-click to open files and folders (single click to select)
+```
+
 ### Virtual Desktops
 
 Make sure that there are at least 2 desktops in order for the desktop pager widget to work.
@@ -27,7 +33,7 @@ Rows -> 1
 ### Window Behavior: Window Actions
 
 ```
-Modifier key:   Meta
+Modifier key -> Meta
 ```
 
 ### KWin Scripts
@@ -63,12 +69,12 @@ Papirus-Dark
 Use '`Adjust all fonts`' button speed up the configuration.
 
 ```
-General:        Fira Sans 10pt
-Fixed width:    Fira Code 9pt
-Small:          Fira Sans 8pt
-Toolbar:        Fira Sans 10pt
-Menu:           Fira Sans 10pt
-Window title:   Fira Sans 10pt
+General      -> Fira Sans 10pt
+Fixed width  -> Fira Code 9pt
+Small        -> Fira Sans 8pt
+Toolbar      -> Fira Sans 10pt
+Menu         -> Fira Sans 10pt
+Window title -> Fira Sans 10pt
 ```
 
 ## Aplication Style
@@ -76,3 +82,9 @@ Window title:   Fira Sans 10pt
 ### GNOME/GTK Application Style
 
 Do NOT touch anything in here as those settings are already configured in other dotfiles. Changing these settings can may them. If that happens use `yadm status` to see what dotfiles were changed and use `yadm restore <file_name>` on those files.
+
+### Window Decorations
+
+```
+Window border size -> No Borders
+```
