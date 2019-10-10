@@ -4,10 +4,10 @@ REPO_URL="https://github.com/Tomaszal/dotfiles.git"
 
 # Available script functions and names
 # Do not change the order or it will break the bootstrap history file
-script_names[1]="Arch + KDE config"
-script_funcs[1]="bootstrap_arch"
+script_names[1]="Manjaro KDE"
+script_funcs[1]="bootstrap_manjaro_kde"
 
-function bootstrap_arch() {
+function bootstrap_manjaro_kde() {
 
     packages=(
         # Applications
@@ -26,6 +26,13 @@ function bootstrap_arch() {
     aur_packages=(
         "yadm-git"
         "spotify"
+
+        # IntelliJ IDEs
+        "intellij-jdk"
+        "rider"
+        "webstorm"
+        "phpstorm"
+        "android-studio"
     )
 
     echo
