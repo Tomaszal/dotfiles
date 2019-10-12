@@ -69,12 +69,12 @@ Papirus-Dark
 Use '`Adjust all fonts`' button speed up the configuration.
 
 ```
-General      -> Fira Sans 10pt
-Fixed width  -> Fira Code 9pt
-Small        -> Fira Sans 8pt
-Toolbar      -> Fira Sans 10pt
-Menu         -> Fira Sans 10pt
-Window title -> Fira Sans 10pt
+General      -> Fira Sans 9pt
+Fixed width  -> Fira Code 8pt
+Small        -> Fira Sans 7pt
+Toolbar      -> Fira Sans 9pt
+Menu         -> Fira Sans 9pt
+Window title -> Fira Sans 9pt
 ```
 
 ## Aplication Style
