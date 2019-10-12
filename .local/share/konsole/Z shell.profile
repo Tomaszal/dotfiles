@@ -2,7 +2,7 @@
 BoldIntense=true
 ColorScheme=Breeze
 Font=Fira Code,8,-1,5,50,0,0,0,0,0,Regular
-UseFontLineChararacters=true
+UseFontLineChararacters=false
 
 [General]
 Command=/usr/bin/zsh
