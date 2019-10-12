@@ -42,30 +42,28 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
 
 # ----------------------------------------
-# > Plugins
+# > Imports
 # ----------------------------------------
 
-# Autosuggestions
-source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# Syntax highlighting
-source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# History substring search
-source "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
-
-# ----------------------------------------
-# > Source files
-# ----------------------------------------
-
-# Command completion
-source "$ZDOTDIR/completion.zsh"
+# Powerlevel9k prompt theme
+POWERLEVEL9K_MODE='awesome-fontconfig'
+source "/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme"
+source "$ZDOTDIR/prompt.zsh"
 
 # Aliases
 source "$ZDOTDIR/alias.zsh"
 
+# Command completion
+source "$ZDOTDIR/completion.zsh"
+
+# Autosuggestions plugin
+source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Syntax highlighting plugin
+source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# History substring search plugin
+source "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
 # Key bindings
 source "$ZDOTDIR/keymap.zsh"
-
-# Prompt theme
-source "$ZDOTDIR/prompt.zsh"
