@@ -1,6 +1,5 @@
 # ----------------------------------------
 # > Key bindings for Zsh
-# | Author: @Tomaszal
 # ----------------------------------------
 
 # Disable multi-key sequences
@@ -69,12 +68,15 @@ bindkey "^[[B" down-line-or-history
 
 # Ctrl + Up/Down (history search)
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-
 zle -N up-line-or-beginning-search
-bindkey "^[[1;5A" up-line-or-beginning-search
-
 zle -N down-line-or-beginning-search
+
+bindkey "^[[1;5A" up-line-or-beginning-search
 bindkey "^[[1;5B" down-line-or-beginning-search
+
+# Alt + Up/Down (history substring search)
+bindkey "^[[1;3A" history-substring-search-up
+bindkey "^[[1;3B" history-substring-search-down
 
 # ----------------------------------------
 # > Other shortcuts

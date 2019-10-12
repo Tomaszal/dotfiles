@@ -1,6 +1,5 @@
 # ----------------------------------------
 # > Zsh Powerline Prompt Theme (ZPPT)
-# | Author: @Tomaszal
 # ----------------------------------------
 
 # Left segment and subsegment separators

@@ -32,6 +32,7 @@ function bootstrap_manjaro_kde() {
         "zsh-autosuggestions"
         "zsh-syntax-highlighting"
         "zsh-history-substring-search"
+        "vivid"
     )
 
     aur_packages=(
