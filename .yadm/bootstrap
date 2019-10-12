@@ -19,8 +19,18 @@ function bootstrap_manjaro_kde() {
         "redshift"
         "plasma5-applets-redshift-control"
         "papirus-icon-theme"
-        "ttf-fira-sans"
-        "ttf-fira-code"
+
+        # Fonts
+        "awesome-terminal-fonts"
+        "otf-fira-sans"
+        "otf-fira-code"
+
+        # ZSHell
+        "zsh"
+        "zsh-theme-powerlevel9k"
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+        "zsh-history-substring-search"
     )
 
     aur_packages=(
