@@ -13,7 +13,6 @@ function bootstrap_manjaro_kde() {
         # Applications
         "chromium"
         "code"
-        "spotify"
         "discord"
 
         # DE additions
