@@ -1,6 +1,6 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=Breeze
+ColorScheme=Breeze (custom)
 Font=Fira Code,8,-1,5,50,0,0,0,0,0,Regular
 UseFontLineChararacters=false
 
