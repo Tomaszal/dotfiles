@@ -33,18 +33,16 @@ function bootstrap_manjaro_kde() {
         "zsh-syntax-highlighting"
         "zsh-history-substring-search"
         "vivid"
+
+        # Development
+        "yarn"
     )
 
     aur_packages=(
         "yadm-git"
         "spotify"
-
-        # IntelliJ IDEs
-        "intellij-jdk"
-        "rider"
-        "webstorm"
-        "phpstorm"
-        "android-studio"
+        "jetbrains-jre"
+        "jetbrains-toolbox"
     )
 
     echo
