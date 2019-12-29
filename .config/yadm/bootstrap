@@ -65,7 +65,7 @@ function bootstrap_manjaro_kde() {
             echo "--> Setting Z shell as the default shell..."
             echo
 
-            sudo usermod --shell "/usr/bin/zsh" "$USRE"
+            sudo usermod --shell "/usr/bin/zsh" "$USER"
         fi
     fi
 
