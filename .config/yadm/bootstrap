@@ -102,7 +102,7 @@ function bootstrap_manjaro_kde() {
 
 function bootstrap_common() {
 
-    if [ -d "$HOME/.yadm/repo.git" ]; then
+    if [ -d "$HOME/.config/yadm/repo.git" ]; then
         echo
         echo "--> YADM repository already already exists, pulling latest changes..."
         echo
@@ -128,8 +128,8 @@ function bootstrap_select() {
     fi
 
     # Save the chosen script index for subsequent bootstrap runs
-    mkdir -p "$HOME/.yadm"
-    echo "$1" >"$HOME/.yadm/bootstrap_history"
+    mkdir -p "$HOME/.config/yadm"
+    echo "$1" >"$HOME/.config/yadm/bootstrap_history"
 
     echo
     echo "Executing ${script_names[1]} bootstrap..."
@@ -153,8 +153,8 @@ function main() {
     echo "Welcome to dotfile bootstrap!"
 
     # Try getting and running the bootstrap history
-    if [ -f "$HOME/.yadm/bootstrap_history" ]; then
-        script="$(cat $HOME/.yadm/bootstrap_history)"
+    if [ -f "$HOME/.config/yadm/bootstrap_history" ]; then
+        script="$(cat $HOME/.config/yadm/bootstrap_history)"
         bootstrap_select "$script"
 
         if [ ! "$?" = 100 ]; then
