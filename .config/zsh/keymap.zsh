@@ -42,6 +42,9 @@ bindkey "^[[C" forward-char
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
+bindkey "^[[5D" backward-word
+bindkey "^[[5C" forward-word
+
 # Home/End
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
