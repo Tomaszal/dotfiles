@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -29,6 +29,12 @@ RowLayout {
     height: iconSize
     width: units.gridUnit * 20
     spacing: units.smallSpacing * 2
+    
+    TextMetrics {
+        id: labelMetrics
+        font: label.font
+        text: "000"
+    }
 
     PlasmaCore.IconItem {
         id: icon
@@ -48,6 +54,7 @@ RowLayout {
 
     PlasmaExtra.Heading {
         id: label
+        Layout.preferredWidth: rootItem.showingProgress ? labelMetrics.boundingRect.width : -1
         Layout.fillWidth: true
         Layout.fillHeight: true
         level: 3
