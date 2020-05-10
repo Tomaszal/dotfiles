@@ -38,7 +38,8 @@ RowLayout {
 
     PlasmaCore.IconItem {
         id: icon
-        height: iconSize
+        Layout.fillHeight: true
+        height: parent.height
         width: iconSize
         source: rootItem.icon
     }
