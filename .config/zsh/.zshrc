@@ -47,7 +47,7 @@ setopt HIST_NO_STORE
 
 # Powerlevel9k prompt theme
 POWERLEVEL9K_MODE='awesome-fontconfig'
-source "/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme"
+source "/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme"
 source "$ZDOTDIR/prompt.zsh"
 
 # Aliases
