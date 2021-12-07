@@ -21,5 +21,5 @@ export LESSHISTFILE="/dev/null"
 export PATH=${PATH}:${HOME}/.gem/ruby/2.6.0/bin
 
 # Android SDK
-export ANDROID_HOME="~/.android/sdk"
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export ANDROID_SDK_ROOT="~/.android/sdk"
+export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
