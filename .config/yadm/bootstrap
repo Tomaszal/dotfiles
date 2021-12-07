@@ -4,21 +4,22 @@ REPO_URL="https://github.com/Tomaszal/dotfiles.git"
 
 # Available script functions and names
 # Do not change the order or it will break the bootstrap history file
-script_names[1]="Manjaro KDE"
+script_names[1]="Arch-based KDE"
 script_funcs[1]="bootstrap_manjaro_kde"
 
 function bootstrap_manjaro_kde() {
 
     packages=(
         # Applications
-        "chromium"
+        #"chromium"
+        "vivaldi"
         "code"
         "discord"
 
         # DE additions
-        "redshift"
-        "plasma5-applets-redshift-control"
-        "papirus-icon-theme"
+        #"redshift"
+        #"plasma5-applets-redshift-control"
+        #"papirus-icon-theme"
 
         # Fonts
         "awesome-terminal-fonts"
@@ -41,8 +42,9 @@ function bootstrap_manjaro_kde() {
     aur_packages=(
         "yadm-git"
         "spotify"
-        "jetbrains-jre"
-        "jetbrains-toolbox"
+        #"jetbrains-jre"
+        #"jetbrains-toolbox"
+        #"ferdi"
     )
 
     echo
