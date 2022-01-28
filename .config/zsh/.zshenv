@@ -23,3 +23,10 @@ export PATH=${PATH}:${HOME}/.gem/ruby/2.6.0/bin
 # Android SDK
 export ANDROID_SDK_ROOT="~/.android/sdk"
 export PATH="$PATH:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools"
+
+# ----------------------------------------
+# > Imports
+# ----------------------------------------
+
+# Node Version Manager (NVM)
+source "/usr/share/nvm/init-nvm.sh"

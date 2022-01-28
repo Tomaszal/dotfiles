@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# ----------------------------------------
+# > Node Version Manager (NVM) integration
+# ----------------------------------------
+
+# https://github.com/typicode/husky/issues/77#issuecomment-630065185
+# https://typicode.github.io/husky/#/?id=command-not-found
+
+source ~/.bash_profile
+
+if test -f ".nvmrc"; then
+    nvm use
+fi
