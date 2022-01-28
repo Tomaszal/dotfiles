@@ -14,6 +14,6 @@
   "git.autofetch": true,
   "git.allowForcePush": true,
   "git.confirmSync": false,
-  "workbench.colorTheme": "Visual Studio Dark",
+  "workbench.colorTheme": "Default Dark+",
   "cSpell.language": "en-GB"
 }
