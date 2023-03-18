@@ -1,0 +1,5 @@
+# Dev tools
+.direnv
+
+# Nix build results
+result
