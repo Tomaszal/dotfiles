@@ -14,6 +14,11 @@
             inherit (pkgs) alejandra statix just nil;
           };
         };
+        apps.ventoy.program = pkgs.writeShellApplication {
+          name = "ventoy";
+          runtimeInputs = [pkgs.ventoy-bin];
+          text = "sudo ventoy-web";
+        };
       };
     };
 }

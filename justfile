@@ -15,3 +15,7 @@ usage := '''
 lint:
   git ls-files '*.nix' | xargs alejandra --check
   statix check
+
+# Start Ventoy2Disk Web GUI
+ventoy:
+  nix run .#ventoy
