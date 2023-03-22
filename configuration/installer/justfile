@@ -1,0 +1,20 @@
+usage := '''
+  Just: A Command Runner
+
+  Usage:
+      just <recipe>
+
+'''
+
+[private]
+@default:
+  echo '{{usage}}'
+  just --justfile $JUSTFILE --list --unsorted
+
+# Format and partition the main DISK using Disko (zap, create, mount)
+partition DISK:
+  sudo disko --mode zap_create_mount --argstr disk '{{DISK}}'
+
+# Install NIXOS configuration from the Flake
+install NIXOS:
+  sudo nixos-install-flake '{{NIXOS}}'
