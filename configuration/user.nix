@@ -6,8 +6,15 @@
 }: {
   imports = [
     self.inputs.home-manager.nixosModules.home-manager
-    (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" "Tomaszal"])
+    (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" config.user.username])
   ];
+
+  user = {
+    username = "Tomaszal";
+    email = "tz@tomaszal.com";
+    firstName = "Tomas";
+    lastName = "Zaluckij";
+  };
 
   # Enable 'sudo' for users in 'wheel' group
   security.sudo.enable = true;
@@ -17,7 +24,7 @@
   # https://nixos.wiki/wiki/Yubikey
   users.mutableUsers = true;
 
-  users.users.Tomaszal = {
+  users.users.${config.user.username} = {
     isNormalUser = true;
     extraGroups = ["wheel"]; # Enable 'sudo'
   };

@@ -4,7 +4,9 @@
     ./nix.nix
     ./disko/mount.nix
     ./kde.nix
+    ./options.nix
     ./user.nix
+    ./programs
   ];
 
   time.timeZone = "Europe/London";
