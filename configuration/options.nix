@@ -5,7 +5,7 @@
 }: {
   options = let
     inherit (lib) mkOption types;
-    inherit (types) str;
+    inherit (types) str listOf;
   in {
     user = {
       username = mkOption {type = str;};
@@ -16,6 +16,11 @@
         type = str;
         default = "${config.user.firstName} ${config.user.lastName}";
       };
+    };
+
+    allowUnfreePackages = mkOption {
+      type = listOf str;
+      default = [];
     };
   };
 }
