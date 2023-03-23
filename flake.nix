@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "flake-utils";
     };
+    piv-agent = {
+      url = "github:smlx/piv-agent";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
