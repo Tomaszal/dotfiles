@@ -9,7 +9,7 @@
     name = "disko";
     runtimeInputs = [disko.packages.${system}.disko];
     text = ''
-      disko "$@" ${./config.nix}
+      disko "$@" ${./.}/config.nix
     '';
   };
 in {
