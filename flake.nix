@@ -16,11 +16,20 @@
       url = "github:smlx/piv-agent";
       flake = false;
     };
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      flake = false;
+    };
+    nvfetcher = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./nixos.nix];
+      imports = [./nixos.nix ./configuration/programs/spotify/update.nix];
       systems = ["x86_64-linux"];
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
