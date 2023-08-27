@@ -26,6 +26,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    steamguard-cli = {
+      url = "github:dyc3/steamguard-cli";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:

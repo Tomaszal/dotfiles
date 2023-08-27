@@ -238,7 +238,8 @@
         "nixpkgs": "nixpkgs_2",
         "nvfetcher": "nvfetcher",
         "piv-agent": "piv-agent",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify-nix": "spicetify-nix",
+        "steamguard-cli": "steamguard-cli"
       }
     },
     "spicetify-nix": {
@@ -254,6 +255,22 @@
       "original": {
         "owner": "the-argus",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "steamguard-cli": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692826878,
+        "narHash": "sha256-xJMz9gKSwjTHdytvu/K8NavzIGeD0nXqg1JMpLmSgmU=",
+        "owner": "dyc3",
+        "repo": "steamguard-cli",
+        "rev": "f2821d2837abde281cfdc73c2da9da5c28593dc7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dyc3",
+        "repo": "steamguard-cli",
         "type": "github"
       }
     },

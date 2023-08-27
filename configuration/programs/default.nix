@@ -8,6 +8,7 @@
     ./piv-agent.nix
     ./sddm.nix
     ./spotify
+    ./steam.nix
     ./vscode.nix
     ./wayland.nix
     ./zsh.nix
