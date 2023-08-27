@@ -1,9 +1,8 @@
-{
+{pkgs, ...}: {
   imports = [
     ./kernel.nix
     ./nix.nix
     ./disko/mount.nix
-    ./kde.nix
     ./options.nix
     ./user.nix
     ./programs
@@ -28,11 +27,30 @@
     };
   };
 
+  # Enable sound with pipewire
+  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
+
+  environment.systemPackages = with pkgs.libsForQt5; [
+    # Useful KDE apps
+    ark
+    dolphin-plugins
+    dolphin
+    filelight
+    gwenview
+    kate
+    kcalc
+    kinfocenter
+    konsole
+    ksystemstats
+    okular
+    plasma-systemmonitor
+  ];
 }

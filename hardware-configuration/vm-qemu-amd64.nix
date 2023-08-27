@@ -31,4 +31,8 @@
       ExecStart = "${pkgs.spice-vdagent}/bin/spice-vdagent";
     };
   };
+
+  # Wayland / Hyprland VM fixes
+  environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE = "1";
+  hardware.opengl.enable = lib.mkForce true;
 }
