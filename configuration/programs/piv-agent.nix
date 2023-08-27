@@ -18,9 +18,10 @@ in {
   hm.home.packages = [piv-agent pkgs.pinentry-qt];
 
   # PIV agent service
-  hm.systemd.user.services.piv-agent = {
-    Unit.Description = "piv-agent service";
-    Service.ExecStart = "${piv-agent}/bin/piv-agent serve --agent-types=ssh=0;gpg=1 --touch-notify-delay=1s";
+  systemd.user.services.piv-agent = {
+    description = "piv-agent service";
+    path = [pkgs.pinentry-qt];
+    serviceConfig.ExecStart = "${piv-agent}/bin/piv-agent serve --agent-types=ssh=0;gpg=1 --touch-notify-delay=1s";
   };
 
   # PIV agent socket activation for SSH and GPG
