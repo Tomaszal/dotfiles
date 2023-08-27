@@ -38,19 +38,23 @@
     jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs.libsForQt5; [
-    # Useful KDE apps
-    ark
-    dolphin-plugins
-    dolphin
-    filelight
-    gwenview
-    kate
-    kcalc
-    kinfocenter
-    konsole
-    ksystemstats
-    okular
-    plasma-systemmonitor
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      prismlauncher
+    ])
+    ++ (with pkgs.libsForQt5; [
+      # Useful KDE apps
+      ark
+      dolphin-plugins
+      dolphin
+      filelight
+      gwenview
+      kate
+      kcalc
+      kinfocenter
+      konsole
+      ksystemstats
+      okular
+      plasma-systemmonitor
+    ]);
 }
