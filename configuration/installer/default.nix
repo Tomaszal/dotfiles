@@ -1,3 +1,5 @@
+# TODO: use nixos-installer-gen for a fully offline installer ISO
+# https://gitlab.com/genericnerdyusername/nixos-installer-gen
 {
   self,
   pkgs,
@@ -31,8 +33,8 @@ in {
 
   # Save NixOS derivations on ISO to speed up system install
   isoImage.storeContents =
-    map
-    (nixos: nixos.config.system.build.toplevel)
+    builtins.concatMap
+    (nixos: with nixos.config.system; [path build.toplevel] ++ extraDependencies)
     (builtins.attrValues self.nixosConfigurations);
 
   # Speed up image build and system install
