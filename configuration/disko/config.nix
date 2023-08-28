@@ -1,51 +1,36 @@
-{disk ? null, ...}: let
-  swapSize = "8G";
-  partLabels = import ./part-labels.nix;
-  inherit (partLabels) root boot swap;
-in {
-  disk.nixos = {
+{disk ? null, ...}: {
+  disko.devices.disk.nixos = {
     device = disk;
     type = "disk";
     content = {
-      type = "table";
-      format = "gpt";
-      partitions = [
-        {
-          name = boot.label;
-          type = "partition";
-          start = "1MiB";
-          end = "100MiB";
-          bootable = true;
+      type = "gpt";
+      partitions = {
+        boot = {
+          type = "EF00"; # EFI system partition
+          size = "100M";
           content = {
             type = "filesystem";
             format = "vfat";
-            inherit (boot) mountpoint;
+            mountpoint = "/boot";
           };
-        }
-        {
-          name = root.label;
-          type = "partition";
-          start = "100MiB";
-          end = "-${swapSize}";
-          part-type = "primary";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            inherit (root) mountpoint;
-          };
-        }
-        {
-          name = swap.label;
-          type = "partition";
-          start = "-${swapSize}";
-          end = "100%";
-          part-type = "primary";
+        };
+        swap = {
+          type = "8200"; # Linux swap
+          size = "8G";
           content = {
             type = "swap";
             randomEncryption = true;
           };
-        }
-      ];
+        };
+        root = {
+          size = "100%";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+          };
+        };
+      };
     };
   };
 }
