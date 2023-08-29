@@ -56,5 +56,6 @@
       ksystemstats
       okular
       plasma-systemmonitor
+      qt5ct
     ]);
 }

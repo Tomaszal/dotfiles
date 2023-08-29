@@ -5,5 +5,8 @@
     # QT Wayland support
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
+
+    # Extra dependencies
+    libva
   ];
 }
