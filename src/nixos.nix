@@ -21,7 +21,6 @@
           ./kernel.nix
           ./locale.nix
           ./nix.nix
-          ./options.nix
           ./pipewire.nix
           ./piv-agent.nix
           ./plymouth.nix
