@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./kernel.nix
     ./nix.nix
@@ -39,25 +39,4 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  environment.systemPackages =
-    (with pkgs; [
-      prismlauncher
-    ])
-    ++ (with pkgs.libsForQt5; [
-      # Useful KDE apps
-      ark
-      dolphin-plugins
-      dolphin
-      filelight
-      gwenview
-      kate
-      kcalc
-      kinfocenter
-      konsole
-      ksystemstats
-      okular
-      plasma-systemmonitor
-      qt5ct
-    ]);
 }

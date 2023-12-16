@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,26 +16,13 @@
       url = "github:smlx/piv-agent";
       flake = false;
     };
-    spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
-      flake = false;
-    };
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    steamguard-cli = {
-      url = "github:dyc3/steamguard-cli";
-      flake = false;
-    };
     # TODO: replace with upstream once merged
     nix-flatpak.url = "github:Tomaszal/nix-flatpak/feature/overrides";
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./nixos.nix ./configuration/programs/spotify/update.nix];
+      imports = [./nixos.nix];
       systems = ["x86_64-linux"];
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
