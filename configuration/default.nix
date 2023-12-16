@@ -6,6 +6,7 @@
     ./options.nix
     ./user.nix
     ./programs
+    ./plymouth.nix
   ];
 
   time.timeZone = "Europe/London";
