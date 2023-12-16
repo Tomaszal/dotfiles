@@ -15,7 +15,7 @@
 
   # Nvidia GPU fixes
   allowUnfreePackages = ["nvidia-x11" "nvidia-settings"];
-  services.xserver.videosDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     nvidiaSettings = true;
