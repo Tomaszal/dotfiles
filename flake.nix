@@ -22,7 +22,7 @@
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./nixos.nix];
+      imports = [./src/nixos.nix];
       systems = ["x86_64-linux"];
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {

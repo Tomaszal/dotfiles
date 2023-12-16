@@ -30,7 +30,7 @@ in {
     userEmail = email;
 
     signing = {
-      key = getGpgFingerprintFromAsc ../../keys/tomaszal-piv-agent.asc;
+      key = getGpgFingerprintFromAsc ./keys/tomaszal-piv-agent.asc;
       signByDefault = true;
     };
   };

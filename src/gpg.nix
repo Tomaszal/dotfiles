@@ -3,11 +3,11 @@
     enable = true;
     publicKeys = [
       {
-        source = ../../keys/tomaszal-piv-agent.asc;
+        source = ./keys/tomaszal-piv-agent.asc;
         trust = "ultimate";
       }
       {
-        source = ../../keys/tomaszal-fallback.asc;
+        source = ./keys/tomaszal-fallback.asc;
         trust = "full";
       }
     ];
