@@ -26,7 +26,7 @@ in {
         builtins.concatStringsSep ":"
         [
           # TODO: see if there is a way to get whole PATH managed by NixOS
-          "/var/run/host/etc/profiles/per-user/${config.user.username}/bin"
+          "/var/run/host/etc/static/profiles/per-user/${config.user.username}/bin"
           "/run/current-system/sw/bin"
         ];
     };
