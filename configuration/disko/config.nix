@@ -7,7 +7,7 @@
       partitions = {
         boot = {
           type = "EF00"; # EFI system partition
-          size = "100M";
+          size = "4G";
           content = {
             type = "filesystem";
             format = "vfat";
