@@ -51,4 +51,11 @@ in {
   # GPG integration
   hm.home.file."${config.hm.programs.gpg.homedir}/gpg.conf".text = lib.mkForce "no-autostart";
   hm.services.gpg-agent.enable = lib.mkForce false;
+
+  # Disable default GNOME keyring, and re-enable it without SSH component
+  services.gnome.gnome-keyring.enable = lib.mkForce false;
+  hm.services.gnome-keyring = {
+    enable = true;
+    components = ["pkcs11" "secrets"];
+  };
 }
