@@ -8,7 +8,6 @@
   # Enable native Wayland mode for Electron packages
   flatpak.wayland.electronFlagsFiles = {
     "com.spotify.Client" = "spotify-flags.conf";
-    "com.visualstudio.code" = "code-flags.conf";
     "org.chromium.Chromium" = "chromium-flags.conf";
   };
 

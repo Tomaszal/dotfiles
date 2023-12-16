@@ -1,5 +1,6 @@
 {
   imports = [
+    ./vscode
     ./wayland.nix
   ];
 
@@ -7,7 +8,6 @@
     "com.github.tchx84.Flatseal"
     "com.parsecgaming.parsec"
     "com.spotify.Client"
-    "com.visualstudio.code"
     "io.github.spacingbat3.webcord"
     "it.mijorus.smile"
     "net.nokyan.Resources"
