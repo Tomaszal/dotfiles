@@ -15,9 +15,9 @@
           ./disko/mount.nix
           ./flatpak
           ./git.nix
+          ./gnome.nix
           ./gpg.nix
           ./grub.nix
-          ./hyprland.nix
           ./kernel.nix
           ./locale.nix
           ./nix.nix
@@ -25,10 +25,8 @@
           ./pipewire.nix
           ./piv-agent.nix
           ./plymouth.nix
-          ./sddm.nix
           ./state-version.nix
           ./user.nix
-          ./wayland.nix
           ./zsh.nix
         ];
       };

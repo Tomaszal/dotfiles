@@ -14,15 +14,19 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   # Nvidia GPU fixes
+  allowUnfreePackages = ["nvidia-x11" "nvidia-settings"];
   services.xserver.videosDrivers = ["nvidia"];
-  hardware.nvidia.modesetting.enable = true;
-  programs.hyprland.enableNvidiaPatches = true;
-  hm.wayland.windowManager.hyprland.enableNvidiaPatches = true;
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_NO_HARDWARE_CURSORS = "1";
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    open = false;
+    powerManagement.enable = true;
+  };
+
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 }
