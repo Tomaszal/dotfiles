@@ -5,8 +5,6 @@
   ...
 }: {
   # Setup Home Manager and a config alias for the main user
-  # TODO: update HM to fix the optionsDocBook deprecation warning once this issue is resolved:
-  # https://github.com/nix-community/home-manager/issues/4273
   imports = [
     self.inputs.home-manager.nixosModules.home-manager
     (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" config.user.username])
