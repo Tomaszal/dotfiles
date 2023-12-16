@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./wayland.nix
+  ];
+
   hm.services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "com.parsecgaming.parsec"

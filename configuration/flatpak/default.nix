@@ -7,7 +7,8 @@
   services.flatpak.enable = true;
 
   imports = [
-    ./packages.nix
+    ./packages
+    ./wayland.nix
   ];
 
   # Home manager module
