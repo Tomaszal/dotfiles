@@ -6,6 +6,9 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
+  # Generate boot entries for other OS on the system, enabling dual boot
+  boot.loader.grub.useOSProber = true;
+
   # AMD CPU fixes
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
