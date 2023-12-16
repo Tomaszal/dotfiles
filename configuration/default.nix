@@ -7,6 +7,7 @@
     ./user.nix
     ./programs
     ./plymouth.nix
+    ./flatpak
   ];
 
   time.timeZone = "Europe/London";
