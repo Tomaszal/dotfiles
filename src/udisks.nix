@@ -29,6 +29,30 @@ in {
   };
 
   config = {
+    # Add some permissions to wheel group users, to avoid requiring
+    # authorization on every action
+    # https://github.com/coldfix/udiskie/wiki/Permissions
+    security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        var YES = polkit.Result.YES;
+
+        var permission = {
+          "org.freedesktop.udisks2.filesystem-mount": YES,
+          "org.freedesktop.udisks2.filesystem-mount-system": YES,
+
+          "org.freedesktop.udisks2.eject-media": YES,
+          "org.freedesktop.udisks2.eject-media-system": YES,
+
+          "org.freedesktop.udisks2.power-off-drive": YES,
+          "org.freedesktop.udisks2.power-off-drive-system": YES,
+        };
+
+        if (subject.isInGroup("wheel")) {
+          return permission[action.id];
+        }
+      });
+    '';
+
     hm.systemd.user.services.udisks-mounts = let
       mountList = config.udisks.mounts;
     in
