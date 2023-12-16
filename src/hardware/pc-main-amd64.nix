@@ -29,4 +29,7 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  # Mount data disk on login
+  udisks.mounts = [{block-device = "/dev/disk/by-label/data";}];
 }

@@ -25,6 +25,7 @@
           ./piv-agent.nix
           ./plymouth.nix
           ./state-version.nix
+          ./udisks.nix
           ./user.nix
           ./zsh.nix
         ];
