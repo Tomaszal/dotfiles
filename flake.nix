@@ -30,6 +30,8 @@
       url = "github:dyc3/steamguard-cli";
       flake = false;
     };
+    # TODO: replace with upstream once merged
+    nix-flatpak.url = "github:Tomaszal/nix-flatpak/feature/overrides";
   };
 
   outputs = inputs @ {flake-parts, ...}:

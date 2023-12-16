@@ -1,9 +1,18 @@
 {
+  self,
   config,
   pkgs,
   ...
 }: {
   services.flatpak.enable = true;
+
+  imports = [
+    ./packages.nix
+  ];
+
+  # Home manager module
+  # https://github.com/gmodena/nix-flatpak
+  hm.imports = [self.inputs.nix-flatpak.homeManagerModules.nix-flatpak];
 
   # GUI for basic Flatpak application management
   environment.systemPackages = [pkgs.gnome.gnome-software];
