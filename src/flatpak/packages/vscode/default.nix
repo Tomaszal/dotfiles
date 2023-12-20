@@ -14,6 +14,7 @@ in {
         filesystems = [
           "/run/current-system/sw/bin:ro" # Expose host binaries
           "xdg-config/git:ro" # Expose user Git config
+          "xdg-config/direnv:ro" # Expose user direnv config
         ];
         sockets = [
           "gpg-agent" # Expose GPG agent
