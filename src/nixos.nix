@@ -13,6 +13,7 @@
 
           ./direnv.nix
           ./disko/mount.nix
+          ./docker.nix
           ./flatpak
           ./git.nix
           ./gnome.nix
