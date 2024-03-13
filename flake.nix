@@ -15,8 +15,7 @@
       url = "github:smlx/piv-agent";
       flake = false;
     };
-    # TODO: replace with upstream once merged
-    nix-flatpak.url = "github:Tomaszal/nix-flatpak/feature/overrides";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = inputs @ {flake-parts, ...}:

@@ -8,7 +8,7 @@
   piv-agent = pkgs.buildGoModule {
     name = "piv-agent";
     src = self.inputs.piv-agent;
-    vendorHash = "sha256-vKfXWBZpUI0ugj0l0tGLAaS1qqTyQhzX1Z7sGkUxptA=";
+    vendorHash = "sha256-1d6EKEvo4XNDXRtbdnKkqyF9y0LPPHWKu9X/wYnbmas=";
     nativeBuildInputs = [pkgs.pkg-config];
     buildInputs = [pkgs.pcsclite];
   };
