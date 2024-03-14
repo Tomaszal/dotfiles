@@ -8,9 +8,10 @@
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit self;};
         modules = [
-          {networking.hostName = "tomaszal-nixos-${name}";}
+          {networking.hostName = name;}
           "${./hardware}/${name}.nix"
 
+          ./auto-upgrade.nix
           ./direnv.nix
           ./disko/mount.nix
           ./docker.nix
