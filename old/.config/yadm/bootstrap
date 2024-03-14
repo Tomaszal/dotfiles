@@ -1,0 +1,196 @@
+#!/bin/sh
+
+REPO_URL="https://github.com/Tomaszal/dotfiles.git"
+
+# Available script functions and names
+# Do not change the order or it will break the bootstrap history file
+script_names[1]="Arch-based KDE"
+script_funcs[1]="bootstrap_manjaro_kde"
+
+function bootstrap_manjaro_kde() {
+
+    packages=(
+        # Applications
+        #"chromium"
+        "vivaldi"
+        "code"
+        "discord"
+
+        # DE additions
+        #"redshift"
+        #"plasma5-applets-redshift-control"
+        #"papirus-icon-theme"
+
+        # Fonts
+        "awesome-terminal-fonts"
+        "otf-fira-sans"
+        "otf-fira-code"
+
+        # Z shell
+        "zsh"
+        "zsh-theme-powerlevel9k"
+        "zsh-completions"
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+        "zsh-history-substring-search"
+        "vivid"
+
+        # Development
+        "yarn"
+    )
+
+    aur_packages=(
+        "yadm-git"
+        "spotify"
+        #"jetbrains-jre"
+        #"jetbrains-toolbox"
+        #"ferdi"
+    )
+
+    echo
+    echo "--> Updating the system..."
+    echo
+
+    sudo pacman --noconfirm -Syyu
+
+    if ! [ ${#packages[@]} = 0 ]; then
+        echo
+        echo "--> Installing official packages..."
+        echo
+
+        sudo pacman --noconfirm --needed -S "${packages[@]}"
+    fi
+
+    if [ -f "/usr/bin/zsh" ]; then
+        if [ ! "$SHELL" = "/usr/bin/zsh" ]; then
+            echo
+            echo "--> Setting Z shell as the default shell..."
+            echo
+
+            sudo usermod --shell "/usr/bin/zsh" "$USER"
+        fi
+    fi
+
+    echo
+    read -r -p "Do you want to install AUR packages now? [y/N]: " aur </dev/tty
+    aur=$(echo ${aur::1} | tr "[:upper:]" "[:lower:]")
+    [ -z "$aur" ] || [ ! "$aur" = "y" ] && return 0
+
+    if ! [ -x "$(command -v pamac)" ]; then
+        echo
+        echo "--> Installing Pamac..."
+        echo
+
+        pamac_folder="$HOME/.pamac-aur"
+        git clone "https://aur.archlinux.org/pamac-aur.git" "$pamac_folder"
+        cd "$pamac_folder"
+        makepkg --noconfirm -si
+        rm -rf "$pamac_folder"
+        cd "$HOME"
+    else
+        echo
+        echo "--> Pamac is already installed, skipping..."
+    fi
+
+    if ! [ ${#aur_packages[@]} = 0 ]; then
+        echo
+        echo "--> Installing AUR packages..."
+        echo
+
+        pamac build --no-confirm "${aur_packages[@]}"
+    fi
+
+}
+
+function bootstrap_common() {
+
+    if [ -d "$HOME/.config/yadm/repo.git" ]; then
+        echo
+        echo "--> YADM repository already already exists, pulling latest changes..."
+        echo
+
+        yadm pull
+    else
+        echo
+        echo "--> Cloning YADM repository..."
+        echo
+
+        yadm clone --no-bootstrap "$REPO_URL"
+    fi
+
+}
+
+function bootstrap_select() {
+
+    [ -z "${script_names[$1]}" ] && return 100
+
+    # All scripts must have a function associated with them
+    if [ -z "${script_funcs[$1]}" ]; then
+        ech >&2 "Error: malformed bootstrap script, '${script_names[$1]}' has no associated function."
+    fi
+
+    # Save the chosen script index for subsequent bootstrap runs
+    mkdir -p "$HOME/.config/yadm"
+    echo "$1" >"$HOME/.config/yadm/bootstrap_history"
+
+    echo
+    echo "Executing ${script_names[1]} bootstrap..."
+
+    ${script_funcs[1]}
+
+    echo
+    echo "Executing common bootstrap..."
+
+    bootstrap_common
+
+    echo
+    echo "Bootstrap complete!"
+    echo
+
+}
+
+function main() {
+
+    echo
+    echo "Welcome to dotfile bootstrap!"
+
+    # Try getting and running the bootstrap history
+    if [ -f "$HOME/.config/yadm/bootstrap_history" ]; then
+        script="$(cat $HOME/.config/yadm/bootstrap_history)"
+        bootstrap_select "$script"
+
+        if [ ! "$?" = 100 ]; then
+            [ "$?" = 0 ] || return "$?"
+            return 0
+        fi
+    fi
+
+    while true; do
+        echo
+        echo "Available bootstrap scripts:"
+        echo
+
+        # Show indexed script names
+        for i in "${!script_names[@]}"; do
+            echo "  $i. ${script_names[$i]}"
+        done
+
+        echo "  0. Exit"
+        echo
+
+        read -r -p "Which script do you want to run? [0-${#script_names[@]}] (0): " script </dev/tty
+
+        # Exit the script if necessary
+        [ -z "$script" ] || [ "$script" = 0 ] && return 0
+
+        bootstrap_select "$script"
+
+        if [ ! "$?" = 100 ]; then
+            [ "$?" = 0 ] || return "$?"
+            return 0
+        fi
+    done
+
+}
+
+main "$@"
