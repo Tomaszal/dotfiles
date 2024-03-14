@@ -12,6 +12,9 @@
     # https://zimbatm.com/notes/1000-instances-of-nixpkgs
     disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Declare non-flake dependencies
+    piv-agent.flake = false;
   };
 
   outputs = inputs @ {flake-parts, ...}:
