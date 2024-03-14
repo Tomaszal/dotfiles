@@ -2,32 +2,37 @@
   description = "Tomaszal Dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    piv-agent = {
-      url = "github:smlx/piv-agent";
-      flake = false;
-    };
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    disko.url = "https://flakehub.com/f/nix-community/disko/1.tar.gz";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.3.tar.gz";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    piv-agent.url = "github:smlx/piv-agent/?ref=v0.21.0";
+
+    # Reduce nixpkgs instances
+    # https://zimbatm.com/notes/1000-instances-of-nixpkgs
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [./src/nixos.nix];
       systems = ["x86_64-linux"];
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        inputs',
+        ...
+      }: {
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = builtins.attrValues {
-            inherit (pkgs) alejandra statix just nil;
-          };
+          nativeBuildInputs = with pkgs; [
+            alejandra
+            fh
+            just
+            nil
+            statix
+          ];
         };
+
         apps.ventoy.program = pkgs.writeShellApplication {
           name = "ventoy";
           runtimeInputs = [pkgs.ventoy-bin];
