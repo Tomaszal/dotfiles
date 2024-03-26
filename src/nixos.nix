@@ -17,6 +17,7 @@
           ./disko/mount.nix
           ./docker.nix
           ./flatpak
+          ./garbage-collection.nix
           ./git.nix
           ./gnome.nix
           ./gpg.nix
