@@ -6,15 +6,11 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.3.tar.gz";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    piv-agent.url = "github:smlx/piv-agent/?ref=v0.21.0";
 
     # Reduce nixpkgs instances
     # https://zimbatm.com/notes/1000-instances-of-nixpkgs
     disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Declare non-flake dependencies
-    piv-agent.flake = false;
   };
 
   outputs = inputs @ {flake-parts, ...}:

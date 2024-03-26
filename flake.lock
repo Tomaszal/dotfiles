@@ -104,31 +104,13 @@
         "type": "github"
       }
     },
-    "piv-agent": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1709911682,
-        "narHash": "sha256-aukcnubhB8kbAl22eeFKzLPvVcYdgcEQ1gy3n6KWG00=",
-        "owner": "smlx",
-        "repo": "piv-agent",
-        "rev": "485688bb070195978537520095a5d089b372dffe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "smlx",
-        "ref": "v0.21.0",
-        "repo": "piv-agent",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs",
-        "piv-agent": "piv-agent"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

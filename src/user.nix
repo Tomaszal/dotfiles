@@ -29,7 +29,7 @@
   config = {
     user = {
       username = "Tomaszal";
-      email = "tz@tomaszal.com";
+      email = "me@tomaszal.com";
       firstName = "Tomas";
       lastName = "Zaluckij";
     };

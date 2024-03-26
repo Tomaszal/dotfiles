@@ -25,7 +25,6 @@
           ./locale.nix
           ./nix.nix
           ./pipewire.nix
-          ./piv-agent.nix
           ./plymouth.nix
           ./state-version.nix
           ./udisks.nix
