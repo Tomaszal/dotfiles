@@ -43,7 +43,7 @@
           name = package;
           value = {Context.sockets = ["x11"];};
         }))
-        (builtins.listToAttrs)
+        builtins.listToAttrs
       ]);
 
     hm.home.activation.flatpakWaylandElectronFlags = lib.trivial.pipe electronFlagsFiles [
@@ -58,7 +58,7 @@
           mkdir -p $HOME/.var/app/${package}/config
           cat ${flags} > $HOME/.var/app/${package}/config/${file}
         ''))
-      (builtins.attrValues)
+      builtins.attrValues
       (builtins.concatStringsSep "\n")
       (hmLib.dag.entryAfter ["flatpak-managed-install"])
     ];
