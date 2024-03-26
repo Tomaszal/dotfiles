@@ -8,6 +8,8 @@
     desktopManager.gnome.enable = true;
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   environment.systemPackages =
     [pkgs.gnome.gnome-tweaks]
     ++ (with pkgs.gnomeExtensions; [

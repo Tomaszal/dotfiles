@@ -29,6 +29,7 @@
           ./state-version.nix
           ./udisks.nix
           ./user.nix
+          ./vscode.nix
           ./zsh.nix
         ];
       };
