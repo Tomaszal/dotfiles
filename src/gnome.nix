@@ -11,7 +11,10 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages =
-    [pkgs.gnome.gnome-tweaks]
+    (with pkgs; [
+      gnome.gnome-tweaks
+      mission-center
+    ])
     ++ (with pkgs.gnomeExtensions; [
       # always-show-workspace-thumbnails # no gnome 45 support
       # focus-changer # seems to be broken
