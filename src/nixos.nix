@@ -12,6 +12,7 @@
           "${./hardware}/${name}.nix"
 
           ./auto-upgrade.nix
+          ./ddc.nix
           ./direnv.nix
           ./disko/mount.nix
           ./docker.nix
