@@ -3,14 +3,12 @@
 
   inputs = {
     disko.url = "https://flakehub.com/f/nix-community/disko/1.tar.gz";
-    home-manager.url = "github:nix-community/home-manager";
-    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.3.tar.gz";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Reduce nixpkgs instances
-    # https://zimbatm.com/notes/1000-instances-of-nixpkgs
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.3.tar.gz";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = inputs @ {flake-parts, ...}:

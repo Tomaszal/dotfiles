@@ -5,7 +5,7 @@
 }: {
   flake.nixosConfigurations = let
     nixosForHardware = name:
-      inputs.nixpkgs.lib.nixosSystem {
+      inputs.nixpkgs-stable.lib.nixosSystem {
         specialArgs = {inherit self;};
         modules = [
           {networking.hostName = name;}

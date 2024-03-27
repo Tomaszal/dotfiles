@@ -14,7 +14,9 @@
   };
 
   hm.services.gpg-agent = {
-    inherit (config.programs.gnupg.agent) pinentryPackage;
+    # TODO: switch to `pinentryPackage` instead of `pinentryFlavor` after
+    # upgrading to 24.05 to fix deprecation
+    inherit (config.programs.gnupg.agent) pinentryFlavor;
     enable = true;
     enableSshSupport = true;
   };
