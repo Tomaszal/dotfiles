@@ -27,6 +27,7 @@
           ./nix.nix
           ./pipewire.nix
           ./plymouth.nix
+          ./reboot-to-windows.nix
           ./state-version.nix
           ./udisks.nix
           ./user.nix
