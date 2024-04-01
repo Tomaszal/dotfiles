@@ -6,7 +6,7 @@
   flake.nixosConfigurations = let
     nixosForHardware = name:
       inputs.nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {inherit self;};
+        specialArgs = {inherit self inputs;};
         modules = [
           {networking.hostName = name;}
           "${./hardware}/${name}.nix"
@@ -26,6 +26,7 @@
           ./locale.nix
           ./nix.nix
           ./pipewire.nix
+          ./piv-agent.nix
           ./plymouth.nix
           ./reboot-to-windows.nix
           ./state-version.nix
