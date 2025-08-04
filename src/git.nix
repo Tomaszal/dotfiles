@@ -18,7 +18,7 @@ in {
     };
 
     signing = {
-      key = toString inputs.keys.ssh.yubikey.piv-agent.touch-policy.always;
+      key = toString inputs.keys.ssh.yubikey.piv-agent.touch-policy.cached;
       signByDefault = true;
     };
   };
