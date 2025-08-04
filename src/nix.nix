@@ -24,6 +24,6 @@
       builtins.elem (lib.getName pkg) config.allowUnfreePackages;
 
     # Setup unstable nixpkgs with stable nixpkgs settings
-    _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
+    _module.args.pkgs-unstable = import inputs.nixpkgs pkgs;
   };
 }
