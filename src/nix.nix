@@ -1,6 +1,8 @@
 {
-  lib,
   config,
+  inputs,
+  lib,
+  pkgs,
   ...
 }: {
   options = let
@@ -14,11 +16,14 @@
   };
 
   config = {
-      # Enable flakes
+    # Enable flakes
     nix.settings. experimental-features = ["nix-command" "flakes"];
 
     # Allow configured unfree packages
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) config.allowUnfreePackages;
+
+    # Setup unstable nixpkgs with stable nixpkgs settings
+    _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
   };
 }
