@@ -12,23 +12,31 @@
 
   environment.systemPackages =
     (with pkgs; [
-      gnome.gnome-tweaks
-      mission-center
+      dconf-editor
+      gnome-extension-manager
+      gnome-tweaks
+      resources
+      showtime
     ])
     ++ (with pkgs.gnomeExtensions; [
-      # always-show-workspace-thumbnails # no gnome 45 support
-      # focus-changer # seems to be broken
       advanced-alttab-window-switcher
+      always-show-workspace-thumbnails
       appindicator
       bing-wallpaper-changer
       blur-my-shell
       dash-to-panel
+      focus-changer
       pano
       quick-settings-tweaker
       smile-complementary-extension
       space-bar
       tiling-assistant
     ]);
+
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-system-monitor
+    totem
+  ];
 
   hm.gtk.enable = true;
   hm.home.pointerCursor = {
@@ -38,10 +46,6 @@
     gtk.enable = true;
     x11.enable = true;
   };
-
-  # Force correct theme for some GTK Flatpak apps
-  # https://discourse.flathub.org/t/gtk4-apps-do-not-use-adwaita-dark/1327/2
-  hm.services.flatpak.overrides."org.onlyoffice.desktopeditors".Environment.GTK_THEME = "Adwaita:dark";
 
   # Unlock "login" GNOME keyring on login
   security.pam.services.login.enableGnomeKeyring = true;
