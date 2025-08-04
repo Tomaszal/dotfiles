@@ -23,6 +23,7 @@
       ./kernel.nix
       ./locale.nix
       ./nix.nix
+      ./other.nix
       ./pipewire.nix
       ./piv-agent.nix
       ./plymouth.nix
