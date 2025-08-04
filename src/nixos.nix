@@ -3,44 +3,36 @@
   inputs,
   ...
 }: {
-  flake.nixosConfigurations = let
-    nixosForHardware = name:
-      inputs.nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {inherit self inputs;};
-        modules = [
-          {networking.hostName = name;}
-          "${./hardware}/${name}.nix"
-
-          ./auto-upgrade.nix
-          ./ddc.nix
-          ./direnv.nix
-          ./disko/mount.nix
-          ./docker.nix
-          ./flatpak
-          ./garbage-collection.nix
-          ./git.nix
-          ./gnome.nix
-          ./gpg.nix
-          ./grub.nix
-          ./kernel.nix
-          ./locale.nix
-          ./nix.nix
-          ./pipewire.nix
-          ./piv-agent.nix
-          ./plymouth.nix
-          ./reboot-to-windows.nix
-          ./state-version.nix
-          ./udisks.nix
-          ./user.nix
-          ./vscode.nix
-          ./zsh.nix
-        ];
-      };
-  in
-    builtins.listToAttrs (map (filename: rec {
-      name = builtins.substring 0 (builtins.stringLength filename - 4) filename;
-      value = nixosForHardware name;
-    }) (builtins.attrNames (builtins.readDir ./hardware)));
+  flake.nixosConfigurations.pc = inputs.nixpkgs-stable.lib.nixosSystem {
+    specialArgs = {inherit self inputs;};
+    modules = [
+      {networking.hostName = "pc";}
+      ./auto-upgrade.nix
+      ./ddc.nix
+      ./direnv.nix
+      ./disko/mount.nix
+      ./docker.nix
+      ./flatpak.nix
+      ./garbage-collection.nix
+      ./git.nix
+      ./gnome.nix
+      ./gpg.nix
+      ./grub.nix
+      ./hardware/pc-main-amd64.nix
+      ./kernel.nix
+      ./locale.nix
+      ./nix.nix
+      ./pipewire.nix
+      ./piv-agent.nix
+      ./plymouth.nix
+      ./reboot-to-windows.nix
+      ./state-version.nix
+      ./udisks.nix
+      ./user.nix
+      ./vscode.nix
+      ./zsh.nix
+    ];
+  };
 
   perSystem = {system, ...}: {
     packages.installer = let
