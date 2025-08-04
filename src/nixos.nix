@@ -12,6 +12,7 @@
       ./direnv.nix
       ./disko/mount.nix
       ./docker.nix
+      ./flameshot.nix
       ./flatpak.nix
       ./garbage-collection.nix
       ./git.nix
