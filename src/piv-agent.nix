@@ -6,16 +6,16 @@
 }: let
   piv-agent = pkgs.buildGoModule rec {
     pname = "piv-agent";
-    version = "0.21.0";
+    version = "0.23.0";
 
     src = pkgs.fetchFromGitHub {
       owner = "smlx";
       repo = "piv-agent";
       rev = "v${version}";
-      hash = "sha256-aukcnubhB8kbAl22eeFKzLPvVcYdgcEQ1gy3n6KWG00=";
+      hash = "sha256-4oyIUE7Yy0KUw5pC64MRKeUziy+tqvl/zFVySffxfBs=";
     };
 
-    vendorHash = "sha256-1d6EKEvo4XNDXRtbdnKkqyF9y0LPPHWKu9X/wYnbmas=";
+    vendorHash = "sha256-4yfQQxMf00263OKEXTWD34YifK7oDclvPk8JDz5N1I0=";
 
     nativeBuildInputs = [pkgs.pkg-config];
     buildInputs = [pkgs.pcsclite];
@@ -28,9 +28,7 @@
   };
 
   # Pinentry package which will be used
-  # TODO: inherit `pinentryPackage` upgrading to 24.05
-  # inherit (config.programs.gnupg.agent) pinentryPackage;
-  pinentryPackage = pkgs.pinentry-gnome;
+  inherit (config.programs.gnupg.agent) pinentryPackage;
 
   # Exit after this period to drop transaction and key file passphrase cache, even if service is in use
   exitTimeout = "12h";
@@ -82,6 +80,8 @@ in {
     Unit.Description = "piv-agent socket activation";
 
     Install.WantedBy = ["sockets.target"];
+
+    Socket.DirectoryMode = "0700";
 
     Socket.ListenStream = let
       agentSocket = {

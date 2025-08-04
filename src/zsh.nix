@@ -4,9 +4,7 @@
 
   hm.programs.zsh = {
     enable = true;
-    # TODO: fix deprecation after upgrading to 24.05
-    # autosuggestion.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;

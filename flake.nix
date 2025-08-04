@@ -2,17 +2,18 @@
   description = "Tomaszal Dotfiles";
 
   inputs = {
-    disko.url = "https://flakehub.com/f/nix-community/disko/1.tar.gz";
+    disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
     keys.url = "github:tomaszal/keys";
     keys.inputs.flake-parts.follows = "flake-parts";
     keys.inputs.nixpkgs.follows = "nixpkgs";
-    nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/0.3.tar.gz";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
