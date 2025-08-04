@@ -1,16 +1,17 @@
-# TODO: use nixos-installer-gen for a fully offline installer ISO
+# TODO: offline installer
 # https://gitlab.com/genericnerdyusername/nixos-installer-gen
+# https://github.com/nix-community/disko/blob/master/docs/disko-install.md#using-disko-install-in-an-offline-installer
 {
-  self,
-  pkgs,
   lib,
   modulesPath,
+  pkgs,
+  self,
   ...
 }: let
   name = "nixos-installer";
   installScript = pkgs.writeShellApplication {
     name = "nixos-install-flake";
-    text = ''nixos-install --flake "${../../.}#$1" "''${@:2}"'';
+    text = ''nixos-install --flake "${self}#$1" "''${@:2}"'';
   };
   justfile = pkgs.writeShellApplication {
     name = "just";
@@ -23,24 +24,21 @@
 in {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-    ../kernel.nix
-    ../nix.nix
-    ../disko/format.nix
+    ../../modules/common
   ];
 
   isoImage.isoName = lib.mkForce "${name}.iso";
   isoImage.volumeID = "${name}";
 
   # Save NixOS derivations on ISO to speed up system install
-  isoImage.storeContents =
-    builtins.concatMap
-    (nixos: with nixos.config.system; [path build.toplevel] ++ extraDependencies)
-    (builtins.attrValues self.nixosConfigurations);
+  # isoImage.storeContents =
+  #   builtins.concatMap
+  #   (nixos: with nixos.config.system; [path build.toplevel] ++ extraDependencies)
+  #   (builtins.attrValues self.nixosConfigurations);
 
-  # Speed up image build and system install
-  isoImage.squashfsCompression = "zstd -Xcompression-level 6";
-  isoImage.compressImage = false;
-
-  environment.noXlibs = false;
-  environment.systemPackages = [installScript justfile];
+  environment.systemPackages = with pkgs; [
+    disko
+    installScript
+    justfile
+  ];
 }

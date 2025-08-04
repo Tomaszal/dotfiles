@@ -22,18 +22,7 @@
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./src/nixos.nix];
       systems = import inputs.systems;
-      perSystem = {pkgs, ...}: {
-        devShells.default = pkgs.mkShell {
-          # Specify Nixpkgs path for improved nixd intellisense
-          NIX_PATH = ["nixpkgs=${inputs.nixpkgs}"];
-
-          nativeBuildInputs = with pkgs; [
-            alejandra
-            nixd
-          ];
-        };
-      };
+      imports = [./flake-parts];
     };
 }

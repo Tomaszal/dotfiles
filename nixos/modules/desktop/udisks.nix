@@ -29,6 +29,8 @@ in {
   };
 
   config = {
+    security.polkit.enable = true;
+
     # Add some permissions to wheel group users, to avoid requiring
     # authorization on every action
     # https://github.com/coldfix/udiskie/wiki/Permissions

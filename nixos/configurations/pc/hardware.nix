@@ -7,8 +7,6 @@
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["ntfs"];
 
-  security.polkit.enable = true;
-
   imports = with inputs.nixos-hardware.nixosModules; [
     common-pc
     common-pc-ssd
