@@ -10,6 +10,7 @@
     );
 in {
   flake.nixosConfigurations = {
+    laptop = nixos {modules = [../nixos/configurations/laptop];};
     pc = nixos {modules = [../nixos/configurations/pc];};
   };
 
@@ -19,14 +20,5 @@ in {
         inherit system;
         modules = [../nixos/configurations/installer];
       }).config.system.build.isoImage;
-
-    # packages.installer = let
-    #   nixos = inputs.nixpkgs.lib.nixosSystem {
-    #     inherit system;
-    #     specialArgs = {inherit self;};
-    #     modules = [../nixos/configurations/installer];
-    #   };
-    # in
-    #   nixos.config.system.build.isoImage;
   };
 }

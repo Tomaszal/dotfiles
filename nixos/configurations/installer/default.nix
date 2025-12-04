@@ -27,8 +27,19 @@ in {
     ../../modules/common
   ];
 
-  isoImage.isoName = lib.mkForce "${name}.iso";
-  isoImage.volumeID = "${name}";
+  image.baseName = lib.mkForce name;
+  isoImage.volumeID = name;
+
+  isoImage.contents = [
+    {
+      source = self;
+      target = "flake";
+    }
+  ];
+
+  isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+
+  networking.networkmanager.enable = true;
 
   # Save NixOS derivations on ISO to speed up system install
   # isoImage.storeContents =
@@ -40,5 +51,6 @@ in {
     disko
     installScript
     justfile
+    nixos-facter
   ];
 }
