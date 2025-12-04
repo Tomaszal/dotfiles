@@ -18,8 +18,6 @@
     "${inputs.nixos-hardware}/common/gpu/nvidia/ampere"
   ];
 
-  nixpkgs.config.cudaSupport = true;
-
   allowUnfreePackages = ["nvidia-x11" "nvidia-settings"];
 
   # Generate boot entries for other OS on the system, enabling dual boot

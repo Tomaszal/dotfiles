@@ -1,12 +1,6 @@
 {pkgs, ...}: {
-  services.xserver = {
-    enable = true;
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
-    desktopManager.gnome.enable = true;
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -40,7 +34,7 @@
 
   hm.gtk.enable = true;
   hm.home.pointerCursor = {
-    package = pkgs.libsForQt5.breeze-qt5;
+    package = pkgs.kdePackages.breeze;
     name = "breeze_cursors";
     size = 24;
     gtk.enable = true;

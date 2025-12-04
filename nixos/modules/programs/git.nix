@@ -9,10 +9,12 @@ in {
   hm.programs.git = {
     enable = true;
 
-    userName = fullName;
-    userEmail = email;
+    settings.user = {
+      name = fullName;
+      email = email;
+    };
 
-    extraConfig.gpg = {
+    settings.gpg = {
       format = "ssh";
       ssh.program = "${pkgs.openssh}/bin/ssh-keygen";
     };

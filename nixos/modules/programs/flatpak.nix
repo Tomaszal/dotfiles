@@ -15,7 +15,7 @@
   # GUI for basic Flatpak application management
   environment.systemPackages = [pkgs.gnome-software];
 
-  # Fix missing fonts and cursors
+  # Fix missing cursors
   # https://wiki.nixos.org/wiki/Flatpak#Missing_themes_and_cursors
   # https://wiki.nixos.org/wiki/Fonts#Solution_3:_Configure_bindfs_for_fonts/cursors/icons_support
   system.fsPackages = [pkgs.bindfs];
@@ -26,8 +26,8 @@
       options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
     };
     aggregated = pkgs.buildEnv {
-      name = "system-fonts-and-icons";
-      paths = config.fonts.packages ++ [config.hm.home.pointerCursor.package];
+      name = "system-icons";
+      paths = [config.hm.home.pointerCursor.package];
       pathsToLink = ["/share/fonts" "/share/icons"];
     };
   in {

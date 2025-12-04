@@ -103,11 +103,6 @@ in {
   hm.home.file."${config.hm.programs.gpg.homedir}/gpg.conf".text = lib.mkIf agent.gpg (lib.mkForce "no-autostart");
   hm.services.gpg-agent.enable = lib.mkIf agent.gpg (lib.mkForce false);
 
-  # Disable default GNOME keyring, and re-enable it without SSH component
-  # https://github.com/nix-community/home-manager/issues/3263#issuecomment-1913049589
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
-  hm.services.gnome-keyring = {
-    enable = true;
-    components = ["pkcs11" "secrets"];
-  };
+  # Disable default GNOME SSH agent
+  services.gnome.gcr-ssh-agent.enable = false;
 }
