@@ -14,8 +14,9 @@
   programs.nix-ld.enable = true;
 
   hm.programs = {
-    firefox.enable = true;
     chromium.enable = true;
+    firefox.enable = true;
+    nh.enable = true;
     obs-studio.enable = true;
   };
 
