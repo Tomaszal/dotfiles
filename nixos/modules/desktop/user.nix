@@ -37,6 +37,9 @@
     # Enable 'sudo' for users in 'wheel' group
     security.sudo.enable = true;
 
+    # Give main user the right to specify additional substituters
+    nix.settings.trusted-users = [config.user.username];
+
     # TODO: use Yubikey for login and disable mutable users,
     # as they are only mutable to be able to set the password
     # https://nixos.wiki/wiki/Yubikey
