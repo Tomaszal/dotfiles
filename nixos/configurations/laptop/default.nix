@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   networking.hostName = "laptop";
 
   imports = [
@@ -13,4 +17,8 @@
   ];
 
   facter.reportPath = ./facter.json;
+
+  hardware.sensor.iio.enable = true;
+
+  environment.systemPackages = [pkgs.gnomeExtensions.screen-rotate];
 }
