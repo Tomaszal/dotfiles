@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  networking.hostName = "laptop";
-
   imports = [
     inputs.disko.nixosModules.disko
     inputs.nixos-facter-modules.nixosModules.facter
@@ -16,9 +14,11 @@
     ../../modules/programs
   ];
 
+  networking.hostName = "laptop";
+
   facter.reportPath = ./facter.json;
 
+  # Auto rotation
   hardware.sensor.iio.enable = true;
-
   environment.systemPackages = [pkgs.gnomeExtensions.screen-rotate];
 }

@@ -13,7 +13,6 @@
     keys.url = "github:tomaszal/keys";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";

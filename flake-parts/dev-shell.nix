@@ -7,6 +7,7 @@
       nativeBuildInputs = with pkgs; [
         alejandra
         nixd
+        nixos-facter
       ];
     };
   };
