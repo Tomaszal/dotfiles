@@ -10,6 +10,7 @@
     );
 in {
   flake.nixosConfigurations = {
+    work = nixos {modules = [../nixos/configurations/work];};
     laptop = nixos {modules = [../nixos/configurations/laptop];};
     pc = nixos {modules = [../nixos/configurations/pc];};
   };
