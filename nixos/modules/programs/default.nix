@@ -1,5 +1,6 @@
 {
   imports = [
+    ./appimage.nix
     ./direnv.nix
     ./docker.nix
     ./flameshot.nix
