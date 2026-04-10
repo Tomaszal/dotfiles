@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = [
     inputs.disko.nixosModules.disko
-    inputs.nixos-facter-modules.nixosModules.facter
 
     ./disko.nix
 
@@ -12,7 +11,7 @@
 
   networking.hostName = "pc";
 
-  facter.reportPath = ./facter.json;
+  hardware.facter.reportPath = ./facter.json;
 
   # NTFS support
   boot.supportedFilesystems = ["ntfs"];

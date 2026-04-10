@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.disko.nixosModules.disko
-    inputs.nixos-facter-modules.nixosModules.facter
 
     ./disko.nix
 
@@ -16,7 +15,7 @@
 
   networking.hostName = "laptop";
 
-  facter.reportPath = ./facter.json;
+  hardware.facter.reportPath = ./facter.json;
 
   # Auto rotation
   hardware.sensor.iio.enable = true;
