@@ -11,6 +11,7 @@
             type = "filesystem";
             format = "vfat";
             mountpoint = "/boot";
+            mountOptions = ["umask=0077"];
           };
         };
         swap = {
@@ -23,10 +24,14 @@
         };
         root = {
           size = "100%";
+          content = {
+            type = "luks";
+            name = "root";
             content = {
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
+            };
           };
         };
       };
