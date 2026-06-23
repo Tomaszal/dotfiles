@@ -31,6 +31,13 @@
         nixpkgs.follows = "nixpkgs-unstable";
       };
     };
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs = {
+        nix-index-database.follows = "nix-index-database";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
