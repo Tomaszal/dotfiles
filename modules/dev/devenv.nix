@@ -6,8 +6,9 @@
   in {
     home.packages = [package];
 
-    programs.zsh.initContent = lib.mkAfter ''
-      eval "$(${lib.getExe package} hook zsh)"
+    programs.fish.interactiveShellInit = lib.mkAfter ''
+      set --export DEVENV_SHELL_TYPE fish
+      ${lib.getExe package} hook fish | source
     '';
   };
 }
