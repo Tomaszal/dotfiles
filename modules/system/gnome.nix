@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   den.default = {
     nixos = {
       pkgs,
@@ -48,14 +48,24 @@
       };
     };
 
-    homeManager = {nixosConfig, ...}: {
+    homeManager = {
+      nixosConfig,
+      pkgs,
+      ...
+    }: {
       gtk.enable = true;
+
       home.pointerCursor = {
         package = nixosConfig.pointerCursorPackage;
         name = "breeze_cursors";
         size = 24;
         gtk.enable = true;
         x11.enable = true;
+      };
+
+      custom-keybindings.console = {
+        command = lib.getExe (with pkgs; gnome-console);
+        binding = "<Super>Return";
       };
     };
   };
