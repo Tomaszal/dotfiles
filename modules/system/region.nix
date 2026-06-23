@@ -8,5 +8,8 @@
 
     # Disable natural sort order
     i18n.extraLocaleSettings.LC_COLLATE = "C";
+
+    # Disable IBus
+    i18n.inputMethod.enable = false;
   };
 }

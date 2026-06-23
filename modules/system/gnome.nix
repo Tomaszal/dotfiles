@@ -23,7 +23,6 @@
             mission-center
             resources
             showtime
-            smile
           ])
           ++ (with pkgs.gnomeExtensions; [
             advanced-alttab-window-switcher
@@ -35,7 +34,6 @@
             focus-changer
             pano
             quick-settings-tweaker
-            smile-complementary-extension
             space-bar
             tiling-assistant
           ]);
