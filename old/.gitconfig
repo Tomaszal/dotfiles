@@ -1,7 +1,0 @@
-[core]
-	autocrlf = input
-[credential]
-	helper = store
-[user]
-	name = Tomaszal
-	email = mrtomaszal@gmail.com
