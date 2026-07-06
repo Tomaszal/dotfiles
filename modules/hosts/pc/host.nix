@@ -13,6 +13,8 @@
 
       games.steam
       games.minecraft
+
+      (den.aspects.media.flameshot {screen = 1;})
     ];
 
     nixos = {

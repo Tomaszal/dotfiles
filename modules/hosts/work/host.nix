@@ -10,6 +10,8 @@
       dev.opencode
 
       social.work
+
+      (den.aspects.media.flameshot {screen = 1;})
     ];
 
     nixos = {pkgs, ...}: {

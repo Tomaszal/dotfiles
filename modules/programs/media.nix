@@ -13,28 +13,20 @@
     };
   };
 
-  # TODO: get flameshot from flake as it's currently broken otherwise
-  den.aspects.media.flameshot.homeManager = {pkgs, ...}: {
-    services.flameshot.enable = true;
+  den.aspects.media.flameshot = {screen}: {
+    homeManager = {pkgs-unstable, ...}: {
+      services.flameshot = {
+        enable = true;
+        package = with pkgs-unstable; flameshot;
+      };
 
-    # https://github.com/flameshot-org/flameshot/issues/3365#issuecomment-1868580715
-    dconf.settings = {
-      # Disables the default screenshot interface
-      "org/gnome/shell/keybindings" = {
-        show-screenshot-ui = [];
-      };
-      # Sets the new keybindings
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
-      };
-      # Defines the new shortcut
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      custom-keybindings.flameshot = {
+        command = "flameshot screen --edit --number ${toString screen}";
         binding = "Print";
-        command = let
-          flameshot-gui = pkgs.writeShellScriptBin "flameshot-gui" "${pkgs.flameshot}/bin/flameshot gui";
-        in "${flameshot-gui}/bin/flameshot-gui";
-        name = "Flameshot";
       };
+
+      # Disable default screenshot util
+      dconf.settings."org/gnome/shell/keybindings".show-screenshot-ui = [];
     };
   };
 }
