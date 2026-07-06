@@ -14,6 +14,10 @@
       nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
+    perSystem = {pkgs, ...}: {
+      _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
+    };
+
     den.default = {
       nixos = {pkgs, ...}: {
         _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
