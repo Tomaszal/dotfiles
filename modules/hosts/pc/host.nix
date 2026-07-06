@@ -17,8 +17,9 @@
       (den.aspects.media.flameshot {screen = 1;})
     ];
 
-    nixos = {
+    nixos = {pkgs, ...}: {
       hardware.facter.reportPath = ./facter.json;
+      boot.kernelPackages = pkgs.linuxPackages_latest;
     };
 
     homeManager = {
