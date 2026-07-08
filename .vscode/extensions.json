@@ -2,6 +2,7 @@
   "recommendations": [
     "jnoortheen.nix-ide",
     "EditorConfig.EditorConfig",
-    "mkhl.direnv"
+    "mkhl.direnv",
+    "charliermarsh.ruff"
   ]
 }

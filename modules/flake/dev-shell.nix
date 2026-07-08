@@ -14,6 +14,7 @@
         alejandra
         nixd
         nixos-facter
+        ruff
         pkgs-unstable.mcp-nixos
       ];
     };

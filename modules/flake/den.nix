@@ -7,5 +7,8 @@
 
   imports = [inputs.den.flakeModules.dendritic];
 
-  den.default.includes = with den.batteries; [inputs'];
+  den.default.includes = with den.batteries; [
+    inputs'
+    self'
+  ];
 }

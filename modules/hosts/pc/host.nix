@@ -14,7 +14,9 @@
       games.steam
       games.minecraft
 
-      (den.aspects.media.flameshot {screen = 1;})
+      (media.flameshot {screen = 1;})
+
+      system.middle-button-scroll.fenrir
     ];
 
     nixos = {pkgs, ...}: {
