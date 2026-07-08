@@ -20,11 +20,15 @@
 - Host composition belongs in `modules/hosts/<host>/host.nix`.
 - Host-specific system configuration can live in `den.aspects.<host>.nixos` or files imported by that host aspect.
 - User-facing features should generally be included through `den.aspects.<host>.provides.to-users`.
+- Prefer Den batteries over ad-hoc plumbing when they exist.
+- For per-system flake inputs, use `inputs'.<input>.packages.<name>` instead of `inputs.<input>.packages.${pkgs.system}.<name>`.
+- Avoid adding nixpkgs overlays just to expose a package from another flake. Prefer direct flake package references unless an overlay is explicitly needed.
 
 ## Important Paths
 
 - `modules/flake/den.nix`: imports Den's dendritic flake module.
 - `modules/flake/flake-file.nix`: generated flake settings.
+- `modules/flake/*.nix`: flake-level inputs, nixConfig, and flake-parts/Den integration helpers.
 - `modules/flake/dev-shell.nix`: development shell tools.
 - `modules/nix/nixpkgs.nix`: stable and unstable nixpkgs inputs.
 - `modules/nix/home-manager.nix`: Home Manager input and user schema class.

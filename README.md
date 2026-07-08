@@ -51,7 +51,6 @@ Without direnv, enter the shell manually:
 nix develop
 ```
 
-
 Apply the current host configuration:
 
 ```

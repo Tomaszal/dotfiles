@@ -1,5 +1,9 @@
 {
-  den.default.homeManager = {pkgs, ...}: {
+  den.default.homeManager = {
+    inputs',
+    pkgs,
+    ...
+  }: {
     programs.git.enable = true;
 
     home.packages = let
@@ -21,6 +25,10 @@
           done
         '';
       };
-    in [git-sweep];
+    in [
+      git-sweep
+      inputs'.llm-agents.packages.but
+      inputs'.llm-agents.packages.gitbutler
+    ];
   };
 }
