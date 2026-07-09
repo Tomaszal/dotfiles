@@ -15,8 +15,20 @@
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-        environment.systemPackages =
-          (with pkgs; [
+        environment.systemPackages = let
+          # Disable dragging maximized windows from empty dash-to-panel space
+          dash-to-panel = pkgs.gnomeExtensions.dash-to-panel.overrideAttrs (oldAttrs: {
+            postPatch =
+              (oldAttrs.postPatch or "")
+              + ''
+                substituteInPlace panel.js --replace-fail \
+                  "if (!dragWindow) return Clutter.EVENT_PROPAGATE" \
+                  "return Clutter.EVENT_PROPAGATE"
+              '';
+          });
+        in
+          [dash-to-panel]
+          ++ (with pkgs; [
             dconf-editor
             gnome-extension-manager
             gnome-tweaks
@@ -30,7 +42,6 @@
             appindicator
             bing-wallpaper-changer
             blur-my-shell
-            dash-to-panel
             focus-changer
             pano
             quick-settings-tweaker
