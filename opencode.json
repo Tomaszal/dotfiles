@@ -6,5 +6,17 @@
       "command": ["mcp-nixos"],
       "enabled": true
     }
+  },
+  "permission": {
+    "external_directory": {
+      "*": "ask",
+      "/nix/store/**": "allow"
+    },
+    "read": {
+      "/nix/store/**": "allow"
+    },
+    "list": {
+      "/nix/store/**": "allow"
+    }
   }
 }

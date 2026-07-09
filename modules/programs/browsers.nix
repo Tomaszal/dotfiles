@@ -1,5 +1,11 @@
 {
-  den.default.homeManager = {config, ...}: {
+  den.default.homeManager = {
+    config,
+    inputs',
+    ...
+  }: {
+    home.packages = [inputs'.nur.legacyPackages.repos.lonerOrz.helium];
+
     programs.chromium.enable = true;
 
     programs.firefox = {
