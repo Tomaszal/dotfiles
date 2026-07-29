@@ -1,4 +1,4 @@
-{lib, ...}: {
+{
   den.default = {
     nixos = {
       pkgs,
@@ -59,11 +59,7 @@
       };
     };
 
-    homeManager = {
-      nixosConfig,
-      pkgs,
-      ...
-    }: {
+    homeManager = {nixosConfig, ...}: {
       gtk.enable = true;
 
       home.pointerCursor = {
@@ -72,11 +68,6 @@
         size = 24;
         gtk.enable = true;
         x11.enable = true;
-      };
-
-      custom-keybindings.console = {
-        command = lib.getExe (with pkgs; gnome-console);
-        binding = "<Super>Return";
       };
     };
   };
