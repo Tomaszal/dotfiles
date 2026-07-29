@@ -30,8 +30,6 @@ def output_capabilities(device):
   rel = set(caps.get(ecodes.EV_REL, []))
   rel.update(
     [
-      ecodes.REL_WHEEL,
-      ecodes.REL_HWHEEL,
       ecodes.REL_WHEEL_HI_RES,
       ecodes.REL_HWHEEL_HI_RES,
     ]
@@ -130,7 +128,6 @@ def open_mouse(selector, threshold, sensitivity):
     product=device.info.product,
     version=device.info.version,
   )
-
   device.grab()
   return (
     {
@@ -186,11 +183,8 @@ def handle_event(mouse, event):
       mouse["scrolling"] = True
       value = -event.value * mouse["sensitivity"]
       hi_res_value = round(value)
-      wheel_value = round(value)
       if hi_res_value != 0:
         output.write(ecodes.EV_REL, ecodes.REL_WHEEL_HI_RES, hi_res_value)
-      if wheel_value != 0:
-        output.write(ecodes.EV_REL, ecodes.REL_WHEEL, wheel_value)
       output.syn()
       return
     if event.code == ecodes.REL_X:
@@ -201,11 +195,8 @@ def handle_event(mouse, event):
       mouse["scrolling"] = True
       value = event.value * mouse["sensitivity"]
       hi_res_value = round(value)
-      wheel_value = round(value)
       if hi_res_value != 0:
         output.write(ecodes.EV_REL, ecodes.REL_HWHEEL_HI_RES, hi_res_value)
-      if wheel_value != 0:
-        output.write(ecodes.EV_REL, ecodes.REL_HWHEEL, wheel_value)
       output.syn()
       return
 
