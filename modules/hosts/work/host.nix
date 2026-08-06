@@ -9,7 +9,7 @@
       dev.claude-code
       dev.opencode
 
-      social.work
+      collaboration
 
       (media.flameshot {screen = 1;})
 

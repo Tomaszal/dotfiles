@@ -1,29 +1,17 @@
 {den, ...}: {
   den.aspects.social = {
-    personal = {
-      includes = [(den.batteries.unfree ["discord"])];
+    includes = [(den.batteries.unfree ["discord"])];
 
-      homeManager = {pkgs-unstable, ...}: {
-        programs.discord = {
-          enable = true;
-          package = with pkgs-unstable; discord;
-        };
-
-        home.packages = with pkgs-unstable; [
-          signal-desktop
-          telegram-desktop
-        ];
+    homeManager = {pkgs-unstable, ...}: {
+      programs.discord = {
+        enable = true;
+        package = with pkgs-unstable; discord;
       };
-    };
 
-    work = {
-      includes = [(den.batteries.unfree ["slack"])];
-
-      homeManager = {pkgs-unstable, ...}: {
-        home.packages = with pkgs-unstable; [
-          slack
-        ];
-      };
+      home.packages = with pkgs-unstable; [
+        signal-desktop
+        telegram-desktop
+      ];
     };
   };
 }

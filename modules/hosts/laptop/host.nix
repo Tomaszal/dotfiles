@@ -3,7 +3,7 @@
 
   den.aspects.laptop.provides.to-users = {
     includes = with den.aspects; [
-      social.personal
+      social
     ];
 
     nixos = {pkgs, ...}: {

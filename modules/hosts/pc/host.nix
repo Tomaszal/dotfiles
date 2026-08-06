@@ -9,7 +9,7 @@
       dev
       dev.opencode
 
-      social.personal
+      social
 
       games.steam
       games.minecraft
