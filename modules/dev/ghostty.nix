@@ -1,10 +1,22 @@
 {
+  # https://github.com/ghostty-org/ghostty/discussions/11648
+  # https://github.com/ghostty-org/ghostty/pull/12483
+  flake-file.inputs.ghostty = {
+    url = "github:ghostty-org/ghostty";
+    inputs = {
+      flake-compat.follows = "flake-compat";
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs-unstable";
+      systems.follows = "systems";
+    };
+  };
+
   den.aspects.dev.homeManager = {
-    pkgs,
+    inputs',
     lib,
     ...
   }: let
-    inherit (pkgs) ghostty;
+    ghostty = inputs'.ghostty.packages.ghostty;
   in {
     programs.ghostty = {
       enable = true;
