@@ -7,8 +7,11 @@
 
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.nix-index-database.follows = "nix-index-database";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nix-index-database.follows = "nix-index-database";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
     };
   };
 

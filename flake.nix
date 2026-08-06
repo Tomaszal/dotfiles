@@ -1,7 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   nixConfig = {
     extra-substituters = [
@@ -19,6 +19,10 @@
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-compat = {
+      url = "github:NixOS/flake-compat";
+      flake = false;
     };
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
@@ -42,11 +46,13 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs-unstable";
+        systems.follows = "systems";
       };
     };
     nix-alien = {
       url = "github:thiagokokada/nix-alien";
       inputs = {
+        flake-compat.follows = "flake-compat";
         nix-index-database.follows = "nix-index-database";
         nixpkgs.follows = "nixpkgs-unstable";
       };
@@ -69,5 +75,6 @@
       url = "github:smlx/piv-agent/v0.23.0";
       flake = false;
     };
+    systems.url = "github:nix-systems/default";
   };
 }
