@@ -1,0 +1,17 @@
+{
+    "figma-desktop": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "figma-desktop",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-SLn4y+NVCcBDZrGqIpmpIEQavY7xngt5JMI8yG1g6/0=",
+            "type": "url",
+            "url": "https://github.com/IliyaBrook/figma-linux/releases/download/126.5.6/figma-desktop-126.5.6-amd64.AppImage"
+        },
+        "version": "126.5.6"
+    }
+}

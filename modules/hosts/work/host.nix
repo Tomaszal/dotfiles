@@ -11,6 +11,8 @@
 
       collaboration
 
+      programs.figma
+
       (media.flameshot {screen = 1;})
 
       system.middle-button-scroll.fenrir
