@@ -7,6 +7,7 @@
       dev.docker
       dev.postman
       dev.claude-code
+      dev.codex
       dev.opencode
 
       collaboration

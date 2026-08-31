@@ -7,6 +7,7 @@
       system.udisks
 
       dev
+      dev.codex
       dev.opencode
 
       social
