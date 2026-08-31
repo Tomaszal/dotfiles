@@ -4,12 +4,16 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.schema.user = {
-    classes = ["homeManager"];
+  den.schema.user.classes = ["homeManager"];
 
-    nixos.home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-    };
-  };
+  # Host-scoped Home Manager settings must go through `hm-host`, which is only
+  # applied to hosts that actually have Home Manager users.
+  den.schema.hm-host.includes = [
+    {
+      nixos.home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+      };
+    }
+  ];
 }
