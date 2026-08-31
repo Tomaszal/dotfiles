@@ -6,3 +6,7 @@
 [figma-desktop]
 src.github = "IliyaBrook/figma-linux"
 fetch.url = "https://github.com/IliyaBrook/figma-linux/releases/download/$ver/figma-desktop-$ver-amd64.AppImage"
+
+[codexbar]
+src.github = "steipete/CodexBar"
+fetch.url = "https://github.com/steipete/CodexBar/releases/download/$ver/CodexBarCLI-$ver-linux-x86_64.tar.gz"
