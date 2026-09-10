@@ -13,6 +13,7 @@
       collaboration
 
       programs.figma
+      programs.oneleet
 
       (media.flameshot {screen = 1;})
 
