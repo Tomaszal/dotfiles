@@ -3,7 +3,7 @@
   den,
   ...
 }: {
-  flake-file.inputs.den.url = "github:vic/den/latest";
+  flake-file.inputs.den.url = "github:denful/den/latest";
 
   imports = [inputs.den.flakeModules.dendritic];
 
