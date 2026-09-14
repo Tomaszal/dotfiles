@@ -1,11 +1,15 @@
-{inputs, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   perSystem = {
     inputs',
     pkgs,
     pkgs-mv,
     ...
-  }: {
-    formatter = with pkgs; alejandra;
+  }: rec {
+    formatter = config.flake-file.formatter pkgs;
 
     devShells.default = pkgs.mkShell {
       # Specify Nixpkgs path for improved nixd intellisense
@@ -13,13 +17,13 @@
 
       nativeBuildInputs =
         (with pkgs; [
-          alejandra
           nixd
           nixos-facter
           nvfetcher
           ruff
         ])
         ++ [
+          formatter
           inputs'.multiverse.packages.mvs
           pkgs-mv.tip.mcp-nixos
         ];
