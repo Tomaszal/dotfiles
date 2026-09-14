@@ -20,7 +20,7 @@
       imports = [inputs.nix-index-database.nixosModules.default];
       environment.systemPackages =
         (with pkgs; [comma])
-        ++ [inputs.nix-alien.packages.${pkgs.system}.nix-alien];
+        ++ [inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien];
     };
 
     homeManager.imports = [inputs.nix-index-database.homeModules.default];

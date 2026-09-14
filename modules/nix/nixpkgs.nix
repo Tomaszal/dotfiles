@@ -3,7 +3,18 @@
   config,
   lib,
   ...
-}: {
+}: let
+  mkPkgs = nixpkgs: {
+    localSystem,
+    crossSystem ? localSystem,
+    config ? {},
+    overlays ? [],
+  }:
+    import nixpkgs (
+      {inherit config localSystem overlays;}
+      // lib.optionalAttrs (localSystem != crossSystem) {inherit crossSystem;}
+    );
+in {
   options.nixos-release = lib.mkOption {
     default = "26.05";
   };
@@ -14,17 +25,24 @@
       nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    perSystem = {pkgs, ...}: {
-      _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
+    perSystem = {system, ...}: let
+      nixpkgsArgs = {localSystem.system = system;};
+    in {
+      _module.args = {
+        pkgs = mkPkgs inputs.nixpkgs nixpkgsArgs;
+        pkgs-unstable = mkPkgs inputs.nixpkgs-unstable nixpkgsArgs;
+      };
     };
 
-    den.default = {
-      nixos = {pkgs, ...}: {
-        _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
-      };
-
-      homeManager = {pkgs, ...}: {
-        _module.args.pkgs-unstable = import inputs.nixpkgs-unstable pkgs;
+    den.default.nixos = {
+      config,
+      pkgs,
+      ...
+    }: {
+      _module.args.pkgs-unstable = mkPkgs inputs.nixpkgs-unstable {
+        localSystem.config = pkgs.stdenv.buildPlatform.config;
+        crossSystem.config = pkgs.stdenv.hostPlatform.config;
+        inherit (config.nixpkgs) config overlays;
       };
     };
   };
