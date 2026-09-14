@@ -2,23 +2,12 @@
 # https://gitlab.com/genericnerdyusername/nixos-installer-gen
 # https://github.com/nix-community/disko/blob/master/docs/disko-install.md#using-disko-install-in-an-offline-installer
 {
-  den,
   inputs,
   lib,
   self,
   ...
-}: {
-  perSystem = {system, ...}: let
-    module = den.lib.aspects.resolve "nixos" den.aspects.installer;
-  in {
-    packages.installer =
-      (inputs.nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [module];
-      }).config.system.build.isoImage;
-  };
-
-  den.aspects.installer.nixos = {
+}: let
+  nixos = {
     modulesPath,
     pkgs,
     ...
@@ -55,5 +44,13 @@
 
       disko-install --flake $FLAKE --disk nixos /dev/disk-path
     '';
+  };
+in {
+  perSystem = {system, ...}: {
+    packages.installer =
+      (inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [nixos];
+      }).config.system.build.isoImage;
   };
 }
