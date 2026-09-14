@@ -1,15 +1,15 @@
 {
   den.aspects.dev.homeManager = {
-    pkgs-unstable,
     lib,
+    pkgs-mv,
     ...
   }: let
-    package = with pkgs-unstable; gh;
+    package = with pkgs-mv.tip; gh;
   in {
     programs.gh = {
       inherit package;
       enable = true;
-      extensions = with pkgs-unstable; [gh-stack];
+      extensions = with pkgs-mv.tip; [gh-stack];
     };
 
     programs.mcp = {

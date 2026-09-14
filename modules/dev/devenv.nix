@@ -1,8 +1,8 @@
 {lib, ...}: {
   # TODO: replace with built-in option once merged upstream
   # https://github.com/nix-community/home-manager/pull/9379
-  den.aspects.dev.homeManager = {pkgs-unstable, ...}: let
-    package = with pkgs-unstable; devenv;
+  den.aspects.dev.homeManager = {pkgs-mv, ...}: let
+    package = with pkgs-mv.tip; devenv;
   in {
     home.packages = [package];
 

@@ -1,7 +1,8 @@
 {inputs, ...}: {
   perSystem = {
+    inputs',
     pkgs,
-    pkgs-unstable,
+    pkgs-mv,
     ...
   }: {
     formatter = with pkgs; alejandra;
@@ -10,14 +11,18 @@
       # Specify Nixpkgs path for improved nixd intellisense
       NIX_PATH = ["nixpkgs=${inputs.nixpkgs}"];
 
-      nativeBuildInputs = with pkgs; [
-        alejandra
-        nixd
-        nixos-facter
-        nvfetcher
-        pkgs-unstable.mcp-nixos
-        ruff
-      ];
+      nativeBuildInputs =
+        (with pkgs; [
+          alejandra
+          nixd
+          nixos-facter
+          nvfetcher
+          ruff
+        ])
+        ++ [
+          inputs'.multiverse.packages.mvs
+          pkgs-mv.tip.mcp-nixos
+        ];
     };
   };
 }

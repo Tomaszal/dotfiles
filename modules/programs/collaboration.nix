@@ -2,7 +2,7 @@
   den.aspects.collaboration = {
     includes = [(den.batteries.unfree ["slack"])];
 
-    homeManager = {pkgs-unstable, ...}: {
+    homeManager = {pkgs-mv, ...}: {
       programs.mcp.servers.linear = {
         url = "https://mcp.linear.app/mcp";
         enabled = true;
@@ -31,7 +31,7 @@
         fi
       '';
 
-      home.packages = with pkgs-unstable; [slack];
+      home.packages = with pkgs-mv.tip; [slack];
     };
   };
 }

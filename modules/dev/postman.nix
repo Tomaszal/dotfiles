@@ -2,8 +2,8 @@
   den.aspects.dev.postman = {
     includes = [(den.batteries.unfree ["postman"])];
 
-    homeManager = {pkgs-unstable, ...}: {
-      home.packages = with pkgs-unstable; [postman];
+    homeManager = {pkgs-mv, ...}: {
+      home.packages = with pkgs-mv.tip; [postman];
     };
   };
 }

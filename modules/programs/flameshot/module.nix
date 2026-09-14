@@ -2,10 +2,10 @@
   den.default.homeManager = {
     config,
     pkgs,
-    pkgs-unstable,
+    pkgs-mv,
     ...
   }: let
-    flameshot = pkgs-unstable.flameshot;
+    flameshot = pkgs-mv.tip.flameshot;
   in {
     home.packages = [
       (pkgs.writeShellApplication {

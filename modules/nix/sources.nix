@@ -8,4 +8,12 @@
   den.default.nixos = {pkgs, ...}: {
     _module.args.sources = pkgs.callPackage ../../_sources/generated.nix {};
   };
+
+  den.schema.hm-host.includes = [
+    {
+      nixos = {sources, ...}: {
+        home-manager.extraSpecialArgs = {inherit sources;};
+      };
+    }
+  ];
 }

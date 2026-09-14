@@ -2,7 +2,7 @@
   flake-file.inputs = {
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-alien = {
@@ -10,7 +10,7 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         nix-index-database.follows = "nix-index-database";
-        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs.follows = "nixpkgs";
       };
     };
   };

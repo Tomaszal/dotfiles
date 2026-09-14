@@ -5,10 +5,10 @@
       den.aspects.dev.codexbar
     ];
 
-    homeManager = {pkgs-unstable, ...}: {
+    homeManager = {pkgs-mv, ...}: {
       programs.claude-code = {
         enable = true;
-        package = with pkgs-unstable; claude-code;
+        package = with pkgs-mv.tip; claude-code;
       };
 
       codexbar.providers.claude.source = "cli";

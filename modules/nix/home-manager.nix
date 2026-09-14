@@ -10,16 +10,9 @@
   # applied to hosts that actually have Home Manager users.
   den.schema.hm-host.includes = [
     {
-      nixos = {
-        pkgs-unstable,
-        sources,
-        ...
-      }: {
-        home-manager = {
-          extraSpecialArgs = {inherit pkgs-unstable sources;};
-          useGlobalPkgs = true;
-          useUserPackages = true;
-        };
+      nixos.home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
       };
     }
   ];

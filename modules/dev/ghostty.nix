@@ -6,7 +6,7 @@
     inputs = {
       flake-compat.follows = "flake-compat";
       home-manager.follows = "home-manager";
-      nixpkgs.follows = "nixpkgs-unstable";
+      nixpkgs.follows = "nixpkgs";
       systems.follows = "systems";
     };
   };

@@ -3,7 +3,7 @@
     url = "github:nix-community/NUR";
     inputs = {
       flake-parts.follows = "flake-parts";
-      nixpkgs.follows = "nixpkgs-unstable";
+      nixpkgs.follows = "nixpkgs";
     };
   };
 }

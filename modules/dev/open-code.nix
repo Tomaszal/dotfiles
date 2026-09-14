@@ -3,7 +3,7 @@
     config,
     lib,
     pkgs,
-    pkgs-unstable,
+    pkgs-mv,
     ...
   }: let
     # Home Manager's OpenCode MCP integration currently omits OAuth settings.
@@ -32,7 +32,7 @@
         name = "opencode";
         text = ''
           ${config.programs.mcp.wrapperHooks}
-          ${lib.getExe pkgs-unstable.opencode} "$@"
+          ${lib.getExe pkgs-mv.tip.opencode} "$@"
         '';
       };
     };

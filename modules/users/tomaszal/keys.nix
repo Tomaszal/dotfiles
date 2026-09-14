@@ -2,7 +2,7 @@
   flake-file.inputs.keys = {
     url = "github:tomaszal/keys";
     inputs.flake-parts.follows = "flake-parts";
-    inputs.nixpkgs.follows = "nixpkgs-unstable";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   den.aspects.tomaszal.homeManager.programs = {

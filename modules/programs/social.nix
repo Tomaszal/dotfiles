@@ -2,13 +2,13 @@
   den.aspects.social = {
     includes = [(den.batteries.unfree ["discord" "discord-unwrapped"])];
 
-    homeManager = {pkgs-unstable, ...}: {
+    homeManager = {pkgs-mv, ...}: {
       programs.discord = {
         enable = true;
-        package = with pkgs-unstable; discord;
+        package = with pkgs-mv.tip; discord;
       };
 
-      home.packages = with pkgs-unstable; [
+      home.packages = with pkgs-mv.tip; [
         signal-desktop
         telegram-desktop
       ];
