@@ -4,7 +4,10 @@
     pkgs,
     ...
   }: {
-    programs.git.enable = true;
+    programs.git = {
+      enable = true;
+      settings.rerere.enabled = true;
+    };
 
     home.packages = let
       # https://stackoverflow.com/a/47939403

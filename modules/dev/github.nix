@@ -1,6 +1,16 @@
 {
-  den.aspects.dev.homeManager = {pkgs, ...}: {
-    programs.gh.enable = true;
+  den.aspects.dev.homeManager = {
+    pkgs-unstable,
+    lib,
+    ...
+  }: let
+    package = with pkgs-unstable; gh;
+  in {
+    programs.gh = {
+      inherit package;
+      enable = true;
+      extensions = with pkgs-unstable; [gh-stack];
+    };
 
     programs.mcp = {
       servers.github = {
@@ -11,7 +21,7 @@
       };
 
       wrapperHooks = ''
-        GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.gh}/bin/gh auth token)"
+        GITHUB_PERSONAL_ACCESS_TOKEN="$(${lib.getExe package} auth token)"
         export GITHUB_PERSONAL_ACCESS_TOKEN
       '';
     };
