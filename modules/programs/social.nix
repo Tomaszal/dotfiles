@@ -1,6 +1,6 @@
 {den, ...}: {
   den.aspects.social = {
-    includes = [(den.batteries.unfree ["discord"])];
+    includes = [(den.batteries.unfree ["discord" "discord-unwrapped"])];
 
     homeManager = {pkgs-unstable, ...}: {
       programs.discord = {
