@@ -15,8 +15,6 @@
       games.steam
       games.minecraft
 
-      (media.flameshot {screen = 1;})
-
       system.middle-button-scroll.fenrir
     ];
 
