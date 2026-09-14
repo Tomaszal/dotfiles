@@ -15,6 +15,7 @@
       dev.claude-code
       dev.codex
       dev.opencode
+      dev.webstorm
 
       collaboration
 
