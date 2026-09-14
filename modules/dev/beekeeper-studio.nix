@@ -1,0 +1,5 @@
+{
+  den.aspects.dev.homeManager = {pkgs, ...}: {
+    home.packages = with pkgs; [beekeeper-studio];
+  };
+}
