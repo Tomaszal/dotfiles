@@ -1,0 +1,63 @@
+$schema: ./.moon/cache/schemas/project.json
+layer: configuration
+
+toolchains:
+  default: system
+
+tasks:
+  nixos/build:
+    description: Build the current host configuration.
+    command: nh os build .
+    deps:
+      - flake/generate
+    preset: utility
+
+  nixos/switch:
+    description: Apply the current host configuration.
+    command: nh os switch .
+    deps:
+      - flake/generate
+    preset: utility
+
+  nixos/installer:
+    command: nix build .#installer
+    deps:
+      - flake/generate
+    preset: utility
+
+  nix/format:
+    command: nix fmt .
+    preset: utility
+
+  flake/generate:
+    command: nix run .#write-flake
+    preset: utility
+
+  flake/update:
+    command: nix flake update
+    deps:
+      - flake/generate
+    preset: utility
+
+  moon/generate-schemas:
+    command: moon sync config-schemas
+    preset: utility
+
+  nvfetcher:
+    command: nvfetcher
+    deps:
+      - target: nix/format
+        type: cleanup
+    preset: utility
+
+  fix:
+    deps:
+      - nix/format
+    preset: utility
+
+  update:
+    description: Update all project dependencies.
+    deps:
+      - flake/update
+      - nvfetcher
+    preset: utility

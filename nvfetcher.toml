@@ -1,7 +1,7 @@
 # Tracks upstream binary releases that nixpkgs/flakes do not package
 #
 # Regenerate _sources after editing, or to pick up new upstream releases:
-# nvfetcher && nix fmt .
+# moon run repo:nvfetcher
 
 [figma-desktop]
 src.github = "IliyaBrook/figma-linux"
