@@ -5,6 +5,14 @@
       settings.rerere.enabled = true;
     };
 
+    programs.lazygit = {
+      enable = true;
+      settings.git.pagers = [
+        {pager = "delta --paging=never";}
+        {externalDiffCommand = "difft --color=always";}
+      ];
+    };
+
     home.packages = let
       # https://stackoverflow.com/a/47939403
       git-sweep = pkgs.writeShellApplication {
@@ -26,6 +34,9 @@
       };
     in [
       git-sweep
+      pkgs.delta
+      pkgs.difftastic
+      pkgs.git-town
     ];
   };
 }
