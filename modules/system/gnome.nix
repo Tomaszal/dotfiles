@@ -35,6 +35,7 @@
             mission-center
             resources
             showtime
+            kooha
           ])
           ++ (with pkgs.gnomeExtensions; [
             advanced-alttab-window-switcher
