@@ -8,11 +8,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-NNfPWPXrrXOzS2W12nZ34R+2Z6uVEszgEOxFIJggUxY=",
+            "sha256": "sha256-SojKzpmyNQUCFfZv0fefhqT5cMctUsc/jTHtYH7YN6I=",
             "type": "url",
-            "url": "https://github.com/steipete/CodexBar/releases/download/v0.56.2/CodexBarCLI-v0.56.2-linux-x86_64.tar.gz"
+            "url": "https://github.com/steipete/CodexBar/releases/download/v0.79.0/CodexBarCLI-v0.79.0-linux-x86_64.tar.gz"
         },
-        "version": "v0.56.2"
+        "version": "v0.79.0"
     },
     "figma-desktop": {
         "cargoLock": null,
@@ -23,10 +23,10 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-SLn4y+NVCcBDZrGqIpmpIEQavY7xngt5JMI8yG1g6/0=",
+            "sha256": "sha256-Qc1VIbRsVse91Hb0OtheY7KheoPObkvJkwxF4ZppGxk=",
             "type": "url",
-            "url": "https://github.com/IliyaBrook/figma-linux/releases/download/126.5.6/figma-desktop-126.5.6-amd64.AppImage"
+            "url": "https://github.com/IliyaBrook/figma-linux/releases/download/126.10.10/figma-desktop-126.10.10-amd64.AppImage"
         },
-        "version": "126.5.6"
+        "version": "126.10.10"
     }
 }
