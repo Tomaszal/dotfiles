@@ -6,11 +6,27 @@
     ...
   }: let
     flameshot = pkgs-mv.tip.flameshot;
+    screens = pkgs.stdenv.mkDerivation {
+      name = "flameshot-screens";
+      dontUnpack = true;
+      nativeBuildInputs = [pkgs.pkg-config pkgs.qt6.wrapQtAppsHook];
+      buildInputs = [pkgs.qt6.qtbase];
+      buildPhase = ''
+        runHook preBuild
+        $CXX ${./screens.cpp} -o flameshot-screens $(pkg-config --cflags --libs Qt6Gui)
+        runHook postBuild
+      '';
+      installPhase = ''
+        runHook preInstall
+        install -Dm755 flameshot-screens "$out/bin/flameshot-screens"
+        runHook postInstall
+      '';
+    };
   in {
     home.packages = [
       (pkgs.writeShellApplication {
         name = "flameshot-capture";
-        runtimeInputs = [flameshot config.gnome-shell-rpc.package pkgs.jq];
+        runtimeInputs = [flameshot screens config.gnome-shell-rpc.package pkgs.jq];
         text = builtins.readFile ./capture.sh;
       })
     ];
@@ -21,7 +37,7 @@
     };
 
     gnome-shell-rpc.scripts.flameshot-target = {
-      description = "Flameshot screen number and optional region for the requested capture mode";
+      description = "Match the GNOME capture target to the supplied Qt screens and return its number and optional region";
       source = ./target.js;
     };
 

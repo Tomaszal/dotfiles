@@ -1,7 +1,7 @@
 mode="${1:-number}"
-args=$(jq -cn --arg mode "$mode" '{mode: $mode}')
-
-if target=$(gnome-shell-rpc flameshot-target "$args" 2>/dev/null) &&
+if screens=$(flameshot-screens) &&
+  args=$(jq -cn --arg mode "$mode" --argjson screens "$screens" '{mode: $mode, screens: $screens}') &&
+  target=$(gnome-shell-rpc flameshot-target "$args" 2>/dev/null) &&
   parsed=$(jq -er '[.screen, .region // ""] | @tsv' <<< "$target"); then
   IFS=$'\t' read -r screen region <<< "$parsed"
 

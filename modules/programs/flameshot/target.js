@@ -1,30 +1,31 @@
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
-const geometry = (rect, monitor) => {
-  const offset = (value) => (value < 0 ? "" : "+") + value;
+const offset = (value) => (value < 0 ? "" : "+") + value;
 
+const geometry = (rect, monitor) => {
   // GNOME and Flameshot coordinates are assumed to use the same scale. The
   // current setup does not use fractional or mixed monitor scaling.
-  return (
-    `${rect.width}x${rect.height}` +
-    `${offset(rect.x - monitor.x)}${offset(rect.y - monitor.y)}`
-  );
+  return `${rect.width}x${rect.height}${offset(rect.x - monitor.x)}${offset(rect.y - monitor.y)}`;
 };
 
-// In this setup, Qt/Flameshot enumerates monitors in reverse GNOME order.
-const screen = (index) => Main.layoutManager.monitors.length - 1 - index;
+// GNOME logical-monitor indices and Qt's Wayland output order are independent.
+// Match geometry against QGuiApplication::screens(), the list Flameshot indexes.
+const screen = (monitor, screens) => {
+  const index = screens.findIndex((candidate) =>
+    ["x", "y", "width", "height"].every((key) => candidate[key] === monitor[key]),
+  );
+  if (index === -1) throw new Error("Target monitor not found in Qt screens");
+  return index;
+};
 
-export default async function target(args) {
+export default function target(args) {
   switch (args.mode) {
     case "number":
-      return { screen: screen(Main.layoutManager.currentMonitor.index) };
+      return { screen: screen(Main.layoutManager.currentMonitor, args.screens) };
     case "screen":
       return {
-        screen: screen(Main.layoutManager.currentMonitor.index),
-        region: geometry(
-          Main.layoutManager.currentMonitor,
-          Main.layoutManager.currentMonitor,
-        ),
+        screen: screen(Main.layoutManager.currentMonitor, args.screens),
+        region: geometry(Main.layoutManager.currentMonitor, Main.layoutManager.currentMonitor),
       };
     case "window": {
       const window = global.display.focus_window;
@@ -32,7 +33,7 @@ export default async function target(args) {
 
       const monitor = Main.layoutManager.monitors[window.get_monitor()];
       return {
-        screen: screen(monitor.index),
+        screen: screen(monitor, args.screens),
         region: geometry(window.get_frame_rect(), monitor),
       };
     }
