@@ -12,6 +12,7 @@
       context = ../instructions.md;
       enableMcpIntegration = true;
       package = with pkgs-mv.tip; opencode;
+      cli.tabs.mode = "off";
 
       settings.permission = {
         external_directory."/nix/store/**" = "allow";
