@@ -7,6 +7,19 @@
     ...
   }: let
     orca = inputs'.llm-agents.packages.orca;
+    # The desktop computer-use bridge spawns python3 outside the development shell.
+    computerPython = pkgs.python3.withPackages (ps: [ps.pygobject3]);
+    orcaLauncher = pkgs.symlinkJoin {
+      name = "orca-launcher-${orca.version}";
+      paths = [orca];
+      nativeBuildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        rm "$out/bin/orca-ide"
+        makeWrapper ${orca}/bin/orca-ide "$out/bin/orca-ide" \
+          --prefix PATH : ${lib.makeBinPath [computerPython pkgs.wl-clipboard]} \
+          --prefix GI_TYPELIB_PATH : ${lib.makeSearchPath "lib/girepository-1.0" (map lib.getLib [pkgs.at-spi2-core pkgs.gtk3 pkgs.gdk-pixbuf])}
+      '';
+    };
     workspaces = "${config.home.homeDirectory}/orca/workspaces";
     # Use the same source commit as Orca's native installer, without a second pin.
     metadata = builtins.fromJSON (builtins.readFile "${orca}/lib/Orca/resources/app.asar.unpacked/out/package.json");
@@ -17,7 +30,7 @@
       rev = metadata.commit;
     };
   in {
-    home.packages = [orca] ++ lib.optionals config.programs.codex.enable [pkgs.bubblewrap];
+    home.packages = [orcaLauncher] ++ lib.optionals config.programs.codex.enable [pkgs.bubblewrap];
 
     programs.agent-skills = {
       sources.orca = {
