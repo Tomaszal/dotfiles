@@ -1,19 +1,4 @@
 {
-    "codexbar": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "codexbar",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-SojKzpmyNQUCFfZv0fefhqT5cMctUsc/jTHtYH7YN6I=",
-            "type": "url",
-            "url": "https://github.com/steipete/CodexBar/releases/download/v0.79.0/CodexBarCLI-v0.79.0-linux-x86_64.tar.gz"
-        },
-        "version": "v0.79.0"
-    },
     "figma-desktop": {
         "cargoLock": null,
         "date": null,

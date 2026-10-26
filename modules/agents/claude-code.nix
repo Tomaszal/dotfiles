@@ -27,8 +27,6 @@
       };
 
       programs.agent-skills.targets.claude.enable = true;
-
-      codexbar.providers.claude.source = "cli";
     };
   };
 }

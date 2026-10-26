@@ -5,14 +5,6 @@
   fetchFromGitHub,
   dockerTools,
 }: {
-  codexbar = {
-    pname = "codexbar";
-    version = "v0.79.0";
-    src = fetchurl {
-      url = "https://github.com/steipete/CodexBar/releases/download/v0.79.0/CodexBarCLI-v0.79.0-linux-x86_64.tar.gz";
-      sha256 = "sha256-SojKzpmyNQUCFfZv0fefhqT5cMctUsc/jTHtYH7YN6I=";
-    };
-  };
   figma-desktop = {
     pname = "figma-desktop";
     version = "126.10.10";

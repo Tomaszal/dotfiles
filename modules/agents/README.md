@@ -22,10 +22,6 @@ Run in an Orca worktree to review changes in its browser using [pulls.review](ht
 
 Keep the command running during review; press Ctrl-C to stop the server.
 
-## CodexBar
-
-[CodexBar](codexbar.nix) is available at `http://127.0.0.1:8765`. Retrieve its dashboard token with `codexbar-token`. Configure providers in the harness modules; CodexBar's configuration is read-only.
-
 ## Integrations
 
 Manage shared connections and accounts in the [Executor dashboard](http://127.0.0.1:4788), or use the `executor` CLI.

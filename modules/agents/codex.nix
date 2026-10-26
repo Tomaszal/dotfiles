@@ -32,8 +32,6 @@
       };
 
       programs.agent-skills.targets.agents.enable = true;
-
-      codexbar.providers.codex.source = "cli";
     };
   };
 }
