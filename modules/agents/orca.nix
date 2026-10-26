@@ -51,7 +51,7 @@
       permissions = {
         additionalDirectories = [workspaces];
         # Claude's // prefix denotes an absolute filesystem path.
-        allow = map (tool: "${tool}(/${workspaces}/**)") ["Read" "Edit" "Write"];
+        allow = map (tool: "${tool}(/${workspaces}/**)") ["Read" "Edit"];
       };
     };
 
