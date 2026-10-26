@@ -4,7 +4,6 @@
   den.aspects.pc = {
     nixos = {pkgs, ...}: {
       hardware.facter.reportPath = ./facter.json;
-      boot.kernelPackages = pkgs.linuxPackages_latest;
     };
 
     provides.to-users = {
