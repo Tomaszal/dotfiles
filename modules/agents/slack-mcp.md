@@ -1,4 +1,6 @@
-# Slack MCP App
+# Connect Slack to Executor
+
+Add `https://mcp.slack.com/mcp` as an integration in the Executor dashboard and configure the account there.
 
 Create an internal Slack app from a manifest to add the required user-token scopes in one step. In [Your Apps](https://api.slack.com/apps), select **Create New App** -> **From an app manifest**, choose a workspace, and paste:
 
@@ -46,9 +48,9 @@ settings:
 
 Then:
 
-1. Replace the example redirect URL with the exact callback URL required by the MCP client.
+1. Replace the example redirect URL with the exact callback URL shown by Executor.
 2. Install or reauthorize the app for the workspace.
-3. Copy the app's Client ID and Client Secret from **Basic Information**.
+3. Enter the app's Client ID and Client Secret from **Basic Information** into Executor's account setup, then complete the Slack authorization flow.
 
 Only internal or Marketplace-published apps can access Slack MCP. Remove write scopes that the client does not need.
 

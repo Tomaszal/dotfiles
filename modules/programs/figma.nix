@@ -37,11 +37,5 @@
         '';
       })
     ];
-
-    programs.mcp.servers.figma = {
-      type = "remote";
-      url = "https://mcp.figma.com/mcp";
-      enabled = true;
-    };
   };
 }
