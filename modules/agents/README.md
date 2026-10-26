@@ -8,7 +8,7 @@ Harness settings remain editable; repository defaults take precedence over local
 
 ## Skills
 
-Declare sources and select skills in [skills.nix](skills.nix). Upstream plugin hooks require separate configuration.
+Declare sources and select skills in [skills/module.nix](skills/module.nix). Upstream plugin hooks require separate configuration.
 
 Activation removes undeclared content from managed skill directories.
 
@@ -26,5 +26,5 @@ Keep the command running during review; press Ctrl-C to stop the server.
 
 Manage shared connections and accounts in the [Executor dashboard](http://127.0.0.1:4788), or use the `executor` CLI.
 
-- [Connect Figma](figma-mcp.md)
-- [Register a Slack app](slack-mcp.md)
+- [Connect Figma](executor/figma.md)
+- [Register a Slack app](executor/slack.md)

@@ -17,7 +17,7 @@
         mutableSettings = true;
         enableMcpIntegration = true;
         package = with pkgs-mv.tip; claude-code;
-        context = ./instructions.md;
+        context = ../instructions.md;
         settings = {
           disableClaudeAiConnectors = true;
           syncClaudeAiPlugins = false;

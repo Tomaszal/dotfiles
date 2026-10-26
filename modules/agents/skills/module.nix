@@ -23,7 +23,7 @@
         path = inputs.i-have-adhd;
         subdir = "skills";
       };
-      sources.personal.path = ./skills;
+      sources.personal.path = ./.;
       skills.enable = ["i-have-adhd" "orca-restack"];
       excludePatterns = [];
     };

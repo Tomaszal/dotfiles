@@ -11,7 +11,7 @@
         mutableSettings = true;
         enableMcpIntegration = true;
         package = with pkgs-mv.tip; codex;
-        context = ./instructions.md;
+        context = ../instructions.md;
 
         settings = {
           approvals_reviewer = "auto_review";

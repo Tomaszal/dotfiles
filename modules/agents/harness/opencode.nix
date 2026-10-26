@@ -9,7 +9,7 @@
       enable = true;
       mutableSettings = true;
       validateFiles.cli = true;
-      context = ./instructions.md;
+      context = ../instructions.md;
       enableMcpIntegration = true;
       package = with pkgs-mv.tip; opencode;
 
