@@ -21,4 +21,12 @@
       sha256 = "sha256-Qc1VIbRsVse91Hb0OtheY7KheoPObkvJkwxF4ZppGxk=";
     };
   };
+  pulls-review = {
+    pname = "pulls-review";
+    version = "0.3.4";
+    src = fetchurl {
+      url = "https://registry.npmjs.org/pulls.review/-/pulls.review-0.3.4.tgz";
+      sha256 = "sha256-sXA3TRqTUujvW2+tL70CrwROHvUUlH/Ci0EUjr/3LjE=";
+    };
+  };
 }

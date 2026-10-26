@@ -49,6 +49,18 @@ tasks:
   nvfetcher:
     command: nvfetcher
     deps:
+      - target: rehash
+        type: cleanup
+    preset: utility
+
+  rehash:
+    deps:
+      - rehash/pulls-review
+    preset: utility
+
+  rehash/pulls-review:
+    command: nix-update --flake --version=skip --no-src pulls-review-runtime
+    deps:
       - target: nix/format
         type: cleanup
     preset: utility

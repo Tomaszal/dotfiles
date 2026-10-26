@@ -20,6 +20,7 @@
           nixd
           nixos-facter
           nvfetcher
+          nix-update
           ruff
         ])
         ++ [

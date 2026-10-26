@@ -10,3 +10,8 @@ fetch.url = "https://github.com/IliyaBrook/figma-linux/releases/download/$ver/fi
 [codexbar]
 src.github = "steipete/CodexBar"
 fetch.url = "https://github.com/steipete/CodexBar/releases/download/$ver/CodexBarCLI-$ver-linux-x86_64.tar.gz"
+
+[pulls-review]
+src.github = "antfu/pulls.review"
+src.prefix = "v"
+fetch.url = "https://registry.npmjs.org/pulls.review/-/pulls.review-$ver.tgz"

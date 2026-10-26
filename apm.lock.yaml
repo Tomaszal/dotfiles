@@ -19,7 +19,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:85f9a056a3086785e0b2489136d8f0fae664e43ff199fb6850f7c611eb5c18e9
+  content_hash: sha256:bc47383d762789fcb550b85d4d38e6accec8cf62a0984ed7512d6d3b5659278b
 mcp_servers:
 - nixos
 mcp_configs:
@@ -34,4 +34,4 @@ local_deployed_files:
 - .claude/rules/moon.md
 local_deployed_file_hashes:
   .claude/rules/general.md: sha256:cd601293f0665954d46c70f111ab97123005dde7242a204ae33d6c11eb5832d1
-  .claude/rules/moon.md: sha256:85f9a056a3086785e0b2489136d8f0fae664e43ff199fb6850f7c611eb5c18e9
+  .claude/rules/moon.md: sha256:bc47383d762789fcb550b85d4d38e6accec8cf62a0984ed7512d6d3b5659278b

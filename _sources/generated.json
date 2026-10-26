@@ -28,5 +28,20 @@
             "url": "https://github.com/IliyaBrook/figma-linux/releases/download/126.10.10/figma-desktop-126.10.10-amd64.AppImage"
         },
         "version": "126.10.10"
+    },
+    "pulls-review": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "pulls-review",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-sXA3TRqTUujvW2+tL70CrwROHvUUlH/Ci0EUjr/3LjE=",
+            "type": "url",
+            "url": "https://registry.npmjs.org/pulls.review/-/pulls.review-0.3.4.tgz"
+        },
+        "version": "0.3.4"
     }
 }
