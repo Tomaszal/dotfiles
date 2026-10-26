@@ -6,7 +6,7 @@
   };
 
   den.aspects.tomaszal.homeManager.programs = {
-    git.signing.key = toString inputs.keys.ssh.yubikey.piv-agent.touch-policy.cached;
+    git.signing.key = toString inputs.keys.ssh.yubikey.piv-agent.touch-policy.never;
 
     gpg.publicKeys = [
       {
