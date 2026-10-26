@@ -16,6 +16,7 @@
         dev.agents
 
         social
+        sweet-home-3d
 
         games.steam
         games.minecraft

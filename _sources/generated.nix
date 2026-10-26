@@ -4,7 +4,8 @@
   fetchurl,
   fetchFromGitHub,
   dockerTools,
-}: {
+}:
+{
   figma-desktop = {
     pname = "figma-desktop";
     version = "126.10.10";
@@ -19,6 +20,14 @@
     src = fetchurl {
       url = "https://github.com/antfu/pulls.review/archive/refs/tags/v0.3.4.tar.gz";
       sha256 = "sha256-vTK4V7ULl1WKd59p15GFYbPByVtGZw5/4zPyPt4WQA0=";
+    };
+  };
+  sweethome3d-mcp-plugin = {
+    pname = "sweethome3d-mcp-plugin";
+    version = "1.2.0";
+    src = fetchurl {
+      url = "https://github.com/grimashevich/sweethome3d-mcp-server/releases/download/v1.2.0/sh3d-mcp-plugin-1.2.0.sh3p";
+      sha256 = "sha256-CkeqyYVM8ik2JwH6BtNrd+qIPzhqUgFwWAMjFJNCam8=";
     };
   };
 }

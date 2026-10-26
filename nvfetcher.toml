@@ -11,3 +11,8 @@ fetch.url = "https://github.com/IliyaBrook/figma-linux/releases/download/$ver/fi
 src.github = "antfu/pulls.review"
 src.prefix = "v"
 fetch.url = "https://github.com/antfu/pulls.review/archive/refs/tags/v$ver.tar.gz"
+
+[sweethome3d-mcp-plugin]
+src.github = "grimashevich/sweethome3d-mcp-server"
+src.prefix = "v"
+fetch.url = "https://github.com/grimashevich/sweethome3d-mcp-server/releases/download/v$ver/sh3d-mcp-plugin-$ver.sh3p"

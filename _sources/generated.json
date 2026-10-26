@@ -28,5 +28,20 @@
             "url": "https://github.com/antfu/pulls.review/archive/refs/tags/v0.3.4.tar.gz"
         },
         "version": "0.3.4"
+    },
+    "sweethome3d-mcp-plugin": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "sweethome3d-mcp-plugin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-CkeqyYVM8ik2JwH6BtNrd+qIPzhqUgFwWAMjFJNCam8=",
+            "type": "url",
+            "url": "https://github.com/grimashevich/sweethome3d-mcp-server/releases/download/v1.2.0/sh3d-mcp-plugin-1.2.0.sh3p"
+        },
+        "version": "1.2.0"
     }
 }
