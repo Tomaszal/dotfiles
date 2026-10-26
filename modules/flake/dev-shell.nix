@@ -27,6 +27,7 @@
           inputs'.multiverse.packages.mvs
           pkgs-mv.tip.mcp-nixos
           pkgs-mv.tip.moon
+          inputs'.llm-agents.packages.apm
         ];
     };
   };

@@ -6,3 +6,15 @@ result
 
 # Moon cache
 .moon/cache/
+
+# APM deployment output; authoring sources live under .apm/.
+apm_modules/
+/opencode.json
+AGENTS.md
+CLAUDE.md
+.agents/
+.claude/
+.codex/
+.opencode/
+.mcp.json
+__pycache__/

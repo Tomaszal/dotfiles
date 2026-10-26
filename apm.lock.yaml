@@ -1,0 +1,37 @@
+lockfile_version: '1'
+apm_version: 0.34.0
+dependencies: []
+deployments:
+- kind: project-relative
+  target: claude
+  value: .claude/rules/general.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:cd601293f0665954d46c70f111ab97123005dde7242a204ae33d6c11eb5832d1
+- kind: project-relative
+  target: claude
+  value: .claude/rules/moon.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:85f9a056a3086785e0b2489136d8f0fae664e43ff199fb6850f7c611eb5c18e9
+mcp_servers:
+- nixos
+mcp_configs:
+  nixos:
+    name: nixos
+    transport: stdio
+    registry: false
+    command: mcp-nixos
+mcp_target_servers: {}
+local_deployed_files:
+- .claude/rules/general.md
+- .claude/rules/moon.md
+local_deployed_file_hashes:
+  .claude/rules/general.md: sha256:cd601293f0665954d46c70f111ab97123005dde7242a204ae33d6c11eb5832d1
+  .claude/rules/moon.md: sha256:85f9a056a3086785e0b2489136d8f0fae664e43ff199fb6850f7c611eb5c18e9

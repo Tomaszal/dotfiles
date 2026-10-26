@@ -1,10 +1,13 @@
 $schema: ./.moon/cache/schemas/project.json
-layer: configuration
-
-toolchains:
-  default: system
 
 tasks:
+  bootstrap:
+    description: Prepare the repository for development.
+    deps:
+      - moon/generate-schemas
+      - agents/sync
+    preset: utility
+
   nixos/build:
     description: Build the current host configuration.
     command: nh os build .
@@ -50,6 +53,10 @@ tasks:
         type: cleanup
     preset: utility
 
+  check:
+    deps:
+      - agents/check
+
   fix:
     deps:
       - nix/format
@@ -60,4 +67,25 @@ tasks:
     deps:
       - flake/update
       - nvfetcher
+      - agents/update
+    preset: utility
+
+  agents/check:
+    command: apm compile --validate
+    inputs:
+      - .apm/**/*
+      - apm.yml
+      - apm.lock.yaml
+      - flake.lock
+
+  agents/sync:
+    description: Apply repository agent configuration.
+    script: |
+      set -e
+      apm install
+      apm compile --clean
+    preset: utility
+
+  agents/update:
+    command: apm lock
     preset: utility

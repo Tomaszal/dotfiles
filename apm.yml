@@ -1,0 +1,11 @@
+name: dotfiles-repo
+version: "1.0.0"
+description: Repository agent configuration.
+targets: [claude, codex, opencode]
+includes: auto
+dependencies:
+  mcp:
+    - name: nixos
+      registry: false
+      transport: stdio
+      command: mcp-nixos
