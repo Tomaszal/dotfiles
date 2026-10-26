@@ -40,6 +40,8 @@ tasks:
     command: nix flake update
     deps:
       - flake/generate
+      - target: rehash
+        type: cleanup
     preset: utility
 
   moon/generate-schemas:
@@ -55,7 +57,8 @@ tasks:
 
   rehash:
     deps:
-      - rehash/pulls-review
+      - target: rehash/pulls-review
+        type: cleanup
     preset: utility
 
   rehash/pulls-review:
