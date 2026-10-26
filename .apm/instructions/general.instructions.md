@@ -17,7 +17,7 @@ applyTo: "**"
 - Do not run `nix flake check` as the default validation step.
 - Validate relevant system changes with `moon run repo:nixos/build`; use `-- --hostname <host>` to select another host.
 - Ask before editing `facter.json`, `disko.nix`, key-related files, or user identity configuration.
-- Edit repository instructions under `.apm/` and regenerate deployed files with `moon run repo:agents/sync`.
+- Keep agent harness configuration, global instructions, and skills under `modules/agents/`, and MCP integrations alongside their owning modules. Edit repository instructions under `.apm/` and regenerate deployed files with `moon run repo:agents/sync`.
 
 ## Den Conventions
 

@@ -13,8 +13,7 @@
         system.udisks
 
         dev
-        dev.codex
-        dev.opencode
+        dev.agents
 
         social
 

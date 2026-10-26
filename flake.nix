@@ -9,6 +9,10 @@
   };
 
   inputs = {
+    agent-skills = {
+      url = "github:Kyure-A/agent-skills-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     den.url = "github:denful/den/latest";
     disko = {
       url = "github:nix-community/disko/latest";
@@ -35,6 +39,10 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    i-have-adhd = {
+      url = "github:ayghri/i-have-adhd";
+      flake = false;
     };
     import-tree.url = "github:denful/import-tree";
     keys = {

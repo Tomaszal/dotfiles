@@ -1,5 +1,5 @@
 {
-  den.aspects.dev.opencode.homeManager = {
+  den.aspects.dev.agents.opencode.homeManager = {
     config,
     lib,
     pkgs,
@@ -26,6 +26,7 @@
   in {
     programs.opencode = {
       enable = true;
+      context = ./instructions.md;
       enableMcpIntegration = true;
       settings.mcp = oauthMcpServers;
       package = pkgs.writeShellApplication {
@@ -36,6 +37,8 @@
         '';
       };
     };
+
+    programs.agent-skills.targets.opencode.enable = true;
 
     programs.mcp.enable = true;
   };

@@ -1,5 +1,5 @@
 {
-  den.aspects.dev.codexbar.homeManager = {
+  den.aspects.dev.agents.homeManager = {
     config,
     lib,
     pkgs,

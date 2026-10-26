@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  den,
+  lib,
+  ...
+}: {
   den.default.homeManager = {
     options.programs.mcp.wrapperHooks = lib.mkOption {
       type = lib.types.lines;
@@ -6,4 +10,10 @@
       description = "Shell commands run by MCP client wrappers before launching the client";
     };
   };
+
+  den.aspects.dev.agents.includes = with den.aspects.dev.agents; [
+    claude-code
+    codex
+    opencode
+  ];
 }
