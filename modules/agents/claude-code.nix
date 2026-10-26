@@ -18,6 +18,7 @@
         enableMcpIntegration = true;
         package = with pkgs-mv.tip; claude-code;
         context = ./instructions.md;
+        settings.permissions.allow = ["Read(//nix/store/**)"];
       };
 
       programs.agent-skills.targets.claude.enable = true;

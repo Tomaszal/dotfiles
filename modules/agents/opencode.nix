@@ -13,6 +13,12 @@
       enableMcpIntegration = true;
       package = with pkgs-mv.tip; opencode;
 
+      settings.permission = {
+        external_directory."/nix/store/**" = "allow";
+        read."/nix/store/**" = "allow";
+        list."/nix/store/**" = "allow";
+      };
+
       cli.keybinds = {
         "command.palette.show" = "ctrl+o";
         "open.menu" = "none";
