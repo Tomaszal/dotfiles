@@ -46,7 +46,7 @@
     launcher = pkgs.writeShellApplication {
       name = "orca-review";
       runtimeInputs = [inputs'.llm-agents.packages.orca] ++ (with pkgs; [nodejs_26 git gh jq iproute2 curl coreutils]);
-      text = pkgs.lib.replaceStrings ["@pullsReview@"] ["${upstream}/bin.mjs"] (builtins.readFile ./orca-review.sh);
+      text = pkgs.lib.replaceStrings ["@pullsReview@"] ["${upstream}/bin.mjs"] (builtins.readFile ./review.sh);
     };
   in {
     home.packages = [launcher];
