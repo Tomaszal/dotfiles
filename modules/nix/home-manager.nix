@@ -4,7 +4,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # TODO(NixOS 26.11): Remove this input once both harnesses use release-26.11
+  # TODO(NixOS 26.11): Remove this input once the harnesses use release-26.11
   # modules, then regenerate flake.nix and prune its lock entry.
   flake-file.inputs.home-manager-unstable = {
     url = "github:nix-community/home-manager/master";

@@ -4,7 +4,7 @@ Include `den.aspects.dev.agents` in a host's user aspects to enable global agent
 
 All harnesses use the shared instructions in [instructions.md](instructions.md). Keep harness-specific settings in the corresponding module.
 
-Claude and Codex settings remain editable; repository defaults take precedence over local changes.
+Harness settings remain editable; repository defaults take precedence over local changes.
 
 ## Skills
 

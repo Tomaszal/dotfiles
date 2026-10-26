@@ -14,6 +14,7 @@
             // {
               inherit
                 (import "${inputs.home-manager-unstable}/modules/lib/generators.nix" {lib = final;})
+                mkDAGOrderedJsonFormat
                 mkImpureConfigMerger
                 mkImpureConfigCleanup
                 ;
