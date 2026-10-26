@@ -25,8 +25,8 @@
     pname = "pulls-review";
     version = "0.3.4";
     src = fetchurl {
-      url = "https://registry.npmjs.org/pulls.review/-/pulls.review-0.3.4.tgz";
-      sha256 = "sha256-sXA3TRqTUujvW2+tL70CrwROHvUUlH/Ci0EUjr/3LjE=";
+      url = "https://github.com/antfu/pulls.review/archive/refs/tags/v0.3.4.tar.gz";
+      sha256 = "sha256-vTK4V7ULl1WKd59p15GFYbPByVtGZw5/4zPyPt4WQA0=";
     };
   };
 }

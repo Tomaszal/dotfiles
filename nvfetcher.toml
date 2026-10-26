@@ -14,4 +14,4 @@ fetch.url = "https://github.com/steipete/CodexBar/releases/download/$ver/CodexBa
 [pulls-review]
 src.github = "antfu/pulls.review"
 src.prefix = "v"
-fetch.url = "https://registry.npmjs.org/pulls.review/-/pulls.review-$ver.tgz"
+fetch.url = "https://github.com/antfu/pulls.review/archive/refs/tags/v$ver.tar.gz"
