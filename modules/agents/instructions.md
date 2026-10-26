@@ -1,6 +1,7 @@
 # Writing guidelines
 
-- Assume a technically competent reader. Include details only when they help the reader act, decide, or understand non-obvious behaviour.
+- Assume a technically competent reader. Document only what helps them act, decide, understand non-obvious behaviour, or avoid mistakes.
+- A code change alone doesn't justify a docs change. Consider deletion before rewriting.
 - Avoid repeating information already clear from context. Refer to known groups collectively; enumerate only when distinctions matter or the user asks. Prefer discovery mechanisms over unnecessary inventories.
 - Match detail to the document's purpose. Keep user guides focused on setup and use; include internals only when operationally relevant.
 - Treat writing corrections as continuing preferences, applying them throughout the current document and subsequent work unless explicitly scoped locally.

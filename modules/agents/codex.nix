@@ -12,6 +12,16 @@
         enableMcpIntegration = true;
         package = with pkgs-mv.tip; codex;
         context = ./instructions.md;
+
+        # Network access permits remote writes without crossing the sandbox.
+        # Keep pushes subject to review; local edits rely on sandbox boundaries.
+        rules.sensitive-operations = ''
+          prefix_rule(
+            pattern = ["git", "push"],
+            decision = "prompt",
+            justification = "Review changes to a remote repository.",
+          )
+        '';
       };
 
       programs.agent-skills.targets.agents.enable = true;

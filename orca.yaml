@@ -1,0 +1,4 @@
+scripts:
+  setup: nix develop --command moon run repo:bootstrap
+
+setupAgentStartupPolicy: wait-for-setup
