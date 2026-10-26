@@ -10,8 +10,12 @@
     };
   };
 
-  den.aspects.dev.agents.homeManager = {
+  den.aspects.dev.agents.homeManager = {lib, ...}: {
     imports = [inputs.agent-skills.homeManagerModules.default];
+
+    # Home Manager also links Claude's MCP plugin under skills/.
+    # Synchronize first so all declared Home Manager files are restored afterward.
+    home.activation.agent-skills = lib.hm.dag.entryBefore ["linkGeneration"] (lib.mkDefault "");
 
     programs.agent-skills = {
       enable = true;
