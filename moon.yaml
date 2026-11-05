@@ -59,10 +59,19 @@ tasks:
     deps:
       - target: rehash/pulls-review
         type: cleanup
+      - target: rehash/visual-explainer
+        type: cleanup
     preset: utility
 
   rehash/pulls-review:
     command: nix-update --flake --version=skip --no-src pulls-review-runtime
+    deps:
+      - target: nix/format
+        type: cleanup
+    preset: utility
+
+  rehash/visual-explainer:
+    command: nix-update --flake --version=skip --no-src --generate-lockfile visual-explainer
     deps:
       - target: nix/format
         type: cleanup

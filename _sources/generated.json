@@ -106,5 +106,26 @@
             "url": "https://github.com/grimashevich/sweethome3d-mcp-server/releases/download/v1.2.0/sh3d-mcp-plugin-1.2.0.sh3p"
         },
         "version": "1.2.0"
+    },
+    "visual-explainer": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "visual-explainer",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nicobailon",
+            "repo": "visual-explainer",
+            "rev": "v0.14.0",
+            "sha256": "sha256-8DZ+tlvQ34bYVscmBhcHeN7YuVnkkgz1utSPg/nhNeo=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v0.14.0"
     }
 }

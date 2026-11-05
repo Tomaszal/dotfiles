@@ -28,3 +28,7 @@ fetch.github = "DietrichGebert/ponytail"
 src.github = "grimashevich/sweethome3d-mcp-server"
 src.prefix = "v"
 fetch.url = "https://github.com/grimashevich/sweethome3d-mcp-server/releases/download/v$ver/sh3d-mcp-plugin-$ver.sh3p"
+
+[visual-explainer]
+src.github = "nicobailon/visual-explainer"
+fetch.github = "nicobailon/visual-explainer"
