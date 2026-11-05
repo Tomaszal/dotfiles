@@ -63,7 +63,7 @@
           exit 64
         fi
 
-        if systemctl is-active --quiet firewall.service; then
+        if ${pkgs.systemd}/bin/systemctl is-active --quiet firewall.service; then
           echo "Status: active"
         else
           echo "Status: inactive"
@@ -124,7 +124,6 @@
         ];
 
         path = with pkgs; [
-          nixosFirewallStatus
           coreutils
           iptables
           nftables
@@ -134,6 +133,8 @@
         ];
 
         serviceConfig = {
+          # Oneleet searches fixed system directories instead of the service PATH.
+          BindReadOnlyPaths = ["${nixosFirewallStatus}/bin/ufw:/usr/sbin/ufw"];
           ExecStart = "/opt/Oneleet/oneleet-daemon";
           Restart = "always";
           RestartSec = "120s";
