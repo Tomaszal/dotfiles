@@ -1,4 +1,25 @@
 {
+    "asyraf-agent-skills": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "asyraf-agent-skills",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "AsyrafHussin",
+            "repo": "agent-skills",
+            "rev": "v3.3.0",
+            "sha256": "sha256-rkgHqJMqQXTE5bFZkp13AYPb3TYEnwAa6dRUQ9Sk3FA=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v3.3.0"
+    },
     "figma-desktop": {
         "cargoLock": null,
         "date": null,

@@ -5,6 +5,17 @@
   fetchFromGitHub,
   dockerTools,
 }: {
+  asyraf-agent-skills = {
+    pname = "asyraf-agent-skills";
+    version = "v3.3.0";
+    src = fetchFromGitHub {
+      owner = "AsyrafHussin";
+      repo = "agent-skills";
+      rev = "v3.3.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-rkgHqJMqQXTE5bFZkp13AYPb3TYEnwAa6dRUQ9Sk3FA=";
+    };
+  };
   figma-desktop = {
     pname = "figma-desktop";
     version = "126.10.10";
