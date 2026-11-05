@@ -4,14 +4,24 @@
   fetchurl,
   fetchFromGitHub,
   dockerTools,
-}:
-{
+}: {
   figma-desktop = {
     pname = "figma-desktop";
     version = "126.10.10";
     src = fetchurl {
       url = "https://github.com/IliyaBrook/figma-linux/releases/download/126.10.10/figma-desktop-126.10.10-amd64.AppImage";
       sha256 = "sha256-Qc1VIbRsVse91Hb0OtheY7KheoPObkvJkwxF4ZppGxk=";
+    };
+  };
+  i-have-adhd = {
+    pname = "i-have-adhd";
+    version = "v0.4.1";
+    src = fetchFromGitHub {
+      owner = "ayghri";
+      repo = "i-have-adhd";
+      rev = "v0.4.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-GTqrnZxQvzo/ogAuUrffkOaMK1BYm/4rAZsnfmDt7DU=";
     };
   };
   pulls-review = {

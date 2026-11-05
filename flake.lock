@@ -184,22 +184,6 @@
         "type": "github"
       }
     },
-    "i-have-adhd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1791734634,
-        "narHash": "sha256-GTqrnZxQvzo/ogAuUrffkOaMK1BYm/4rAZsnfmDt7DU=",
-        "owner": "ayghri",
-        "repo": "i-have-adhd",
-        "rev": "1ecea1993b7fce257ffbd686c070948b5e07eda6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ayghri",
-        "repo": "i-have-adhd",
-        "type": "github"
-      }
-    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -423,7 +407,6 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
-        "i-have-adhd": "i-have-adhd",
         "import-tree": "import-tree",
         "keys": "keys",
         "llm-agents": "llm-agents",

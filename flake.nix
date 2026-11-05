@@ -35,10 +35,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    i-have-adhd = {
-      url = "github:ayghri/i-have-adhd";
-      flake = false;
-    };
     import-tree.url = "github:denful/import-tree";
     keys = {
       url = "github:tomaszal/keys";

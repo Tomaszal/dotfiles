@@ -4,10 +4,6 @@
       url = "github:Kyure-A/agent-skills-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    i-have-adhd = {
-      url = "github:ayghri/i-have-adhd";
-      flake = false;
-    };
   };
 
   den.aspects.dev.agents.homeManager = {lib, ...}: {
@@ -19,12 +15,6 @@
 
     programs.agent-skills = {
       enable = true;
-      sources.adhd = {
-        path = inputs.i-have-adhd;
-        subdir = "skills";
-      };
-      sources.personal.path = ./.;
-      skills.enable = ["i-have-adhd" "orca-restack"];
       excludePatterns = [];
     };
   };

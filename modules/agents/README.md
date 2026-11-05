@@ -8,7 +8,7 @@ Harness settings remain editable; repository defaults take precedence over local
 
 ## Skills
 
-Declare sources and select skills in [skills/module.nix](skills/module.nix). Upstream plugin hooks require separate configuration.
+Declare sources and select skills in provider modules under [skills/](skills/). Upstream plugin hooks require separate configuration.
 
 Activation removes undeclared content from managed skill directories.
 

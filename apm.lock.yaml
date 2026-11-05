@@ -10,7 +10,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:cd601293f0665954d46c70f111ab97123005dde7242a204ae33d6c11eb5832d1
+  content_hash: sha256:01a04e48da7f1adc70a3b197b56ea8bd98f5681e01da653739b73f0bb4239752
 - kind: project-relative
   target: claude
   value: .claude/rules/moon.md
@@ -20,6 +20,33 @@ deployments:
   - .
   active_owner: .
   content_hash: sha256:bc47383d762789fcb550b85d4d38e6accec8cf62a0984ed7512d6d3b5659278b
+- kind: uri
+  target: mcp
+  value: nixos
+  runtime: claude
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: uri
+  target: mcp
+  value: nixos
+  runtime: codex
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: uri
+  target: mcp
+  value: nixos
+  runtime: opencode
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
 mcp_servers:
 - nixos
 mcp_configs:
@@ -28,10 +55,16 @@ mcp_configs:
     transport: stdio
     registry: false
     command: mcp-nixos
-mcp_target_servers: {}
+mcp_target_servers:
+  claude:
+  - nixos
+  codex:
+  - nixos
+  opencode:
+  - nixos
 local_deployed_files:
 - .claude/rules/general.md
 - .claude/rules/moon.md
 local_deployed_file_hashes:
-  .claude/rules/general.md: sha256:cd601293f0665954d46c70f111ab97123005dde7242a204ae33d6c11eb5832d1
+  .claude/rules/general.md: sha256:01a04e48da7f1adc70a3b197b56ea8bd98f5681e01da653739b73f0bb4239752
   .claude/rules/moon.md: sha256:bc47383d762789fcb550b85d4d38e6accec8cf62a0984ed7512d6d3b5659278b
