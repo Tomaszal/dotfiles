@@ -17,8 +17,7 @@ fetch.github = "ayghri/i-have-adhd"
 
 [pulls-review]
 src.github = "antfu/pulls.review"
-src.prefix = "v"
-fetch.url = "https://github.com/antfu/pulls.review/archive/refs/tags/v$ver.tar.gz"
+fetch.github = "antfu/pulls.review"
 
 [ponytail]
 src.github = "DietrichGebert/ponytail"
