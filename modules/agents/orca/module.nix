@@ -15,7 +15,9 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         rm "$out/bin/orca-ide"
+        # Fish's terminal query replies can reach Codex after the shell hands over the PTY.
         makeWrapper ${orca}/bin/orca-ide "$out/bin/orca-ide" \
+          --suffix fish_features , no-query-term \
           --prefix PATH : ${lib.makeBinPath [computerPython pkgs.wl-clipboard]} \
           --prefix GI_TYPELIB_PATH : ${lib.makeSearchPath "lib/girepository-1.0" (map lib.getLib [pkgs.at-spi2-core pkgs.gtk3 pkgs.gdk-pixbuf])}
       '';
