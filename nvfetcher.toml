@@ -20,6 +20,10 @@ src.github = "antfu/pulls.review"
 src.prefix = "v"
 fetch.url = "https://github.com/antfu/pulls.review/archive/refs/tags/v$ver.tar.gz"
 
+[ponytail]
+src.github = "DietrichGebert/ponytail"
+fetch.github = "DietrichGebert/ponytail"
+
 [sweethome3d-mcp-plugin]
 src.github = "grimashevich/sweethome3d-mcp-server"
 src.prefix = "v"

@@ -56,6 +56,27 @@
         },
         "version": "v0.4.1"
     },
+    "ponytail": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "ponytail",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "DietrichGebert",
+            "repo": "ponytail",
+            "rev": "v5.3.3",
+            "sha256": "sha256-CY0EifTY0UVc6/FPGVJjEfYEf/8QLsINQmoYYKZYh98=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v5.3.3"
+    },
     "pulls-review": {
         "cargoLock": null,
         "date": null,

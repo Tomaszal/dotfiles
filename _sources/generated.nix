@@ -35,6 +35,17 @@
       sha256 = "sha256-GTqrnZxQvzo/ogAuUrffkOaMK1BYm/4rAZsnfmDt7DU=";
     };
   };
+  ponytail = {
+    pname = "ponytail";
+    version = "v5.3.3";
+    src = fetchFromGitHub {
+      owner = "DietrichGebert";
+      repo = "ponytail";
+      rev = "v5.3.3";
+      fetchSubmodules = false;
+      sha256 = "sha256-CY0EifTY0UVc6/FPGVJjEfYEf/8QLsINQmoYYKZYh98=";
+    };
+  };
   pulls-review = {
     pname = "pulls-review";
     version = "0.3.4";
