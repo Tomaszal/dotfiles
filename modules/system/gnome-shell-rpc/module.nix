@@ -109,7 +109,14 @@
     };
 
     config = mkIf (scripts != {}) {
-      home.packages = [extension client];
+      home.packages = [client];
+
+      programs.gnome-shell.extensions = [
+        {
+          id = uuid;
+          package = extension;
+        }
+      ];
 
       # Script names reach both a file name and a D-Bus argument, so reject
       # anything awkward up front instead of at call time.
