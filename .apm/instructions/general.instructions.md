@@ -16,6 +16,7 @@ applyTo: "**"
 - New files that affect Nix evaluation must be tracked or staged before running Nix commands; Git flakes cannot see completely untracked files. If staging only for evaluation, say so explicitly.
 - Do not run `nix flake check` as the default validation step.
 - Validate relevant system changes with `moon run repo:nixos/build`; use `-- --hostname <host>` to select another host.
+- For changes that need runtime validation, use `moon run repo:nixos/vm` (request `/dev/kvm` access if needed), confirm the guest boots, and verify the affected behavior. Inspect relevant services and logs with `systemctl` and `journalctl`. After testing, shut down the guest, wait for the VM process to exit, and remove only the `<host>.qcow2` disk image created for this test.
 - Ask before editing `facter.json`, `disko.nix`, key-related files, or user identity configuration.
 - Manage global agent skills declaratively in provider modules under `modules/agents/skills/`, including when asked to install a skill globally. Do not install them directly into user skill directories; Home Manager removes undeclared skills on activation.
 - Keep agent harness configuration and global instructions under `modules/agents/`, and MCP integrations alongside their owning modules. Edit repository instructions under `.apm/` and regenerate deployed files with `moon run repo:agents/sync`.

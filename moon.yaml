@@ -22,6 +22,13 @@ tasks:
       - flake/generate
     preset: utility
 
+  nixos/vm:
+    description: Build and run the current host's VM.
+    command: nh os build-vm --run .
+    deps:
+      - flake/generate
+    preset: utility
+
   nixos/installer:
     command: nix build .#installer
     deps:

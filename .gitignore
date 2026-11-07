@@ -3,6 +3,7 @@
 
 # Nix build results
 result
+/*.qcow2
 
 # Moon cache
 .moon/cache/

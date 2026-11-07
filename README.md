@@ -30,6 +30,7 @@ Use these Moon tasks for common development work:
 | --- | --- |
 | `moon run repo:nixos/build` | Build the current host configuration without activating it. |
 | `moon run repo:nixos/switch` | Build and activate the current host configuration. |
+| `moon run repo:nixos/vm` | Build and run the current host's VM. |
 | `moon run repo:update` | Update repository dependencies. |
 | `moon run repo:check` | Run repository checks. |
 | `moon run repo:fix` | Apply repository formatters and automatic fixes. |
