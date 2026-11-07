@@ -1,0 +1,32 @@
+diff --git a/panelSettings.js b/panelSettings.js
+--- a/panelSettings.js
++++ b/panelSettings.js
+@@ -117,6 +117,8 @@ function getMonitorSetting(settings, settingName, monitorIndex, fallback) {
+     settings[monitorId] ||
+     settings[monitorIndex] ||
+     settings[availableMonitors[monitorIndex]?.id] ||
++    settings[availableMonitors[monitorIndex]?.layoutRole] ||
++    settings.default ||
+     fallback
+   )
+ }
+@@ -251,5 +253,6 @@ export function setMonitorsInfo(settings) {
+             monitorInfos.push({
+               id,
+               product,
++              x: logicalMonitor[0],
+               primary,
+             })
+@@ -300,2 +303,12 @@ function _saveMonitors(settings, monitorInfos) {
++  // Layout selectors survive monitor replacement and reordering. A single
++  // display, or displays stacked vertically, use the shared default.
++  const left = Math.min(...monitorInfos.map((monitor) => monitor.x))
++  const right = Math.max(...monitorInfos.map((monitor) => monitor.x))
++
++  for (const monitor of monitorInfos) {
++    monitor.layoutRole =
++      left < right && monitor.x === left ? 'leftmost' : 'default'
++  }
++
+   availableMonitors = Object.freeze(monitorInfos)
+ }

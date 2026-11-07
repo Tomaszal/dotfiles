@@ -47,31 +47,18 @@
       nixosConfig,
       pkgs,
       ...
-    }: let
-      # Disable dragging maximized windows from empty dash-to-panel space
-      dash-to-panel = pkgs.gnomeExtensions.dash-to-panel.overrideAttrs (oldAttrs: {
-        postPatch =
-          (oldAttrs.postPatch or "")
-          + ''
-            substituteInPlace panel.js --replace-fail \
-              "if (!dragWindow) return Clutter.EVENT_PROPAGATE" \
-              "return Clutter.EVENT_PROPAGATE"
-          '';
-      });
-    in {
+    }: {
       gtk.enable = true;
 
       programs.gnome-shell = {
         enable = true;
-        extensions =
-          [{package = dash-to-panel;}]
-          ++ (with pkgs.gnomeExtensions; [
-            {package = space-bar;}
-            {package = bing-wallpaper-changer;}
-            {package = appindicator;}
-            {package = blur-my-shell;}
-            {package = tiling-assistant;}
-          ]);
+        extensions = with pkgs.gnomeExtensions; [
+          {package = space-bar;}
+          {package = bing-wallpaper-changer;}
+          {package = appindicator;}
+          {package = blur-my-shell;}
+          {package = tiling-assistant;}
+        ];
       };
 
       home.pointerCursor = {
