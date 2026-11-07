@@ -10,7 +10,7 @@ applyTo: "**"
 - Determine the active machine with `hostname`.
 - Define development commands and task orchestration in Moon.
 - Prefer shared aspects and defaults unless the user asks for a host-specific change.
-- Use stable `pkgs` by default. Use `pkgs-unstable` only when stable does not provide the package or the user requests unstable.
+- Use unstable as the primary `nixpkgs` input. Select stable NixOS releases through nixpkgs-multiverse.
 - Use the NixOS MCP server for NixOS package and option lookups when available.
 - When adding flake inputs, avoid duplicating dependencies already present in the flake. Use `inputs.<dependency>.follows = "<existing-input>"` for shared dependencies such as `nixpkgs`, `nixpkgs-unstable`, `flake-parts`, and other common inputs unless there is a concrete reason to keep a separate lock node.
 - New files that affect Nix evaluation must be tracked or staged before running Nix commands; Git flakes cannot see completely untracked files. If staging only for evaluation, say so explicitly.

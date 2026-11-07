@@ -2,6 +2,7 @@
   inputs,
   config,
   lib,
+  withSystem,
   ...
 }: {
   options.nixos-release = lib.mkOption {
@@ -11,12 +12,20 @@
   config = {
     flake-file.inputs = {
       multiverse.url = "github:fzakaria/nixpkgs-multiverse";
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-${config.nixos-release}";
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
     perSystem = {system, ...}: {
       _module.args.pkgs-mv = inputs.multiverse.lib.mkMultiverse {
         inherit system;
+      };
+    };
+
+    den.schema.host = {host, ...}: {
+      config = lib.mkIf (host.class == "nixos") {
+        instantiate =
+          withSystem host.system ({pkgs-mv, ...}:
+            (pkgs-mv.flakeAt config.nixos-release).lib.nixosSystem);
       };
     };
 

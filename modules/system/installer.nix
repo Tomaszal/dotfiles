@@ -2,7 +2,7 @@
 # https://gitlab.com/genericnerdyusername/nixos-installer-gen
 # https://github.com/nix-community/disko/blob/master/docs/disko-install.md#using-disko-install-in-an-offline-installer
 {
-  inputs,
+  config,
   lib,
   self,
   ...
@@ -46,9 +46,13 @@
     '';
   };
 in {
-  perSystem = {system, ...}: {
+  perSystem = {
+    system,
+    pkgs-mv,
+    ...
+  }: {
     packages.installer =
-      (inputs.nixpkgs.lib.nixosSystem {
+      ((pkgs-mv.flakeAt config.nixos-release).lib.nixosSystem {
         inherit system;
         modules = [nixos];
       }).config.system.build.isoImage;
