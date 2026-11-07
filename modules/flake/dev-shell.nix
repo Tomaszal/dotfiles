@@ -12,6 +12,8 @@
     formatter = config.flake-file.formatter pkgs;
 
     devShells.default = pkgs.mkShell {
+      MOON_TOOLCHAIN_FORCE_GLOBALS = "true";
+
       # Specify Nixpkgs path for improved nixd intellisense
       NIX_PATH = ["nixpkgs=${inputs.nixpkgs}"];
 

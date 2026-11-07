@@ -3,6 +3,8 @@ $schema: ./cache/schemas/workspace.json
 projects:
   repo: .
 
+defaultProject: repo
+
 telemetry: false
 
 vcs:
