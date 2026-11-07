@@ -67,13 +67,13 @@
   };
   visual-explainer = {
     pname = "visual-explainer";
-    version = "v0.14.0";
+    version = "v0.15.0";
     src = fetchFromGitHub {
       owner = "nicobailon";
       repo = "visual-explainer";
-      rev = "v0.14.0";
+      rev = "v0.15.0";
       fetchSubmodules = false;
-      sha256 = "sha256-8DZ+tlvQ34bYVscmBhcHeN7YuVnkkgz1utSPg/nhNeo=";
+      sha256 = "sha256-oAod2Oc0wqlGjpbrbzlIq7RA5eeYsJMqHuzNqoRK0tU=";
     };
   };
 }

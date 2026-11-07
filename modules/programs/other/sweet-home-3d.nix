@@ -1,5 +1,9 @@
 {
-  den.aspects.sweet-home-3d.homeManager = {pkgs, sources, ...}: let
+  den.aspects.sweet-home-3d.homeManager = {
+    pkgs,
+    sources,
+    ...
+  }: let
     unwrappedApplication = pkgs.sweethome3d.application.overrideAttrs (old: {
       # Java2D OpenGL produced blank menus under Cinnamon. The bundled Java 3D
       # 1.5.2 renderer avoids the newer renderer's NVIDIA GLX context failure.

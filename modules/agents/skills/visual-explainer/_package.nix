@@ -23,7 +23,7 @@ buildNpmPackage {
     '';
   };
 
-  npmDepsHash = "sha256-qkkr1/ux3SfU0SGxpFpSboSP7sGwWR5PjCjbAFGeBRE=";
+  npmDepsHash = "sha256-ZdyYXhE3ZwsffcjovE2G3p5va6YmCPakIm/1TmAvpag=";
   npmFlags = ["--legacy-peer-deps"];
   dontNpmBuild = true;
   nativeBuildInputs = [makeWrapper jq];
