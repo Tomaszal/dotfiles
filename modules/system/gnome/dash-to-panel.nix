@@ -43,6 +43,7 @@
         dot-style-focused = "DASHES";
         dot-style-unfocused = "SQUARES";
         focus-highlight = true;
+        hide-overview-on-startup = true;
         hotkeys-overlay-combo = "TEMPORARILY";
         intellihide = false;
         intellihide-behaviour = "MAXIMIZED_WINDOWS";

@@ -35,6 +35,7 @@
 
         environment.gnome.excludePackages = with pkgs; [
           gnome-system-monitor
+          gnome-tour
           totem
         ];
 
