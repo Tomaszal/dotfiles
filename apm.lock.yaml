@@ -10,7 +10,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:42bc759fd5f4340397cbc9afa8ed937350c3df5ec508074a995455ce0b97b59d
+  content_hash: sha256:a49a614429158342a1f46e5d5d3f3e5906d87fd4ce13fec18992a8c5076a68a7
 - kind: project-relative
   target: claude
   value: .claude/rules/moon.md
@@ -66,5 +66,5 @@ local_deployed_files:
 - .claude/rules/general.md
 - .claude/rules/moon.md
 local_deployed_file_hashes:
-  .claude/rules/general.md: sha256:42bc759fd5f4340397cbc9afa8ed937350c3df5ec508074a995455ce0b97b59d
+  .claude/rules/general.md: sha256:a49a614429158342a1f46e5d5d3f3e5906d87fd4ce13fec18992a8c5076a68a7
   .claude/rules/moon.md: sha256:bc47383d762789fcb550b85d4d38e6accec8cf62a0984ed7512d6d3b5659278b

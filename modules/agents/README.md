@@ -10,7 +10,7 @@ Harness settings remain editable; repository defaults take precedence over local
 
 Declare sources and select skills in provider modules under [skills/](skills/). Upstream plugin hooks require separate configuration.
 
-Activation removes undeclared content from managed skill directories.
+Activation preserves `unmanaged/` and `unmanaged-*/` directories at each managed skill root and removes other undeclared content.
 
 ## Review changes
 

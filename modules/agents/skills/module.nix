@@ -15,7 +15,10 @@
 
     programs.agent-skills = {
       enable = true;
-      excludePatterns = [];
+      excludePatterns = [
+        "/unmanaged/"
+        "/unmanaged-*/"
+      ];
     };
   };
 }
