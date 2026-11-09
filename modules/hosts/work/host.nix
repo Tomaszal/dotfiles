@@ -21,6 +21,7 @@
       programs.oneleet
 
       system.middle-button-scroll.fenrir
+      system.tailscale
     ];
   };
 }
