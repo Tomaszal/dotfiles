@@ -1,7 +1,7 @@
 {den, ...}: {
-  den.default = {
-    includes = [(den.batteries.user-shell "fish")];
+  den.schema.user.includes = [(den.batteries.user-shell "fish")];
 
+  den.default = {
     homeManager = {
       pkgs,
       mv,

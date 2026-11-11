@@ -7,6 +7,10 @@
 
   imports = [inputs.den.flakeModules.dendritic];
 
+  # https://github.com/denful/den/discussions/750
+  # Remove when updating Den after 2027-01-01.
+  den.migrations.user-host-content.acknowledged = true;
+
   # Use selective schemas instead of Den's recommended full strict module:
   # strict aspects currently reject valid class keys. Keep these checks until
   # upstream resolves https://github.com/denful/den/issues/632.

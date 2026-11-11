@@ -16,12 +16,14 @@
   # Host-scoped Home Manager settings must go through `hm-host`, which is only
   # applied to hosts that actually have Home Manager users.
   den.schema.hm-host.includes = [
-    ({mv, ...}: {
-      nixos.home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        backupCommand = "${mv.fast.latest.trash-cli}/bin/trash-put";
+    {
+      nixos = {mv, ...}: {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          backupCommand = "${mv.fast.latest.trash-cli}/bin/trash-put";
+        };
       };
-    })
+    }
   ];
 }

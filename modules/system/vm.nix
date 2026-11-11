@@ -5,7 +5,7 @@
     diskSize = 8192;
   };
 
-  den.schema.user.includes = [
+  den.schema.host.includes = [
     ({user, ...}: {
       nixos.virtualisation.vmVariant = {
         config,
