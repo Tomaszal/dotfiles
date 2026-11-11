@@ -7,7 +7,15 @@
     programs.git = {
       enable = true;
       package = mv.fast.latest.git;
-      settings.rerere.enabled = true;
+      settings = {
+        rerere.enabled = true;
+        git-town = {
+          proposal-breadcrumb = "none";
+          sync-tags = false;
+          push-branches = false;
+          push-hook = true;
+        };
+      };
     };
 
     programs.lazygit = {

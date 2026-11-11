@@ -1,119 +1,66 @@
 ---
 name: orca-restack
-description: Preview and restack branch stacks managed by Orca using Git Town, resume interrupted restacks, and publish when requested.
+description: Preview and restack Orca branch stacks, resume interrupted restacks, and publish validated branches when requested.
 ---
 
 # Orca restack
 
-## Rules
+Use `orca-cli` for workspace inventory and checkpoints, Git Town for local sync, Git for inspection and exact-tip publication, and `gh` for PRs. Reuse loaded instructions and the current preview.
 
-- Use Orca through the `orca-cli` skill for worktrees and checkpoints, and `gh` for GitHub queries and PR linking. Use Git for inspection, lineage configuration, and staging; use Git Town for sync, continuation, branch publication, and undo.
-- Preserve local edits and stashes.
-- Always start with a read-only preview: no fetching, config writes, generators, sync, builds, or tests. Ask what to do next and wait for the answer, using the harness's question UI when available.
-- Restack locally by default. Force pushes, new branch publication, and commit creation or amendment require explicit authorization. Describe required permissions in the offered choices; the selected choice authorizes that scope without another confirmation.
+## 1. Preview and choose
 
-## Keep execution compact
+Keep preview read-only: use cached refs, existing Git configuration, and saved runstate. Git Town commands can migrate configuration even during inspection; read existing state files under the platform's Git Town config directory directly. Select only relevant branch snapshots, lineage, and pending operations; runstate may contain credentials.
 
-- Reuse loaded instructions and the current preview. Before execution, recheck tips, status, and pending operations; inspect only what changed.
-- Return only relevant inventory and runstate fields. Start commit reviews with `git range-diff --no-patch`; use targeted source diffs and `git diff --stat -- <file>` for generated files.
-- Batch independent reads and each checkout's prechecks, sync, and verification. Process worktrees sequentially and stop on failure.
+From the current feature, select the root above main and all descendants, including siblings. Cross-check Orca's worktree inventory and parent/baseRef against Git and open PR bases. Query PRs once with `gh pr list --repo <owner/repo> --state open --limit 1000 --json number,headRefName,baseRefName`. Cross-check `gh stack view --json` only when already tracking these branches.
 
-## 1. Discover and check for interrupted work
+Read each checkout's direct-parent SHA from completed runstate: `EndBranchesSnapshot.Branches`, falling back to `BranchInfosLastRun`. Verify its saved lineage and ancestry, then review the proposed replay range against feature contributions. An ancestral SHA can still be an obsolete cutoff. Read [recovery.md](references/recovery.md) for pending operations, inconsistent state, or missing boundaries after parent divergence.
 
-Use the `orca-cli` skill to identify the current worktree and list its repository's worktrees. From the selected feature, list open PRs and their bases:
+Present one compact table of branch, parent, path, tip, PR, saved boundary, and readiness. Include staged/unstaged/untracked work, tracking divergence, pending operations, and affected leaf tips. Discover documented environment, generators, checks, and policy exceptions now. Cached remote refs do not establish current remote readiness.
 
-```text
-gh pr list --repo <owner/repo> --state open --limit 1000 --json number,headRefName,baseRefName
+For an explicit preview-only request, return the preview and finish. Otherwise ask once and wait: **restack locally**, **restack and publish existing PR branches** when applicable, or **stop**. For interrupted work, offer **resume**, **inspect only**, or **stop** against the checkpoint. Include known generator/staging exceptions, generated-file commit amendments, force pushes, and optional GitHub stack linking in the relevant choice. Carry granted scope forward; ask again only for new decisions.
+
+## 2. Prepare
+
+Enter the documented development environment. Recheck tips, local work, and pending operations against the preview; inspect only changes.
+
+Start affected checkouts clean so Git Town cannot flatten staged/unstaged work through automatic stashing. Preserve dirty work with `git stash push --include-untracked -m <unique-marker>`. Record that marker's exact OID from `git stash list --format='%H %gs'` and the original staged/unstaged selection. Stashes are shared across worktrees. Keep work stashed through committed-tip validation and publication; restore afterward with `git stash apply --index <OID>`, retaining the backup until preservation is verified.
+
+Register missing lineage only after Orca, Git history, and PR bases agree: `git config --local git-town-branch.<child>.parent <parent>`. Existing disagreement requires a reparenting decision.
+
+Before rewriting any parent, establish missing baselines from feature checkouts where the current direct parent is already ancestral. In the local sync command below, replace `--no-detached` with `--detached` and add `-c git-town.offline=true`; verify tips remain unchanged. Refresh stale completed state as described in [recovery.md](references/recovery.md), rather than reusing its obsolete cutoff.
+
+## 3. Restack locally
+
+Process main's checkout, then feature checkouts parent first. Keep each ancestor in its own checkout; Git Town can otherwise process it again during a child sync. `sync --stack` skips branches checked out elsewhere. Fetch without tags, inspect unpublished main commits and tracking divergence, and preserve genuine remote-only work. Recheck expected tips before each operation.
+
+Use explicit command-scoped settings so repository overrides cannot enable hosting writes:
+
+```sh
+git -c git-town.proposal-breadcrumb=none -c git-town.sync-tags=false -c git-town.push-hook=true -c git-town.sync-feature-strategy=rebase town sync --no-detached --no-push --non-interactive
 ```
 
-Before analysing a fresh stack, check Git Town status, pending Git operations, and any restack checkpoint in the conversation or Orca comments. Completed runstate alone does not indicate an interruption; a checkpoint may show unfinished work between Git Town operations.
+Verify main matches its intended remote. For features whose tracking refs contain proven old published history after local rewrites, obtain the local-authoritative choice before adding `-c git-town.offline=true`; sync main first. Record the verified tips in the checkpoint. A normal sync can otherwise replay that old remote history.
 
-For an interrupted restack, check current tips and saved boundaries against the checkpoint. Preview progress, remaining worktree order, conflicts, local work and stashes, and previously granted permissions. Ask whether to **resume**, **inspect only**, or **stop**, including any missing scope or permissions in the question. This replaces the fresh preview and question below.
+After each sync, verify parent ancestry and feature contributions. Start with `git range-diff --no-patch`, inspect changed source patches, and summarize generated files with `git diff --stat`. Record the new tip.
 
-Resume from the checkpoint and native state within the authorized scope. Inspection stays read-only. Pending operations block a fresh restack; never reset them to start over.
+Resolve source conflicts from both changes, then regenerate affected outputs with documented commands and pinned tools. Preserve dependency pins; if conflict markers prevent generation, seed generated content from a relevant Git version before regenerating. Ask when the seed requires an unresolved source or dependency decision. Stage resolved inputs and outputs together. Inspect pending operations before `git town continue` with the same command-scoped settings; flags do not remove hosting writes already queued by an older command.
 
-For a fresh stack, verify that the worktree inventory is complete and identify the hosting service. Select the feature root above main and all its descendants, including siblings. Normalize refs and check that Orca's parent/baseRef agrees with PR bases. Read current tips from Git.
+Regenerate affected outputs after clean merges too. Create or amend commits only within the selected scope; otherwise retain corrections and pause before descendants or publication. Review merge behavior that patch preservation and static checks cannot establish.
 
-When `gh stack` already tracks the selected branches, use `gh stack view --json` to cross-check ordering and PR state against Orca and Git. Report disagreements as blockers; do not initialize tracking during preview. Keep rebasing and sync in Git Town.
+If blocked, record current worktree, old/new parent tips, remaining order, stash OIDs, and permissions in the conversation or Orca checkpoint. Use [recovery.md](references/recovery.md) for local recovery.
 
-Inspect the configured main branch, remote, rebase strategy, and Git Town version. Keep hooks enabled and tag pushes disabled: `--no-push` alone permits tag pushes, so use `-c git-town.sync-tags=false` if needed. Preserve global settings.
+## 4. Validate and publish
 
-Build one table with branch, parent, path, tip, PR, saved parent SHA, and readiness. Record staged and unstaged changes and untracked file checksums per checkout so preservation can be verified later. Discover the repository's regeneration commands.
+Validate clean committed tips. Run broad repository checks at every affected leaf, deduplicating identical tips; keep targeted checks for conflicts and independently published intermediate commits. Repeat after changed inputs or failures. Stop publication on validation or semantic blockers.
 
-## 2. Validate boundaries
+For authorized publication, match existing upstream destinations to the selected PR heads, distinct from main and ancestor destinations. Verify required parent publication first. Recheck the validated local SHA and recorded remote SHA, then push exactly that commit with hooks enabled:
 
-Git Town uses the previous parent SHA from each worktree's own runstate to avoid replaying ancestor commits. `sync --stack` skips branches checked out in other worktrees; a dry run cannot establish missing state.
-
-Read the direct parent's local SHA and relationship from completed runstate: `EndBranchesSnapshot.Branches`, falling back to `BranchInfosLastRun`. Locate it with `git town status show` and select only relevant fields. Never edit runstate or expose credentials.
-
-Verify ancestry with `git merge-base --is-ancestor <SHA-or-parent> <child>`:
-
-- The saved boundary belongs to this parent and is an ancestor of the child: reuse it.
-- No saved boundary, but the current parent is an ancestor of the child: establish a baseline.
-- No saved boundary and no child commits, with reflogs proving creation at an older tip ancestral to the current parent: align and baseline before rewriting ancestors.
-- The child has diverged from its parent without a usable boundary, or saved state is inconsistent: stop; never guess a cutoff.
-
-Recheck boundaries after worktree moves, reparenting, or branch deletion.
-
-Present the table, local changes, blockers, and proposed actions. Ask whether to **restack locally**, **restack and publish existing PR branches**, or **stop after preview**. Offer execution only when blockers are resolved. Describe whether publication includes GitHub stack linking, along with any required commit changes or lease-protected force pushes, in the corresponding choice.
-
-## 3. Establish only needed baselines
-
-Register missing lineage after verifying it; stop if existing configuration disagrees:
-
-```text
-git config --local git-town-branch.<child>.parent <parent>
+```sh
+git -c push.followTags=false -c push.recurseSubmodules=no push --force-with-lease=refs/heads/<remote-branch>:<recorded-remote-sha> <remote> <validated-sha>:refs/heads/<remote-branch>
 ```
 
-Before rewriting any parent, establish missing baselines from each affected feature's checkout:
+Publish parent first. A failed lease requires inspection and revalidation of integrated changes. This avoids another sync changing a commit after validation. New branch publication requires its own authorization.
 
-```text
-git -c git-town.offline=true town sync --detached --no-push --non-interactive
-```
+If authorized, link compatible linear chains with `gh stack link --base <main> <parent-pr-url> <child-pr-url> ...`. Use PR URLs; branch arguments can push and create PRs. Verify remote tips, PR bases, and stack membership afterward.
 
-Verify that tips are unchanged, except children with no commits should advance exactly to their verified parent tip. Check local work and saved boundaries. Never establish a baseline after a parent rewrite; stop on unexpected changes.
-
-## 4. Restack and resolve
-
-Inspect unpublished main commits before syncing. Run from main's checkout, then each feature checkout from parent to child:
-
-```text
-git town sync --no-detached --no-push --non-interactive
-```
-
-Keep normal remote integration enabled. Verify that main matches the intended remote main after syncing. Check expected tips before each feature and stop on concurrent changes. After each sync, verify parent ancestry, local work, and branch contributions, then record the new tip.
-
-Resolve source conflicts using both changes and regenerate outputs as described in section 5. Stage the resolution and run `git town continue`. Check that branch contributions and tests were preserved. If ancestor commits are replayed unexpectedly, inspect boundaries before continuing. Avoid blanket `ours` or `theirs` resolutions.
-
-If blocked, record the worktree, parent tips, remaining order, stash status, and granted permissions in the conversation or an Orca comment. Git Town undo reverses the last command in one worktree; it cannot undo the whole stack.
-
-## 5. Generated outputs
-
-- Resolve source inputs, then regenerate lockfiles and generated outputs, including after clean merges. Never hand-merge generated content.
-- Use documented generators and pinned tooling. Request a specific command exception only when repository policy requires it.
-- If conflict markers prevent generation, seed from a relevant Git version while preserving dependency pins, then regenerate. Pause if choosing a seed requires an unresolved source or dependency decision.
-- Preserve compatible resolutions and avoid broad upgrades or deduplication. Review summaries and run targeted checks; never stage ignored artifacts.
-- During a rebase conflict, stage resolved inputs and regenerated outputs together before continuing.
-- After a completed rebase, commit generated corrections only with authorization to create or amend commits. Otherwise preserve them and pause before processing child branches or publishing.
-
-## 6. Validate and optionally publish
-
-Verify the full ancestry chain, branch contributions, generated files, and restored local work. Run the repository's documented checks once from the selected feature; repeat only after further changes or failures. Report blocked checks separately from completed history changes. Stop before publishing if validation fails.
-
-When authorized, publish existing tracking branches from parent to child:
-
-```text
-git town sync --no-detached --push --non-interactive
-```
-
-Keep hooks and lease protection enabled. Publish local-only branches only when requested. If publication integrates remote changes that rewrite a parent, restack and revalidate its descendants before publishing them. Verify remote and PR tips afterward.
-
-If the publication plan includes GitHub stack linking, link existing PRs from parent to child:
-
-```text
-gh stack link --base <main-branch> <parent-pr-url> <child-pr-url> ...
-```
-
-Pass PR URLs: branch-name arguments can push branches and create PRs. Link only compatible linear chains; report branching or conflicting stack membership instead of changing lineage to fit. Verify stack membership and PR bases afterward. Linking does not require local `gh stack` tracking.
-
-Report main's SHA, updated branches and PRs, validation results, preserved local work, and blockers. Update the Orca checkpoint to reflect completion or remaining work.
+Restore local work with `git stash apply --index <OID>`, verify staged/unstaged separation, untracked content, and original stashes, and review restoration conflicts. Report main's SHA, changed branches/PRs, validation, preserved work, retained backups, and blockers. Update the Orca checkpoint.
