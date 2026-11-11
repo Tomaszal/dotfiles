@@ -2,10 +2,10 @@
   den.aspects.dev = {
     includes = [(den.batteries.unfree ["vscode"])];
 
-    homeManager = {pkgs-mv, ...}: {
+    homeManager = {mv, ...}: {
       programs.vscode = {
         enable = true;
-        package = pkgs-mv.tip.vscode;
+        package = mv.tip.vscode;
       };
 
       # Might want to revert to `nano` for ssh connections

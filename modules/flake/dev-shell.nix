@@ -6,7 +6,7 @@
   perSystem = {
     inputs',
     pkgs,
-    pkgs-mv,
+    mv,
     ...
   }: rec {
     formatter = config.flake-file.formatter pkgs;
@@ -18,7 +18,7 @@
       NIX_PATH = ["nixpkgs=${inputs.nixpkgs}"];
 
       nativeBuildInputs =
-        (with pkgs; [
+        (with mv.fast.latest; [
           nixd
           nixos-facter
           nvfetcher
@@ -28,8 +28,8 @@
         ++ [
           formatter
           inputs'.multiverse.packages.mvs
-          pkgs-mv.tip.mcp-nixos
-          pkgs-mv.tip.moon
+          mv.fast.latest.mcp-nixos
+          mv.fast.latest.moon
           inputs'.llm-agents.packages.apm
         ];
     };

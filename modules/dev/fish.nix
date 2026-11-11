@@ -2,10 +2,23 @@
   den.default = {
     includes = [(den.batteries.user-shell "fish")];
 
-    homeManager = {pkgs, ...}: {
-      programs.fzf.enable = true;
-      programs.fd.enable = true;
-      programs.bat.enable = true;
+    homeManager = {
+      pkgs,
+      mv,
+      ...
+    }: {
+      programs.fzf = {
+        enable = true;
+        package = mv.fast.latest.fzf.eval;
+      };
+      programs.fd = {
+        enable = true;
+        package = mv.fast.latest.fd;
+      };
+      programs.bat = {
+        enable = true;
+        package = mv.fast.latest.bat.eval;
+      };
 
       programs.fish = {
         interactiveShellInit = ''

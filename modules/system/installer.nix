@@ -7,11 +7,7 @@
   self,
   ...
 }: let
-  nixos = {
-    modulesPath,
-    pkgs,
-    ...
-  }: let
+  nixos = mv: {modulesPath, ...}: let
     name = "nixos-installer";
   in {
     imports = ["${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"];
@@ -32,7 +28,7 @@
 
     environment.variables.FLAKE = self;
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with mv.fast.latest; [
       disko
       nixos-facter
     ];
@@ -48,13 +44,13 @@
 in {
   perSystem = {
     system,
-    pkgs-mv,
+    mv,
     ...
   }: {
     packages.installer =
-      ((pkgs-mv.flakeAt config.nixos-release).lib.nixosSystem {
+      ((mv.flakeAt config.nixos-release).lib.nixosSystem {
         inherit system;
-        modules = [nixos];
+        modules = [(nixos mv)];
       }).config.system.build.isoImage;
   };
 }

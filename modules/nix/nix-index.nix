@@ -16,11 +16,15 @@
   };
 
   den.default = {
-    nixos = {pkgs, ...}: {
+    nixos = {
+      inputs',
+      mv,
+      ...
+    }: {
       imports = [inputs.nix-index-database.nixosModules.default];
       environment.systemPackages =
-        (with pkgs; [comma])
-        ++ [inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien];
+        (with mv.fast.latest; [comma])
+        ++ [inputs'.nix-alien.packages.nix-alien];
     };
 
     homeManager.imports = [inputs.nix-index-database.homeModules.default];

@@ -1,5 +1,5 @@
 {
-  den.aspects.tomaszal.homeManager = {pkgs, ...}: {
+  den.aspects.tomaszal.homeManager = {mv, ...}: {
     programs.git = {
       settings.user = {
         name = "Tomas Zaluckij";
@@ -8,7 +8,7 @@
 
       settings.gpg = {
         format = "ssh";
-        ssh.program = with pkgs; "${openssh}/bin/ssh-keygen";
+        ssh.program = "${mv.fast.latest.openssh}/bin/ssh-keygen";
       };
 
       signing.signByDefault = true;

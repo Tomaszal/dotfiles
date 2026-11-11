@@ -30,11 +30,11 @@
       };
     };
 
-    homeManager = {pkgs, ...}: {
+    homeManager = {mv, ...}: {
       imports = [inputs.nix-flatpak.homeManagerModules.nix-flatpak];
 
       # GUI for basic Flatpak application management
-      home.packages = with pkgs; [gnome-software];
+      home.packages = with mv.fast.latest; [gnome-software];
 
       services.flatpak.packages = ["com.github.tchx84.Flatseal"];
     };

@@ -1,11 +1,13 @@
 {
   inputs,
   lib,
+  withSystem,
   ...
 }: {
   imports = [inputs.flake-file.flakeModules.dendritic];
 
-  flake-file.formatter = pkgs: pkgs.alejandra;
+  flake-file.formatter = pkgs:
+    withSystem pkgs.stdenv.hostPlatform.system ({mv, ...}: mv.fast.latest.alejandra.eval);
 
   flake-file.nixConfig = {
     extra-substituters = lib.mkBefore ["https://nix-community.cachix.org"];

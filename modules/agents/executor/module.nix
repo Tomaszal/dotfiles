@@ -4,13 +4,14 @@
     inputs',
     lib,
     pkgs,
+    mv,
     ...
   }: let
     package = inputs'.llm-agents.packages.executor;
     dataDirectory = "${config.xdg.dataHome}/executor";
     executor = pkgs.writeShellApplication {
       name = "executor";
-      runtimeInputs = [pkgs.coreutils];
+      runtimeInputs = [mv.fast.latest.coreutils];
       text = ''
         umask 077
         install -dm700 ${lib.escapeShellArg dataDirectory}

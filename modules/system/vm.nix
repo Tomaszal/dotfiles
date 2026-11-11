@@ -10,7 +10,7 @@
       nixos.virtualisation.vmVariant = {
         config,
         lib,
-        pkgs,
+        mv,
         ...
       }: let
         password = "vm";
@@ -23,7 +23,7 @@
 
         # Pass the VM password to GNOME Keyring through PAM during autologin.
         systemd.services.display-manager.preStart = ''
-          printf '%s\0' ${lib.escapeShellArg password} | ${pkgs.keyutils}/bin/keyctl padd user vm-autologin @u
+          printf '%s\0' ${lib.escapeShellArg password} | ${mv.fast.latest.keyutils}/bin/keyctl padd user vm-autologin @u
         '';
 
         security.pam.services.gdm-autologin.rules.auth = {

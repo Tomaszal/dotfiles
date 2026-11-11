@@ -1,6 +1,7 @@
 {
   den.aspects.sweet-home-3d.homeManager = {
     pkgs,
+    mv,
     sources,
     ...
   }: let
@@ -25,7 +26,7 @@
         printf -v childCommand '%q ' \
           "${unwrappedApplication}/bin/sweethome3d" \
           "$@"
-        exec ${pkgs.xpra}/bin/xpra seamless \
+        exec ${mv.fast.latest.xpra}/bin/xpra seamless \
           --backend=x11 \
           --opengl=no \
           --input-devices=xi \

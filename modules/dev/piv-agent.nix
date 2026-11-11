@@ -1,15 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
-  version = "0.23.0";
-in {
-  flake-file.inputs.piv-agent = {
-    flake = false;
-    url = "github:smlx/piv-agent/v${version}";
-  };
-
+{lib, ...}: {
   den.default = {
     nixos = {
       services.pcscd.enable = true;
@@ -21,25 +10,10 @@ in {
     homeManager = {
       config,
       nixosConfig,
-      pkgs,
+      mv,
       ...
     }: let
-      piv-agent = pkgs.buildGoModule {
-        inherit version;
-        src = inputs.piv-agent;
-        pname = "piv-agent";
-
-        vendorHash = "sha256-4yfQQxMf00263OKEXTWD34YifK7oDclvPk8JDz5N1I0=";
-
-        nativeBuildInputs = [pkgs.pkg-config];
-        buildInputs = [pkgs.pcsclite];
-
-        meta = {
-          description = "An SSH and GPG agent which you can use with your PIV hardware security device (e.g. a Yubikey).";
-          license = lib.licenses.asl20;
-          homepage = "https://smlx.github.io/piv-agent/";
-        };
-      };
+      piv-agent = mv.fast.versions.piv-agent."0.23.0";
 
       # Pinentry package which will be used
       inherit (nixosConfig.programs.gnupg.agent) pinentryPackage;

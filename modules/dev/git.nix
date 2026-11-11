@@ -1,12 +1,18 @@
 {
-  den.default.homeManager = {pkgs, ...}: {
+  den.default.homeManager = {
+    pkgs,
+    mv,
+    ...
+  }: {
     programs.git = {
       enable = true;
+      package = mv.fast.latest.git;
       settings.rerere.enabled = true;
     };
 
     programs.lazygit = {
       enable = true;
+      package = mv.fast.latest.lazygit;
       settings.git.pagers = [
         {pager = "delta --paging=never";}
         {externalDiffCommand = "difft --color=always";}
@@ -18,7 +24,7 @@
       git-sweep = pkgs.writeShellApplication {
         name = "git-sweep";
 
-        runtimeInputs = with pkgs; [git];
+        runtimeInputs = with mv.fast.latest; [git];
 
         text = ''
           git fetch --prune
@@ -34,9 +40,9 @@
       };
     in [
       git-sweep
-      pkgs.delta
-      pkgs.difftastic
-      pkgs.git-town
+      mv.fast.latest.delta
+      mv.fast.latest.difftastic
+      mv.fast.latest.git-town
     ];
   };
 }

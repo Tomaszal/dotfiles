@@ -1,6 +1,6 @@
 {
-  den.aspects.dev.homeManager = {pkgs, ...}: {
-    home.packages = with pkgs; [
+  den.aspects.dev.homeManager = {mv, ...}: {
+    home.packages = with mv.fast.latest; [
       bruno
       bruno-cli
     ];

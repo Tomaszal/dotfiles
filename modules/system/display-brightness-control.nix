@@ -1,8 +1,8 @@
 {
   den.default = {
-    nixos = {pkgs, ...}: {
+    nixos = {mv, ...}: {
       hardware.i2c.enable = true;
-      environment.systemPackages = with pkgs; [ddcutil];
+      environment.systemPackages = with mv.fast.latest; [ddcutil];
     };
 
     homeManager = {pkgs, ...}: {

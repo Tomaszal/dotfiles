@@ -2,6 +2,7 @@
   den.default = {
     nixos = {
       pkgs,
+      mv,
       lib,
       ...
     }: {
@@ -16,7 +17,7 @@
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
         environment.systemPackages =
-          (with pkgs; [
+          (with mv.fast.latest; [
             dconf-editor
             gnome-extension-manager
             gnome-tweaks

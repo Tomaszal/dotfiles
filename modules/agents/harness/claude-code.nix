@@ -6,7 +6,7 @@
   den.aspects.dev.agents.claude-code = {
     includes = [(den.batteries.unfree ["claude-code"])];
 
-    homeManager = {pkgs-mv, ...}: {
+    homeManager = {mv, ...}: {
       # TODO(NixOS 26.11): Use the release module; remove these overrides,
       # and the inputs argument.
       disabledModules = ["programs/claude-code.nix"];
@@ -16,7 +16,7 @@
         enable = true;
         mutableSettings = true;
         enableMcpIntegration = true;
-        package = with pkgs-mv.tip; claude-code;
+        package = with mv.tip; claude-code;
         context = ../instructions.md;
         settings = {
           disableClaudeAiConnectors = true;

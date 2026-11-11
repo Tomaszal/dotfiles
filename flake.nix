@@ -73,10 +73,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    piv-agent = {
-      url = "github:smlx/piv-agent/v0.23.0";
-      flake = false;
-    };
     systems.url = "github:nix-systems/default";
   };
 }

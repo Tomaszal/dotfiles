@@ -1,8 +1,8 @@
 {
-  den.aspects.games.minecraft.homeManager = {pkgs-mv, ...}: {
+  den.aspects.games.minecraft.homeManager = {mv, ...}: {
     programs.prismlauncher = {
       enable = true;
-      package = with pkgs-mv.tip; prismlauncher;
+      package = mv.fast.latest.prismlauncher;
     };
   };
 }

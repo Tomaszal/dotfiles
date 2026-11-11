@@ -1,5 +1,5 @@
 {
-  den.default.nixos = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [cameractrls-gtk3];
+  den.default.nixos = {mv, ...}: {
+    environment.systemPackages = with mv.fast.latest; [cameractrls-gtk3];
   };
 }

@@ -1,5 +1,9 @@
 {
-  den.aspects.pc.nixos = {pkgs, ...}: {
+  den.aspects.pc.nixos = {
+    pkgs,
+    mv,
+    ...
+  }: {
     # Generate boot entries for dual booting other OS's
     boot.loader.grub.useOSProber = true;
 
@@ -9,11 +13,9 @@
     environment.systemPackages = [
       (pkgs.writeShellApplication {
         name = "reboot-to-windows";
-        runtimeInputs = with pkgs; [
-          coreutils
-          gnugrep
-          grub2
-        ];
+        runtimeInputs =
+          (with mv.fast.latest; [coreutils gnugrep])
+          ++ [pkgs.grub2];
         # https://unix.stackexchange.com/a/112284
         text = ''
           if [ "$EUID" -ne 0 ]; then

@@ -1,6 +1,6 @@
 {inputs, ...}: {
   den.aspects.dev.agents.codex = {
-    homeManager = {pkgs-mv, ...}: {
+    homeManager = {mv, ...}: {
       # TODO(NixOS 26.11): Use the release module; remove these overrides,
       # and the inputs argument.
       disabledModules = ["programs/codex.nix"];
@@ -10,7 +10,7 @@
         enable = true;
         mutableSettings = true;
         enableMcpIntegration = true;
-        package = with pkgs-mv.tip; codex;
+        package = mv.fast.latest.codex;
         context = ../instructions.md;
 
         settings = {

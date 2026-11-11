@@ -12,7 +12,7 @@
   den.aspects.dev.agents.homeManager = {
     config,
     lib,
-    pkgs,
+    mv,
     self',
     ...
   }: let
@@ -22,7 +22,7 @@
       lib.mapAttrs' (file: _: lib.nameValuePair (lib.removeSuffix ".md" file) (commandsDir + "/" + file))
       (lib.filterAttrs (file: type: type == "regular" && lib.hasSuffix ".md" file) (builtins.readDir commandsDir));
   in {
-    home.packages = [package pkgs.nodejs pkgs.ffmpeg pkgs.chromium];
+    home.packages = [package] ++ (with mv.fast.latest; [nodejs ffmpeg chromium]);
 
     programs.agent-skills = {
       sources.visual-explainer = {

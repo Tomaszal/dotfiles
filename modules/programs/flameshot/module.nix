@@ -2,10 +2,10 @@
   den.default.homeManager = {
     config,
     pkgs,
-    pkgs-mv,
+    mv,
     ...
   }: let
-    flameshot = pkgs-mv.tip.flameshot;
+    flameshot = mv.fast.latest.flameshot.eval;
     screens = pkgs.stdenv.mkDerivation {
       name = "flameshot-screens";
       dontUnpack = true;
@@ -26,7 +26,7 @@
     home.packages = [
       (pkgs.writeShellApplication {
         name = "flameshot-capture";
-        runtimeInputs = [flameshot screens config.gnome-shell-rpc.package pkgs.jq];
+        runtimeInputs = [flameshot screens config.gnome-shell-rpc.package mv.fast.latest.jq];
         text = builtins.readFile ./capture.sh;
       })
     ];

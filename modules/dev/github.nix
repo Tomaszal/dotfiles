@@ -1,9 +1,9 @@
 {
-  den.aspects.dev.homeManager = {pkgs-mv, ...}: {
+  den.aspects.dev.homeManager = {mv, ...}: {
     programs.gh = {
       enable = true;
-      package = pkgs-mv.tip.gh;
-      extensions = with pkgs-mv.tip; [gh-stack];
+      package = mv.fast.latest.gh.eval;
+      extensions = with mv.fast.latest; [gh-stack];
     };
   };
 }

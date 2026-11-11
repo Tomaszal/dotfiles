@@ -252,11 +252,11 @@
     },
     "multiverse": {
       "locked": {
-        "lastModified": 1794065979,
-        "narHash": "sha256-pAEqR9flODKfWAMC3H2JXXndnj2KVQKoLmbB3nF9DLM=",
+        "lastModified": 1794338321,
+        "narHash": "sha256-ECn+pD6FzQhSRsQ3OiPjDsQs2rZfCIoO+lNxeBZXB+U=",
         "owner": "fzakaria",
         "repo": "nixpkgs-multiverse",
-        "rev": "d5e658e8ae8a3735512e1d11b537169f5911e7e1",
+        "rev": "390f52c4d0f49772ef625e0f8352030e31b40a7b",
         "type": "github"
       },
       "original": {
@@ -366,23 +366,6 @@
         "type": "github"
       }
     },
-    "piv-agent": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1745856829,
-        "narHash": "sha256-4oyIUE7Yy0KUw5pC64MRKeUziy+tqvl/zFVySffxfBs=",
-        "owner": "smlx",
-        "repo": "piv-agent",
-        "rev": "e95377836aa8a96d2f19ab4a0c1a5a7ec1bc62d8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "smlx",
-        "ref": "v0.23.0",
-        "repo": "piv-agent",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agent-skills": "agent-skills",
@@ -402,7 +385,6 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "piv-agent": "piv-agent",
         "systems": "systems"
       }
     },

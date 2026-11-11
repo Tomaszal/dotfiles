@@ -11,6 +11,8 @@ applyTo: "**"
 - Define development commands and task orchestration in Moon.
 - Prefer shared aspects and defaults unless the user asks for a host-specific change.
 - Use unstable as the primary `nixpkgs` input. Select stable NixOS releases through nixpkgs-multiverse.
+- Prefer `mv.fast.latest` for applications and standalone tools. Keep `fastFallback` at its default `throw` so missing cached builds do not silently fall back to source builds.
+- Use host `pkgs` for the system base, ABI-coupled components, and package construction. Use a fast package's `.eval` when consumers require derivation metadata. Keep explicit exceptions for unsuitable or missing cached builds and custom or flake packages.
 - Use the NixOS MCP server for NixOS package and option lookups when available.
 - When adding flake inputs, avoid duplicating dependencies already present in the flake. Use `inputs.<dependency>.follows = "<existing-input>"` for shared dependencies such as `nixpkgs`, `nixpkgs-unstable`, `flake-parts`, and other common inputs unless there is a concrete reason to keep a separate lock node.
 - New files that affect Nix evaluation must be tracked or staged before running Nix commands; Git flakes cannot see completely untracked files. If staging only for evaluation, say so explicitly.

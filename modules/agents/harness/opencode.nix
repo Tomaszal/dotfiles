@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  den.aspects.dev.agents.opencode.homeManager = {pkgs-mv, ...}: {
+  den.aspects.dev.agents.opencode.homeManager = {mv, ...}: {
     # TODO(NixOS 26.11): Use the release module; remove this override and inputs argument.
     # OpenCode 2 CLI support: https://github.com/nix-community/home-manager/pull/10105
     disabledModules = ["programs/opencode.nix"];
@@ -11,7 +11,7 @@
       validateFiles.cli = true;
       context = ../instructions.md;
       enableMcpIntegration = true;
-      package = with pkgs-mv.tip; opencode;
+      package = mv.fast.latest.opencode.eval;
       cli.tabs.mode = "off";
 
       settings.permission = {

@@ -1,5 +1,5 @@
 {
-  den.aspects.dev.homeManager = {pkgs, ...}: {
-    home.packages = with pkgs; [beekeeper-studio];
+  den.aspects.dev.homeManager = {mv, ...}: {
+    home.packages = with mv.fast.latest; [beekeeper-studio];
   };
 }

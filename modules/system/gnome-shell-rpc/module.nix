@@ -11,6 +11,7 @@
   # bus, which is why GNOME gated the built-in one.
   den.default.homeManager = {
     pkgs,
+    mv,
     config,
     ...
   }: let
@@ -68,7 +69,7 @@
 
     client = pkgs.writeShellApplication {
       name = "gnome-shell-rpc";
-      runtimeInputs = with pkgs; [jq systemd];
+      runtimeInputs = [mv.fast.latest.jq pkgs.systemd];
       text =
         replaceStrings
         ["@interface@" "@objectPath@"]

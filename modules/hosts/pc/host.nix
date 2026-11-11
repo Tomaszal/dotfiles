@@ -2,7 +2,7 @@
   den.hosts.x86_64-linux.pc.users.tomaszal = {};
 
   den.aspects.pc = {
-    nixos = {pkgs, ...}: {
+    nixos = {
       hardware.facter.reportPath = ./facter.json;
     };
 

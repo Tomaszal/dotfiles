@@ -1,5 +1,5 @@
 {
-  den.default.homeManager = {pkgs, ...}: {
-    home.packages = with pkgs; [libreoffice];
+  den.default.homeManager = {mv, ...}: {
+    home.packages = with mv.fast.latest; [libreoffice];
   };
 }

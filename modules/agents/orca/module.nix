@@ -4,6 +4,7 @@
     inputs',
     lib,
     pkgs,
+    mv,
     ...
   }: let
     orca = inputs'.llm-agents.packages.orca;
@@ -18,7 +19,7 @@
         # Fish's terminal query replies can reach Codex after the shell hands over the PTY.
         makeWrapper ${orca}/bin/orca-ide "$out/bin/orca-ide" \
           --suffix fish_features , no-query-term \
-          --prefix PATH : ${lib.makeBinPath [computerPython pkgs.wl-clipboard]} \
+          --prefix PATH : ${lib.makeBinPath [computerPython mv.fast.latest.wl-clipboard]} \
           --prefix GI_TYPELIB_PATH : ${lib.makeSearchPath "lib/girepository-1.0" (map lib.getLib [pkgs.at-spi2-core pkgs.gtk3 pkgs.gdk-pixbuf])}
       '';
     };
@@ -32,7 +33,7 @@
       rev = metadata.commit;
     };
   in {
-    home.packages = [orcaLauncher] ++ lib.optionals config.programs.codex.enable [pkgs.bubblewrap];
+    home.packages = [orcaLauncher] ++ lib.optionals config.programs.codex.enable [mv.fast.latest.bubblewrap];
 
     programs.agent-skills = {
       sources.orca = {

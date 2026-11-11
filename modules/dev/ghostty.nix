@@ -1,10 +1,10 @@
 {
   den.aspects.dev.homeManager = {
-    pkgs-mv,
+    mv,
     lib,
     ...
   }: let
-    package = pkgs-mv.tip.ghostty;
+    package = mv.fast.latest.ghostty.eval;
   in {
     programs.ghostty = {
       inherit package;
