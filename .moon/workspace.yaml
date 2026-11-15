@@ -7,5 +7,22 @@ defaultProject: repo
 
 telemetry: false
 
+hasher:
+  ignorePatterns:
+    - .direnv/**/*
+    - result
+    - '*.qcow2'
+    - .moon/cache/**/*
+    - '**/apm_modules/**/*'
+    - opencode.json
+    - '**/AGENTS.md'
+    - '**/CLAUDE.md'
+    - '**/.agents/**/*'
+    - '**/.claude/**/*'
+    - '**/.codex/**/*'
+    - '**/.opencode/**/*'
+    - '**/.mcp.json'
+    - '**/__pycache__/**/*'
+
 vcs:
   defaultBranch: main

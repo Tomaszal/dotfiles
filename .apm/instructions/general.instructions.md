@@ -9,6 +9,7 @@ applyTo: "**"
 - Keep documentation alongside what it describes, using local READMEs to link related guides instead of a separate top-level docs directory.
 - Determine the active machine with `hostname`.
 - Define development commands and task orchestration in Moon.
+- When adding generated files to `.gitignore`, update `.moon/workspace.yaml` `hasher.ignorePatterns` so Moon does not hash them; check the result with `moon hash`.
 - Prefer shared aspects and defaults unless the user asks for a host-specific change.
 - Use unstable as the primary `nixpkgs` input. Select stable NixOS releases through nixpkgs-multiverse.
 - Prefer `mv.fast.latest` for applications and standalone tools. Keep `fastFallback` at its default `throw` so missing cached builds do not silently fall back to source builds.
