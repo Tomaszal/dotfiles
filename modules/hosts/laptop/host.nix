@@ -11,6 +11,9 @@
     };
 
     provides.to-users.includes = with den.aspects; [
+      dev
+      dev.agents
+
       social
     ];
   };
