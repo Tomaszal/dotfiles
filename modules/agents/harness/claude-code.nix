@@ -19,6 +19,7 @@
         package = with mv.tip; claude-code;
         context = ../instructions.md;
         settings = {
+          attribution = false;
           disableClaudeAiConnectors = true;
           syncClaudeAiPlugins = false;
           syncClaudeAiSkills = false;
