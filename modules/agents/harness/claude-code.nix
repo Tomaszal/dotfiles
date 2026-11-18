@@ -22,7 +22,10 @@
           disableClaudeAiConnectors = true;
           syncClaudeAiPlugins = false;
           syncClaudeAiSkills = false;
-          permissions.allow = ["Read(//nix/store/**)"];
+          permissions = {
+            defaultMode = "auto";
+            allow = ["Read(//nix/store/**)"];
+          };
         };
       };
 
