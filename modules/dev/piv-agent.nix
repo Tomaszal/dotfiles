@@ -1,12 +1,21 @@
-{lib, ...}: {
+{lib, ...}: let
+  socket-directory = "/run/piv-agent";
+  ssh-socket = "${socket-directory}/ssh.socket";
+in {
+  den.schema.host.includes = [
+    ({user, ...}: {
+      nixos = {
+        services.pcscd.enable = true;
+        systemd.tmpfiles.rules = ["d ${socket-directory} 0700 ${user.userName} - -"];
+        systemd.services.nix-daemon.environment.SSH_AUTH_SOCK = lib.mkDefault ssh-socket;
+
+        # Disable default GNOME SSH agent
+        services.gnome.gcr-ssh-agent.enable = false;
+      };
+    })
+  ];
+
   den.default = {
-    nixos = {
-      services.pcscd.enable = true;
-
-      # Disable default GNOME SSH agent
-      services.gnome.gcr-ssh-agent.enable = false;
-    };
-
     homeManager = {
       config,
       nixosConfig,
@@ -71,7 +80,7 @@
 
         Socket.ListenStream = let
           agentSocket = {
-            ssh = "%t/piv-agent/ssh.socket";
+            ssh = ssh-socket;
             gpg = "%t/gnupg/S.gpg-agent";
           };
         in
@@ -81,7 +90,7 @@
       # SSH integration
       home.sessionVariablesExtra = lib.mkIf agent.ssh ''
         if [[ -z "$SSH_AUTH_SOCK" ]]; then
-          export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/piv-agent/ssh.socket
+          export SSH_AUTH_SOCK=${ssh-socket}
         fi
       '';
 
