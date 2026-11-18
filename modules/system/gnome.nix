@@ -46,11 +46,14 @@
     };
 
     homeManager = {
+      lib,
       nixosConfig,
       pkgs,
       ...
     }: {
       gtk.enable = true;
+
+      dconf.settings."org/gnome/desktop/peripherals/touchpad".natural-scroll = lib.mkDefault false;
 
       programs.gnome-shell = {
         enable = true;
