@@ -15,6 +15,13 @@
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
+    # Upstream cache: https://github.com/fzakaria/nixpkgs-multiverse/blob/main/.github/workflows/ci.yml
+    # Signing key: https://app.cachix.org/api/v1/cache/nixpkgs-multiverse
+    flake-file.nixConfig = {
+      extra-substituters = ["https://nixpkgs-multiverse.cachix.org"];
+      extra-trusted-public-keys = ["nixpkgs-multiverse.cachix.org-1:SqXTpRT4uZ+JP1NNVFqvsG3BkLAtPqPkFTuLfJHiqeQ="];
+    };
+
     perSystem = {system, ...}: {
       _module.args.mv = inputs.multiverse.lib.mkMultiverse {
         inherit system;

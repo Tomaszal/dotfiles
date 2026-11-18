@@ -4,8 +4,8 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 
   nixConfig = {
-    extra-substituters = ["https://nix-community.cachix.org" "https://cache.numtide.com"];
-    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="];
+    extra-substituters = ["https://nix-community.cachix.org" "https://nixpkgs-multiverse.cachix.org" "https://cache.numtide.com"];
+    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "nixpkgs-multiverse.cachix.org-1:SqXTpRT4uZ+JP1NNVFqvsG3BkLAtPqPkFTuLfJHiqeQ=" "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="];
   };
 
   inputs = {
